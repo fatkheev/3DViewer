@@ -9,7 +9,21 @@ FILE* open_file(const char *filename) {
     return file;
 }
 
-int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Faces **faces_out, int *num_faces) {
+int count_numbers_in_string(const char *str) {
+    int count = 0;
+    char *ptr = (char *)str;
+    while (*ptr) {
+        if (*ptr >= '0' && *ptr <= '9') { // если текущий символ - число
+            count++;
+            while (*ptr && *ptr >= '0' && *ptr <= '9') ptr++; // пропускаем все следующие цифры
+        } else {
+            ptr++;
+        }
+    }
+    return count + 1;
+}
+
+int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Face **faces_out, int *num_faces) {
     FILE *file = open_file(filename);
     if (!file) {
         return -1;
@@ -19,7 +33,7 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
     int max_vertices = 1000;
     int max_faces = 1000;
     Vertex *vertices = malloc(sizeof(Vertex) * max_vertices);
-    Faces *faces = malloc(sizeof(Faces) * max_faces);
+    Face *faces = malloc(sizeof(Face) * max_faces);
     int vertexIndex = 0;
     int faceIndex = 0;
 
@@ -27,26 +41,27 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
         if (line[0] == 'v' && line[1] == ' ') {
             if (vertexIndex == max_vertices) {
                 max_vertices *= 2;
-                Vertex *new_vertices = malloc(sizeof(Vertex) * max_vertices);
-                for (int i = 0; i < vertexIndex; i++) {
-                    new_vertices[i] = vertices[i];
-                }
-                free(vertices);
-                vertices = new_vertices;
+                vertices = realloc(vertices, sizeof(Vertex) * max_vertices);
             }
             sscanf(line, "v %f %f %f\n", &vertices[vertexIndex].x, &vertices[vertexIndex].y, &vertices[vertexIndex].z);
             vertexIndex++;
         } else if (line[0] == 'f' && line[1] == ' ') {
             if (faceIndex == max_faces) {
                 max_faces *= 2;
-                Faces *new_faces = malloc(sizeof(Faces) * max_faces);
-                for (int i = 0; i < faceIndex; i++) {
-                    new_faces[i] = faces[i];
-                }
-                free(faces);
-                faces = new_faces;
+                faces = realloc(faces, sizeof(Face) * max_faces);
             }
-            sscanf(line, "f %d %d %d\n", &faces[faceIndex].v1, &faces[faceIndex].v2, &faces[faceIndex].v3);
+
+            int count = count_numbers_in_string(line) - 1;
+            faces[faceIndex].vertices = malloc(sizeof(int) * count);
+            faces[faceIndex].num_vertices = count;
+
+            int i = 0;
+            char *token = strtok(line + 2, " ");  // пропустить символ 'f' и пробел
+            while (token != NULL) {
+                faces[faceIndex].vertices[i++] = strtol(token, NULL, 10);
+                token = strtok(NULL, " ");
+            }
+
             faceIndex++;
         }
     }
