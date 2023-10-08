@@ -54,11 +54,15 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../func/parser.c \
 		../front/main.cpp \
-		../front/mainwindow.cpp moc_mainwindow.cpp
+		../front/mainwindow.cpp \
+		../front/modelviewer.cpp moc_mainwindow.cpp \
+		moc_modelviewer.cpp
 OBJECTS       = parser.o \
 		main.o \
 		mainwindow.o \
-		moc_mainwindow.o
+		modelviewer.o \
+		moc_mainwindow.o \
+		moc_modelviewer.o
 DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/device_config.prf \
 		/usr/local/share/qt/mkspecs/common/unix.conf \
@@ -315,9 +319,11 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/yacc.prf \
 		/usr/local/share/qt/mkspecs/features/lex.prf \
 		../front/front.pro ../backend.h \
-		../front/mainwindow.h ../func/parser.c \
+		../front/mainwindow.h \
+		../front/modelviewer.h ../func/parser.c \
 		../front/main.cpp \
-		../front/mainwindow.cpp
+		../front/mainwindow.cpp \
+		../front/modelviewer.cpp
 QMAKE_TARGET  = front
 DESTDIR       = 
 TARGET        = front.app/Contents/MacOS/front
@@ -895,8 +901,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../backend.h ../front/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../func/parser.c ../front/main.cpp ../front/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../backend.h ../front/mainwindow.h ../front/modelviewer.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../func/parser.c ../front/main.cpp ../front/mainwindow.cpp ../front/modelviewer.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../front/mainwindow.ui $(DISTDIR)/
 
 
@@ -932,18 +938,33 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/local/share/qt/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/local/share/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_modelviewer.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_modelviewer.cpp
 moc_mainwindow.cpp: ../front/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../front/modelviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QOpenGLWidget \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
+		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		../backend.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
 	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../front/mainwindow.h -o moc_mainwindow.cpp
+
+moc_modelviewer.cpp: ../front/modelviewer.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QOpenGLWidget \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
+		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		../backend.h \
+		moc_predefs.h \
+		/usr/local/share/qt/libexec/moc
+	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../front/modelviewer.h -o moc_modelviewer.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -974,8 +995,13 @@ parser.o: ../func/parser.c ../backend.h
 main.o: ../front/main.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../front/modelviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QOpenGLWidget \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
+		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		../backend.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h
@@ -984,14 +1010,30 @@ main.o: ../front/main.cpp ../front/mainwindow.h \
 mainwindow.o: ../front/mainwindow.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
 		/usr/local/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
+		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		../front/modelviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QOpenGLWidget \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
+		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		../backend.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../front/mainwindow.cpp
 
+modelviewer.o: ../front/modelviewer.cpp ../front/modelviewer.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QOpenGLWidget \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
+		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		../backend.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modelviewer.o ../front/modelviewer.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_modelviewer.o: moc_modelviewer.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_modelviewer.o moc_modelviewer.cpp
 
 ####### Install
 

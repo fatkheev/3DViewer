@@ -1,3 +1,6 @@
+#ifndef BACKEND_H
+#define BACKEND_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,3 +23,5 @@ FILE* open_file(const char *filename);
 
 // Запись точек и граней в массивы
 int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Face **faces_out, int *num_faces);
+
+#endif // BACKEND_H

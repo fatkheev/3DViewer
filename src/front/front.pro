@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     ../func/parser.c \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    modelviewer.cpp
 
 HEADERS += \
     ../backend.h \
-    mainwindow.h
+    mainwindow.h \
+    modelviewer.h
     backend.h
 
 FORMS += \

@@ -2,25 +2,27 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QOpenGLWidget>
+#include <QFileDialog>
+#include "modelviewer.h"
 
-extern "C" {
-    #include "../backend.h"
+namespace Ui {
+class MainWindow;
 }
-
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_go_clicked();
 
 private:
     Ui::MainWindow *ui;
+    ModelViewer* openGLWidget;  // Используйте ModelViewer вместо QOpenGLWidget
 };
+
 #endif // MAINWINDOW_H

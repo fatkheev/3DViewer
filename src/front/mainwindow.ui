@@ -27,12 +27,12 @@
      <string>Вывести</string>
     </property>
    </widget>
-   <widget class="QOpenGLWidget" name="openGLWidget">
+   <widget class="ModelViewer" name="openGLWidget" native="true">
     <property name="geometry">
      <rect>
       <x>19</x>
       <y>19</y>
-      <width>1050</width>
+      <width>700</width>
       <height>700</height>
      </rect>
     </property>
@@ -50,6 +50,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ModelViewer</class>
+   <extends>QWidget</extends>
+   <header>modelviewer.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

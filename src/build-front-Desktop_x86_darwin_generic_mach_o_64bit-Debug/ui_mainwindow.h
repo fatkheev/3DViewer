@@ -10,13 +10,13 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtOpenGLWidgets/QOpenGLWidget>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
+#include "modelviewer.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -25,7 +25,7 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QPushButton *go;
-    QOpenGLWidget *openGLWidget;
+    ModelViewer *openGLWidget;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -39,9 +39,9 @@ public:
         go = new QPushButton(centralwidget);
         go->setObjectName(QString::fromUtf8("go"));
         go->setGeometry(QRect(1140, 30, 100, 32));
-        openGLWidget = new QOpenGLWidget(centralwidget);
+        openGLWidget = new ModelViewer(centralwidget);
         openGLWidget->setObjectName(QString::fromUtf8("openGLWidget"));
-        openGLWidget->setGeometry(QRect(19, 19, 1050, 700));
+        openGLWidget->setGeometry(QRect(19, 19, 700, 700));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

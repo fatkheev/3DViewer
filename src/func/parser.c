@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "../backend.h"
 
 FILE* open_file(const char *filename) {
@@ -75,3 +79,7 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
 
     return 0;
 }
+
+#ifdef __cplusplus
+}
+#endif
