@@ -289,7 +289,6 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
-		../front/.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
@@ -332,7 +331,7 @@ TARGET        = front.app/Contents/MacOS/front
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 12.1
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qmake.stash
+EXPORT__QMAKE_STASH_ = 
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_DEFAULT_ARCHS = x86_64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -574,7 +573,6 @@ Makefile: ../front/front.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.conf /
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
@@ -836,7 +834,6 @@ Makefile: ../front/front.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.conf /
 /usr/local/share/qt/mkspecs/features/qt_config.prf:
 /usr/local/share/qt/mkspecs/macx-clang/qmake.conf:
 /usr/local/share/qt/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /usr/local/share/qt/mkspecs/features/exclusive_builds.prf:
 /usr/local/share/qt/mkspecs/features/mac/sdk.prf:
 /usr/local/share/qt/mkspecs/features/toolchain.prf:
@@ -913,7 +910,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r front.app
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -974,7 +970,13 @@ compiler_uic_make_all: ui_mainwindow.h
 compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: ../front/mainwindow.ui \
-		/usr/local/share/qt/libexec/uic
+		/usr/local/share/qt/libexec/uic \
+		../front/modelviewer.h \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QOpenGLWidget \
+		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
+		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		../backend.h
 	/usr/local/share/qt/libexec/uic ../front/mainwindow.ui -o ui_mainwindow.h
 
 compiler_rez_source_make_all:
@@ -1018,7 +1020,9 @@ mainwindow.o: ../front/mainwindow.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		../backend.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QLayout \
+		/usr/local/lib/QtWidgets.framework/Headers/qlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../front/mainwindow.cpp
 
 modelviewer.o: ../front/modelviewer.cpp ../front/modelviewer.h \
@@ -1026,7 +1030,9 @@ modelviewer.o: ../front/modelviewer.cpp ../front/modelviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
-		../backend.h
+		../backend.h \
+		/usr/local/lib/QtOpenGL.framework/Headers/QOpenGLShaderProgram \
+		/usr/local/lib/QtOpenGL.framework/Headers/qopenglshaderprogram.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modelviewer.o ../front/modelviewer.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

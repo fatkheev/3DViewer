@@ -14,6 +14,7 @@ class ModelViewer : public QOpenGLWidget, protected QOpenGLFunctions
 public:
     explicit ModelViewer(QWidget *parent = nullptr);
     void setData(Vertex *vertices, int num_vertices, Face *faces, int num_faces);
+    ~ModelViewer();
 
 protected:
     void initializeGL() override;
@@ -25,6 +26,7 @@ private:
     int num_vertices, num_faces;
     Vertex* vertices;
     GLuint* indexes;
+    int *face_vertex_counts;
 };
 
 #endif // MODELVIEWER_H

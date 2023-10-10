@@ -2,8 +2,13 @@
 #include <QOpenGLShaderProgram>
 
 ModelViewer::ModelViewer(QWidget *parent)
-    : QOpenGLWidget(parent), vertexVBO(0), indexVBO(0), num_vertices(0), num_faces(0), vertices(nullptr), indexes(nullptr)
+    : QOpenGLWidget(parent), vertexVBO(0), indexVBO(0), num_vertices(0), num_faces(0), vertices(nullptr), indexes(nullptr), face_vertex_counts(nullptr)
 {
+}
+
+ModelViewer::~ModelViewer() {
+    delete[] indexes;
+    delete[] face_vertex_counts;
 }
 
 void ModelViewer::setData(Vertex *vertices, int num_vertices, Face *faces, int num_faces) {
@@ -11,13 +16,19 @@ void ModelViewer::setData(Vertex *vertices, int num_vertices, Face *faces, int n
     this->num_vertices = num_vertices;
     this->num_faces = num_faces;
 
-    // Создаем массив индексов
-    this->indexes = new GLuint[num_faces * 3];
+    int total_face_vertices = 0;
     for (int i = 0; i < num_faces; ++i) {
-        if (faces[i].num_vertices == 3) {
-            this->indexes[i * 3] = faces[i].vertices[0] - 1;
-            this->indexes[i * 3 + 1] = faces[i].vertices[1] - 1;
-            this->indexes[i * 3 + 2] = faces[i].vertices[2] - 1;
+        total_face_vertices += faces[i].num_vertices;
+    }
+
+    this->indexes = new GLuint[total_face_vertices];
+    this->face_vertex_counts = new int[num_faces];
+
+    int idx = 0;
+    for (int i = 0; i < num_faces; ++i) {
+        face_vertex_counts[i] = faces[i].num_vertices;
+        for (int j = 0; j < faces[i].num_vertices; ++j) {
+            this->indexes[idx++] = faces[i].vertices[j] - 1;
         }
     }
 
@@ -34,8 +45,13 @@ void ModelViewer::initializeGL() {
 
     glGenBuffers(1, &indexVBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexVBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, num_faces * 3 * sizeof(GLuint), indexes, GL_STATIC_DRAW);
+    int total_face_vertices = 0;
+    for (int i = 0; i < num_faces; ++i) {
+        total_face_vertices += face_vertex_counts[i];  // Use previously stored vertex counts per face
+    }
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, total_face_vertices * sizeof(GLuint), indexes, GL_STATIC_DRAW);
 }
+
 
 void ModelViewer::resizeGL(int w, int h) {
     glViewport(0, 0, w, h);
@@ -49,7 +65,12 @@ void ModelViewer::paintGL() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexVBO);
-    glDrawElements(GL_LINES, num_faces * 3, GL_UNSIGNED_INT, nullptr);
+
+    int start_idx = 0;
+    for (int i = 0; i < num_faces; ++i) {
+        glDrawElements(GL_LINE_LOOP, face_vertex_counts[i], GL_UNSIGNED_INT, (void*)(start_idx * sizeof(GLuint)));
+        start_idx += face_vertex_counts[i];
+    }
 
     glDisableVertexAttribArray(0);
 }

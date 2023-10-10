@@ -14,13 +14,16 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::on_go_clicked() {
+void MainWindow::on_pushButton_15_clicked() {
     Vertex *vertices;
     Face *faces;
     int num_vertices, num_faces;
-    QString filename = QFileDialog::getOpenFileName(this, "Open OBJ file", "", "OBJ Files (*.obj);;All Files (*)");
+
+    QString filename = QFileDialog::getOpenFileName(this, "Open OBJ file", "", "OBJ Files (*.obj)");
     if(filename.isEmpty()) return;
+
     if(parse_obj(filename.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
-        openGLWidget->setData(vertices, num_vertices, faces, num_faces);
+        ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
     }
 }
+
