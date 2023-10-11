@@ -37,6 +37,14 @@ void MainWindow::on_pushButton_15_clicked() {
 
     if(parse_obj(filename.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
         ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
+
+        // Извлекаем имя файла из полного пути
+        QFileInfo fileInfo(filename);
+        QString fileNameOnly = fileInfo.fileName();
+
+        // Устанавливаем значения для меток
+        ui->label_name->setText(fileNameOnly);
+        ui->label_V->setText(QString("%1").arg(num_vertices));
+        ui->label_F->setText(QString("%1").arg(num_faces));
     }
 }
-

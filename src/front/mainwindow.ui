@@ -1054,7 +1054,7 @@ QPushButton:pressed {
        <string>кол-во ребер:</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_14">
+     <widget class="QLabel" name="label_name">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -1064,10 +1064,10 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>cub.obj</string>
+       <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_15">
+     <widget class="QLabel" name="label_V">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -1077,10 +1077,10 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>456546</string>
+       <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_21">
+     <widget class="QLabel" name="label_F">
       <property name="geometry">
        <rect>
         <x>100</x>
@@ -1090,7 +1090,7 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>45</string>
+       <string/>
       </property>
      </widget>
     </widget>
