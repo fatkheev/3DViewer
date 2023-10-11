@@ -684,7 +684,7 @@ QPushButton:pressed {
     <property name="title">
      <string/>
     </property>
-    <widget class="QScrollBar" name="horizontalScrollBar_3">
+    <widget class="QScrollBar" name="horizontalScrollBar_x">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -693,11 +693,17 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QScrollBar" name="horizontalScrollBar_4">
+    <widget class="QScrollBar" name="horizontalScrollBar_y">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -706,11 +712,17 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QScrollBar" name="horizontalScrollBar_6">
+    <widget class="QScrollBar" name="horizontalScrollBar_z">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -718,6 +730,12 @@ QPushButton:pressed {
        <width>311</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -775,7 +793,7 @@ QPushButton:pressed {
     <property name="title">
      <string/>
     </property>
-    <widget class="QScrollBar" name="horizontalScrollBar_5">
+    <widget class="QScrollBar" name="moveScrollBar_x">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -784,11 +802,20 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QScrollBar" name="horizontalScrollBar_7">
+    <widget class="QScrollBar" name="moveScrollBar_y">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -797,11 +824,20 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QScrollBar" name="horizontalScrollBar_8">
+    <widget class="QScrollBar" name="moveScrollBar_z">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -809,6 +845,15 @@ QPushButton:pressed {
        <width>311</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>-100</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="value">
+      <number>0</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -866,7 +911,7 @@ QPushButton:pressed {
     <property name="title">
      <string/>
     </property>
-    <widget class="QScrollBar" name="horizontalScrollBar_9">
+    <widget class="QScrollBar" name="ScrollBar_scale">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -877,6 +922,18 @@ QPushButton:pressed {
      </property>
      <property name="styleSheet">
       <string notr="true"/>
+     </property>
+     <property name="minimum">
+      <number>0</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>90</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

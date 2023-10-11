@@ -947,6 +947,8 @@ moc_mainwindow.cpp: ../front/mainwindow.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
+		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../backend.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
@@ -957,6 +959,8 @@ moc_modelviewer.cpp: ../front/modelviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
+		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../backend.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
@@ -976,6 +980,8 @@ ui_mainwindow.h: ../front/mainwindow.ui \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
+		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../backend.h
 	/usr/local/share/qt/libexec/uic ../front/mainwindow.ui -o ui_mainwindow.h
 
@@ -1004,6 +1010,8 @@ main.o: ../front/main.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
+		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../backend.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h
@@ -1019,6 +1027,8 @@ mainwindow.o: ../front/mainwindow.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
+		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../backend.h \
 		ui_mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QLayout \
@@ -1030,6 +1040,8 @@ modelviewer.o: ../front/modelviewer.cpp ../front/modelviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/qopenglwidget.h \
 		/usr/local/lib/QtGui.framework/Headers/QOpenGLFunctions \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
+		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
 		../backend.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/QOpenGLShaderProgram \
 		/usr/local/lib/QtOpenGL.framework/Headers/qopenglshaderprogram.h

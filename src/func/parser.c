@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "../backend.h"
 
 FILE* open_file(const char *filename) {
@@ -13,13 +9,13 @@ FILE* open_file(const char *filename) {
     return file;
 }
 
-int count_numbers_in_string(const char *str) {
+int count_vertex_indices_in_face_string(const char *str) {
     int count = 0;
     char *ptr = (char *)str;
     while (*ptr) {
         if (*ptr >= '0' && *ptr <= '9') { // если текущий символ - число
             count++;
-            while (*ptr && *ptr >= '0' && *ptr <= '9') ptr++; // пропускаем все следующие цифры
+            while (*ptr && *ptr != ' ') ptr++; // пропускаем все символы до следующего пробела
         } else {
             ptr++;
         }
@@ -41,6 +37,38 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
     int vertexIndex = 0;
     int faceIndex = 0;
 
+    float maxAbsValue = 0.0f;
+    float minX = INFINITY, minY = INFINITY, minZ = INFINITY;
+    float maxX = -INFINITY, maxY = -INFINITY, maxZ = -INFINITY;
+
+    // Первый проход: определение границ и нахождение maxAbsValue
+    while (fgets(line, sizeof(line), file)) {
+        if (line[0] == 'v' && line[1] == ' ') {
+            Vertex v;
+            sscanf(line, "v %f %f %f\n", &v.x, &v.y, &v.z);
+
+            if (fabs(v.x) > maxAbsValue) maxAbsValue = fabs(v.x);
+            if (fabs(v.y) > maxAbsValue) maxAbsValue = fabs(v.y);
+            if (fabs(v.z) > maxAbsValue) maxAbsValue = fabs(v.z);
+
+            if (v.x > maxX) maxX = v.x;
+            if (v.y > maxY) maxY = v.y;
+            if (v.z > maxZ) maxZ = v.z;
+
+            if (v.x < minX) minX = v.x;
+            if (v.y < minY) minY = v.y;
+            if (v.z < minZ) minZ = v.z;
+        }
+    }
+
+    float scaleFactor = (maxAbsValue > 1.0f) ? (1.0f / maxAbsValue) : 1.0f;
+    float centerX = (minX + maxX) / 2.0f;
+    float centerY = (minY + maxY) / 2.0f;
+    float centerZ = (minZ + maxZ) / 2.0f;
+
+    fseek(file, 0, SEEK_SET);  // Вернемся к началу файла
+
+    // Второй проход: масштабирование и центрирование вершин, заполнение массивов
     while (fgets(line, sizeof(line), file)) {
         if (line[0] == 'v' && line[1] == ' ') {
             if (vertexIndex == max_vertices) {
@@ -48,6 +76,11 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
                 vertices = realloc(vertices, sizeof(Vertex) * max_vertices);
             }
             sscanf(line, "v %f %f %f\n", &vertices[vertexIndex].x, &vertices[vertexIndex].y, &vertices[vertexIndex].z);
+
+            vertices[vertexIndex].x = (vertices[vertexIndex].x - centerX) * scaleFactor;
+            vertices[vertexIndex].y = (vertices[vertexIndex].y - centerY) * scaleFactor;
+            vertices[vertexIndex].z = (vertices[vertexIndex].z - centerZ) * scaleFactor;
+
             vertexIndex++;
         } else if (line[0] == 'f' && line[1] == ' ') {
             if (faceIndex == max_faces) {
@@ -55,17 +88,20 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
                 faces = realloc(faces, sizeof(Face) * max_faces);
             }
 
-            int count = count_numbers_in_string(line) - 1;
+            int count = count_vertex_indices_in_face_string(line) - 1;
             faces[faceIndex].vertices = malloc(sizeof(int) * count);
             faces[faceIndex].num_vertices = count;
 
             int i = 0;
-            char *token = strtok(line + 2, " ");  // пропустить символ 'f' и пробел
+            char *token = strtok(line + 2, " ");
             while (token != NULL) {
-                faces[faceIndex].vertices[i++] = strtol(token, NULL, 10);
+                int idx = strtol(token, NULL, 10);
+                if (idx < 0) {
+                    idx = vertexIndex + idx + 1;
+                }
+                faces[faceIndex].vertices[i++] = idx;
                 token = strtok(NULL, " ");
             }
-
             faceIndex++;
         }
     }
@@ -80,6 +116,55 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
     return 0;
 }
 
-#ifdef __cplusplus
+
+// Поворот объекта
+void rotate_model(Vertex *vertices, int num_vertices, float angleX, float angleY, float angleZ) {
+    for (int i = 0; i < num_vertices; i++) {
+        rotate_vertex(&vertices[i], angleX, angleY, angleZ);
+    }
 }
-#endif
+
+void rotate_vertex(Vertex *vertex, float angleX, float angleY, float angleZ) {
+    float newY = vertex->y * cos(angleX) - vertex->z * sin(angleX);
+    float newZ = vertex->y * sin(angleX) + vertex->z * cos(angleX);
+    vertex->y = newY;
+    vertex->z = newZ;
+
+    float newX = vertex->x * cos(angleY) + vertex->z * sin(angleY);
+    newZ = -vertex->x * sin(angleY) + vertex->z * cos(angleY);
+    vertex->x = newX;
+    vertex->z = newZ;
+
+    newX = vertex->x * cos(angleZ) - vertex->y * sin(angleZ);
+    newY = vertex->x * sin(angleZ) + vertex->y * cos(angleZ);
+    vertex->x = newX;
+    vertex->y = newY;
+}
+
+void scale_model(Vertex *vertices, int num_vertices, float scale_factor) {
+    for (int i = 0; i < num_vertices; i++) {
+        vertices[i].x *= scale_factor;
+        vertices[i].y *= scale_factor;
+        vertices[i].z *= scale_factor;
+    }
+}
+
+void scale_vertex(Vertex *vertex, float scale_factor) {
+    vertex->x *= scale_factor;
+    vertex->y *= scale_factor;
+    vertex->z *= scale_factor;
+}
+
+// Движение объекта по осям
+void move_model(Vertex *vertices, int num_vertices, float dx, float dy, float dz) {
+    for (int i = 0; i < num_vertices; i++) {
+        vertices[i].x += dx;
+        vertices[i].y += dy;
+        vertices[i].z += dz;
+    }
+}
+void move_vertex(Vertex *vertex, float dx, float dy, float dz) {
+    vertex->x += dx;
+    vertex->y += dy;
+    vertex->z += dz;
+}

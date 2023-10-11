@@ -8,6 +8,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     openGLWidget = ui->openGLWidget;
+
+    // Связывание сигналов и слотов
+    connect(ui->horizontalScrollBar_x, &QScrollBar::valueChanged,
+            openGLWidget, &ModelViewer::on_horizontalScrollBar_xValueChanged);
+    connect(ui->horizontalScrollBar_y, &QScrollBar::valueChanged,
+            openGLWidget, &ModelViewer::on_horizontalScrollBar_yValueChanged);
+    connect(ui->horizontalScrollBar_z, &QScrollBar::valueChanged,
+            openGLWidget, &ModelViewer::on_horizontalScrollBar_zValueChanged);
+    connect(ui->ScrollBar_scale, &QScrollBar::valueChanged, openGLWidget, &ModelViewer::on_ScrollBar_scaleValueChanged);
+
+    connect(ui->moveScrollBar_x, &QScrollBar::valueChanged, openGLWidget, &ModelViewer::on_moveScrollBar_xValueChanged);
+    connect(ui->moveScrollBar_y, &QScrollBar::valueChanged, openGLWidget, &ModelViewer::on_moveScrollBar_yValueChanged);
+    connect(ui->moveScrollBar_z, &QScrollBar::valueChanged, openGLWidget, &ModelViewer::on_moveScrollBar_zValueChanged);
 }
 
 MainWindow::~MainWindow() {
