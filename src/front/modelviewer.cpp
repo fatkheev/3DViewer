@@ -88,12 +88,16 @@ void ModelViewer::paintGL() {
 // Сохранение позиции и размеров
 void ModelViewer::updateVertices() {
     // Копируем исходные вершины
-    memcpy(vertices, originalVertices, num_vertices * sizeof(Vertex));
+        memcpy(vertices, originalVertices, num_vertices * sizeof(Vertex));
 
-    // Применяем операции
-    rotate_model(vertices, num_vertices, rotationAngleX, rotationAngleY, rotationAngleZ);
-    scale_model(vertices, num_vertices, scaleFactor);
-    move_model(vertices, num_vertices, currentOffsetX, currentOffsetY, currentOffsetZ);
+        // Применяем масштабирование
+        scale_model(vertices, num_vertices, scaleFactor);
+
+        // Применяем поворот
+        rotate_model(vertices, num_vertices, rotationAngleX, rotationAngleY, rotationAngleZ);
+
+        // Применяем смещение
+        move_model(vertices, num_vertices, currentOffsetX, currentOffsetY, currentOffsetZ);
 }
 
 
@@ -102,7 +106,7 @@ void ModelViewer::on_horizontalScrollBar_xValueChanged(int value) {
     float newAngleX = static_cast<float>(value) * M_PI / 180.0f;
     rotate_model(vertices, num_vertices, newAngleX - rotationAngleX, 0.0f, 0.0f);
     rotationAngleX = newAngleX;
-
+updateVertices();
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
@@ -112,7 +116,7 @@ void ModelViewer::on_horizontalScrollBar_yValueChanged(int value) {
     float newAngleY = static_cast<float>(value) * M_PI / 180.0f;
     rotate_model(vertices, num_vertices, 0.0f, newAngleY - rotationAngleY, 0.0f);
     rotationAngleY = newAngleY;
-
+updateVertices();
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
@@ -122,7 +126,7 @@ void ModelViewer::on_horizontalScrollBar_zValueChanged(int value) {
     float newAngleZ = static_cast<float>(value) * M_PI / 180.0f;
     rotate_model(vertices, num_vertices, 0.0f, 0.0f, newAngleZ - rotationAngleZ);
     rotationAngleZ = newAngleZ;
-
+updateVertices();
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
@@ -132,7 +136,11 @@ void ModelViewer::on_horizontalScrollBar_zValueChanged(int value) {
 //Скейл
 void ModelViewer::on_ScrollBar_scaleValueChanged(int value) {
     scaleFactor = exp((value - 100) / 50.0);
+
+    // Применяем все преобразования
     updateVertices();
+
+    // Обновляем VBO
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
@@ -145,6 +153,7 @@ void ModelViewer::on_moveScrollBar_xValueChanged(int value) {
     currentOffsetX = targetOffset;
 
     move_model(vertices, num_vertices, difference, 0, 0);
+    updateVertices();
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
@@ -156,6 +165,7 @@ void ModelViewer::on_moveScrollBar_yValueChanged(int value) {
     currentOffsetY = targetOffset;
 
     move_model(vertices, num_vertices, 0, difference, 0);
+    updateVertices();
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
@@ -167,6 +177,7 @@ void ModelViewer::on_moveScrollBar_zValueChanged(int value) {
     currentOffsetZ = targetOffset;
 
     move_model(vertices, num_vertices, 0, 0, difference);
+    updateVertices();
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
