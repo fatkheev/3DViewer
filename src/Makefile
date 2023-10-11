@@ -3,7 +3,7 @@ TESTFLAGS = -lcheck -g
 CFLAGS = -Wall -Wextra -Werror -std=c11
 TESTFLAGS2 = -lcheck -lm -lpthread -lrt -lsubunit -g
 GCOVFLAGS = -fprofile-arcs -ftest-coverage
-PROGNAME = s21_3dviewer
+PROGNAME = front
 
 all: test uninstall install
 

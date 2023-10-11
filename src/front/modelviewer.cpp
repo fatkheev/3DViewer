@@ -6,6 +6,9 @@ ModelViewer::ModelViewer(QWidget *parent)
       vertices(nullptr), indexes(nullptr), face_vertex_counts(nullptr),
       rotationAngleX(0.0f), rotationAngleY(0.0f), rotationAngleZ(0.0f)  // инициализация углов
 {
+    inertiaTimer = new QTimer(this);
+    connect(inertiaTimer, &QTimer::timeout, this, &ModelViewer::applyInertia);
+    inertiaTimer->start(16);  // обновляем примерно 60 раз в секунду
 }
 
 ModelViewer::~ModelViewer() {
@@ -181,4 +184,61 @@ void ModelViewer::on_moveScrollBar_zValueChanged(int value) {
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
+}
+
+// Ротате мышью
+void ModelViewer::mousePressEvent(QMouseEvent *event) {
+    if (event->button() == Qt::LeftButton) {
+        mousePressed = true;
+        lastMousePos = event->pos();
+    }
+}
+
+void ModelViewer::applyInertia() {
+    if (fabs(inertiaX) > 0.01f || fabs(inertiaY) > 0.01f) {
+        rotationAngleX += inertiaY;
+        rotationAngleY += inertiaX;
+
+        // Постепенно уменьшаем инерцию
+        inertiaX *= 0.95f;
+        inertiaY *= 0.95f;
+
+        updateVertices();
+
+        glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
+        glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+        update();
+    }
+}
+
+void ModelViewer::mouseMoveEvent(QMouseEvent *event) {
+    if (event->buttons() & Qt::LeftButton) {
+        int dx = event->position().x() - lastMousePos.x();
+        int dy = event->position().y() - lastMousePos.y();
+
+        // Уменьшаем скорость вращения
+        float rotationDX = dx * 0.003f;
+        float rotationDY = dy * 0.003f;
+
+        rotationAngleX += rotationDY;
+        rotationAngleY += rotationDX;
+
+        // Сохраняем движение мыши для инерции
+        inertiaX = rotationDX;
+        inertiaY = rotationDY;
+
+        updateVertices();
+
+        glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
+        glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+        update();
+    }
+
+    lastMousePos = event->pos();
+}
+
+void ModelViewer::mouseReleaseEvent(QMouseEvent *event) {
+    if (event->button() == Qt::LeftButton) {
+        mousePressed = false;
+    }
 }

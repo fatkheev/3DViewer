@@ -4,6 +4,8 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QScrollBar>
+#include <QTimer>
+#include <QMouseEvent>
 
 extern "C" {
 #include "../backend.h"
@@ -28,12 +30,17 @@ public slots:
     void on_moveScrollBar_xValueChanged(int value);
     void on_moveScrollBar_yValueChanged(int value);
     void on_moveScrollBar_zValueChanged(int value);
+    void applyInertia();
 
 
 protected:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
+
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
     GLuint vertexVBO, indexVBO;
@@ -46,6 +53,13 @@ private:
     float currentOffsetX = 0.0f;
     float currentOffsetY = 0.0f;
     float currentOffsetZ = 0.0f;
+
+    // Скролл мышью
+    bool mousePressed;
+    QPoint lastMousePos;
+    float inertiaX = 0.0f;
+    float inertiaY = 0.0f;
+    QTimer *inertiaTimer;
 };
 
 #endif // MODELVIEWER_H
