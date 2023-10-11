@@ -91,16 +91,16 @@ void ModelViewer::paintGL() {
 // Сохранение позиции и размеров
 void ModelViewer::updateVertices() {
     // Копируем исходные вершины
-        memcpy(vertices, originalVertices, num_vertices * sizeof(Vertex));
+    memcpy(vertices, originalVertices, num_vertices * sizeof(Vertex));
 
-        // Применяем масштабирование
-        scale_model(vertices, num_vertices, scaleFactor);
+    // Применяем смещение
+    move_model(vertices, num_vertices, currentOffsetX, currentOffsetY, currentOffsetZ);
 
-        // Применяем поворот
-        rotate_model(vertices, num_vertices, rotationAngleX, rotationAngleY, rotationAngleZ);
+    // Применяем масштабирование
+    scale_model(vertices, num_vertices, scaleFactor);
 
-        // Применяем смещение
-        move_model(vertices, num_vertices, currentOffsetX, currentOffsetY, currentOffsetZ);
+    // Применяем поворот
+    rotate_model(vertices, num_vertices, rotationAngleX, rotationAngleY, rotationAngleZ);
 }
 
 
@@ -175,12 +175,12 @@ void ModelViewer::on_moveScrollBar_yValueChanged(int value) {
 }
 
 void ModelViewer::on_moveScrollBar_zValueChanged(int value) {
-    float targetOffset = value * 0.01f;
-    float difference = targetOffset - currentOffsetZ;
-    currentOffsetZ = targetOffset;
+    currentOffsetZ = value * 0.01f;
 
-    move_model(vertices, num_vertices, 0, 0, difference);
+    // Применяем все преобразования
     updateVertices();
+
+    // Обновляем VBO
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
