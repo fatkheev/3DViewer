@@ -200,8 +200,8 @@ void ModelViewer::applyInertia() {
         rotationAngleY += inertiaX;
 
         // Постепенно уменьшаем инерцию
-        inertiaX *= 0.95f;
-        inertiaY *= 0.95f;
+        inertiaX *= 0.90f;
+        inertiaY *= 0.90f;
 
         updateVertices();
 
