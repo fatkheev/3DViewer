@@ -5,6 +5,19 @@
 #include <QFileDialog>
 #include "modelviewer.h"
 
+
+#include <QMessageBox>
+#include <QDialog>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QOpenGLWidget>
+#include <QWidget>
+#include <QtOpenGL>
+#include <QDebug>
+
+
+
+
 namespace Ui {
 class MainWindow;
 }
@@ -19,6 +32,21 @@ public:
 
 private slots:
     void on_pushButton_15_clicked();
+    void on_pushButton_27_clicked();
+    void on_screenshot_clicked();
+
+    void on_GIF_clicked();
+    void createGif(QString fileName);
+
+
+    void set_color_background();
+
+
+
+
+
+
+
 
 private:
     Ui::MainWindow *ui;

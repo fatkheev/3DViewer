@@ -182,3 +182,18 @@ void ModelViewer::on_moveScrollBar_zValueChanged(int value) {
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
 }
+
+void ModelViewer::setBackgroundColor( QColor &color)
+{
+
+    qDebug() << "OK:"<< color;
+
+
+    QPalette pal = palette();
+    pal.setColor(QPalette::Window, color);
+    setAutoFillBackground(true);
+    setPalette(pal);
+
+    qDebug() << "Background color set successfully.";
+
+}

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1060</width>
-    <height>661</height>
+    <height>697</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,11 +20,11 @@
       <x>10</x>
       <y>10</y>
       <width>640</width>
-      <height>640</height>
+      <height>671</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: white;
+     <string notr="true">
 border-radius: 10px;</string>
     </property>
    </widget>
@@ -32,7 +32,7 @@ border-radius: 10px;</string>
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>10</y>
+      <y>200</y>
       <width>391</width>
       <height>80</height>
      </rect>
@@ -43,7 +43,7 @@ border-radius: 10px;</string>
     <widget class="QComboBox" name="comboBox">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>130</x>
        <y>10</y>
        <width>171</width>
        <height>25</height>
@@ -65,12 +65,12 @@ border-radius: 10px;</string>
       <rect>
        <x>20</x>
        <y>10</y>
-       <width>111</width>
+       <width>97</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid silver; 
+      <string notr="true">border: 2px solid grey; 
 border-radius: 5px;</string>
      </property>
      <property name="text">
@@ -82,12 +82,12 @@ border-radius: 5px;</string>
       <rect>
        <x>20</x>
        <y>45</y>
-       <width>81</width>
-       <height>16</height>
+       <width>76</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string>border: 2px solid silver; 
+      <string>border: 2px solid grey; 
 border-radius: 5px;</string>
      </property>
      <property name="text">
@@ -306,7 +306,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>350</y>
+      <y>430</y>
       <width>391</width>
       <height>161</height>
      </rect>
@@ -353,11 +353,11 @@ QPushButton:pressed {
        <x>280</x>
        <y>10</y>
        <width>51</width>
-       <height>16</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid silver; 
+      <string notr="true">border: 2px solid grey; 
 border-radius: 5px;</string>
      </property>
      <property name="text">
@@ -370,32 +370,15 @@ border-radius: 5px;</string>
        <x>250</x>
        <y>70</y>
        <width>111</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 2px solid silver; 
-border-radius: 5px;</string>
-     </property>
-     <property name="text">
-      <string>Толщина ребер</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_7">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>130</y>
-       <width>41</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string>border: 2px solid silver; 
+      <string notr="true">border: 2px solid grey; 
 border-radius: 5px;</string>
      </property>
      <property name="text">
-      <string>Цвет </string>
+      <string>Толщина ребер</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
@@ -404,11 +387,11 @@ border-radius: 5px;</string>
        <x>60</x>
        <y>10</y>
        <width>71</width>
-       <height>16</height>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 2px solid silver; 
+      <string notr="true">border: 2px solid grey; 
 border-radius: 5px;</string>
      </property>
      <property name="text">
@@ -446,32 +429,15 @@ border-radius: 5px;</string>
        <x>40</x>
        <y>70</y>
        <width>111</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border: 2px solid silver; 
-border-radius: 5px;</string>
-     </property>
-     <property name="text">
-      <string>Размер вершин</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_19">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>130</y>
-       <width>41</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string>border: 2px solid silver; 
+      <string notr="true">border: 2px solid grey; 
 border-radius: 5px;</string>
      </property>
      <property name="text">
-      <string>Цвет </string>
+      <string>Размер вершин</string>
      </property>
     </widget>
     <widget class="QScrollBar" name="horizontalScrollBar_2">
@@ -490,30 +456,7 @@ border-radius: 5px;</string>
     <widget class="QPushButton" name="green_vertex">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>130</y>
-       <width>20</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"> QPushButton {background-color: green;
-border-radius: 5px;
-}
-
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 white, stop: 1 gray);
-}</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="green_edge">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
+       <x>40</x>
        <y>130</y>
        <width>20</width>
        <height>20</height>
@@ -536,7 +479,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="blue_vertex">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>130</x>
        <y>130</y>
        <width>20</width>
        <height>20</height>
@@ -559,7 +502,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="black_vertex">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>100</x>
        <y>130</y>
        <width>20</width>
        <height>20</height>
@@ -582,7 +525,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="red_vertex">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>70</x>
        <y>130</y>
        <width>20</width>
        <height>20</height>
@@ -605,7 +548,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="orange_edge">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>310</x>
        <y>130</y>
        <width>20</width>
        <height>20</height>
@@ -628,7 +571,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="yellow_edge">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>280</x>
        <y>130</y>
        <width>20</width>
        <height>20</height>
@@ -651,7 +594,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="white_edge">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>340</x>
        <y>130</y>
        <width>20</width>
        <height>20</height>
@@ -671,14 +614,37 @@ QPushButton:pressed {
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="purply_edge">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> QPushButton {background-color: Purple;
+border-radius: 5px;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 white, stop: 1 gray);
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_6">
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>100</y>
+      <y>10</y>
       <width>391</width>
-      <height>91</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -687,9 +653,9 @@ QPushButton:pressed {
     <widget class="QScrollBar" name="horizontalScrollBar_x">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>5</y>
-       <width>311</width>
+       <x>119</x>
+       <y>40</y>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
@@ -706,9 +672,9 @@ QPushButton:pressed {
     <widget class="QScrollBar" name="horizontalScrollBar_y">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>34</y>
-       <width>311</width>
+       <x>120</x>
+       <y>70</y>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
@@ -725,9 +691,9 @@ QPushButton:pressed {
     <widget class="QScrollBar" name="horizontalScrollBar_z">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>60</y>
-       <width>311</width>
+       <x>120</x>
+       <y>100</y>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
@@ -745,7 +711,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>10</y>
+       <y>40</y>
        <width>21</width>
        <height>20</height>
       </rect>
@@ -758,7 +724,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>60</y>
+       <y>100</y>
        <width>21</width>
        <height>20</height>
       </rect>
@@ -771,7 +737,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>34</y>
+       <y>70</y>
        <width>21</width>
        <height>20</height>
       </rect>
@@ -780,14 +746,44 @@ QPushButton:pressed {
       <string>Y</string>
      </property>
     </widget>
+    <widget class="QSpinBox" name="spinBox">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>40</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_2">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>70</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_3">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>100</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_7">
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>250</y>
+      <y>290</y>
       <width>391</width>
-      <height>91</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -796,9 +792,9 @@ QPushButton:pressed {
     <widget class="QScrollBar" name="moveScrollBar_x">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>5</y>
-       <width>311</width>
+       <x>120</x>
+       <y>40</y>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
@@ -818,9 +814,9 @@ QPushButton:pressed {
     <widget class="QScrollBar" name="moveScrollBar_y">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>34</y>
-       <width>311</width>
+       <x>120</x>
+       <y>70</y>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
@@ -840,9 +836,9 @@ QPushButton:pressed {
     <widget class="QScrollBar" name="moveScrollBar_z">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>60</y>
-       <width>311</width>
+       <x>120</x>
+       <y>100</y>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
@@ -863,7 +859,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>8</y>
+       <y>40</y>
        <width>21</width>
        <height>20</height>
       </rect>
@@ -876,7 +872,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>60</y>
+       <y>100</y>
        <width>21</width>
        <height>20</height>
       </rect>
@@ -889,7 +885,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>34</y>
+       <y>70</y>
        <width>21</width>
        <height>20</height>
       </rect>
@@ -898,12 +894,59 @@ QPushButton:pressed {
       <string>Y</string>
      </property>
     </widget>
+    <widget class="QSpinBox" name="spinBox_7">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>70</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_5">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>100</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_6">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>40</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>10</y>
+       <width>151</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid grey; 
+border-radius: 5px;</string>
+     </property>
+     <property name="text">
+      <string>Перемещение модели</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_8">
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>200</y>
+      <y>150</y>
       <width>391</width>
       <height>41</height>
      </rect>
@@ -914,9 +957,9 @@ QPushButton:pressed {
     <widget class="QScrollBar" name="ScrollBar_scale">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>170</x>
        <y>8</y>
-       <width>311</width>
+       <width>201</width>
        <height>20</height>
       </rect>
      </property>
@@ -944,12 +987,26 @@ QPushButton:pressed {
       <rect>
        <x>20</x>
        <y>12</y>
-       <width>41</width>
-       <height>16</height>
+       <width>67</width>
+       <height>20</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border: 2px solid grey; 
+border-radius: 5px;</string>
+     </property>
      <property name="text">
-      <string>Scale</string>
+      <string>Масштаб</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="spinBox_4">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -957,9 +1014,9 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>520</y>
+      <y>600</y>
       <width>391</width>
-      <height>131</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="title">
@@ -968,21 +1025,23 @@ QPushButton:pressed {
     <widget class="QPushButton" name="pushButton_27">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>90</y>
-       <width>151</width>
-       <height>21</height>
+       <x>300</x>
+       <y>10</y>
+       <width>80</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-border: 2px solid silver; 
+   background-color: #CD5C5C;
 border-radius: 5px;
 }
+
 QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 white, stop: 1 gray);
-}</string>
+    background-color: #1E90FF;
+
+}
+</string>
      </property>
      <property name="text">
       <string>Отмена</string>
@@ -993,8 +1052,8 @@ QPushButton:pressed {
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>191</width>
-       <height>80</height>
+       <width>371</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="title">
@@ -1005,7 +1064,7 @@ QPushButton:pressed {
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>58</width>
+        <width>61</width>
         <height>16</height>
        </rect>
       </property>
@@ -1015,16 +1074,16 @@ QPushButton:pressed {
        </font>
       </property>
       <property name="text">
-       <string>Имя:</string>
+       <string>Название:</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_18">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>131</width>
-        <height>15</height>
+        <x>170</x>
+        <y>10</y>
+        <width>61</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="font">
@@ -1033,15 +1092,15 @@ QPushButton:pressed {
        </font>
       </property>
       <property name="text">
-       <string>кол-во вершин:</string>
+       <string>Вершины:</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_17">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>50</y>
-        <width>131</width>
+        <x>270</x>
+        <y>10</y>
+        <width>41</width>
         <height>16</height>
        </rect>
       </property>
@@ -1051,17 +1110,25 @@ QPushButton:pressed {
        </font>
       </property>
       <property name="text">
-       <string>кол-во ребер:</string>
+       <string>Ребра:</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_name">
       <property name="geometry">
        <rect>
-        <x>100</x>
+        <x>70</x>
         <y>10</y>
-        <width>81</width>
+        <width>91</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -1070,11 +1137,19 @@ QPushButton:pressed {
      <widget class="QLabel" name="label_V">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>30</y>
-        <width>81</width>
+        <x>230</x>
+        <y>10</y>
+        <width>40</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -1083,35 +1158,45 @@ QPushButton:pressed {
      <widget class="QLabel" name="label_F">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>50</y>
-        <width>81</width>
+        <x>320</x>
+        <y>10</y>
+        <width>40</width>
         <height>16</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
     </widget>
-    <widget class="QPushButton" name="pushButton_22">
+    <widget class="QPushButton" name="screenshot">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>100</x>
        <y>10</y>
-       <width>100</width>
-       <height>21</height>
+       <width>81</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-border: 2px solid silver; 
+   background-color: #808080;
 border-radius: 5px;
 }
+
 QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 white, stop: 1 gray);
-}</string>
+    background-color: #1E90FF;
+
+}
+</string>
      </property>
      <property name="text">
       <string>Скриншот</string>
@@ -1122,70 +1207,68 @@ QPushButton:pressed {
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>100</width>
-       <height>21</height>
+       <width>80</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-border: 2px solid silver; 
+   background-color: #808080;
 border-radius: 5px;
 }
+
 QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 white, stop: 1 gray);
-}</string>
+    background-color: #1E90FF;
+
+}
+</string>
      </property>
      <property name="text">
       <string>GIF</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_26">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>50</y>
-       <width>151</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-border: 2px solid silver; 
-border-radius: 5px;
-}
-QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 white, stop: 1 gray);
-}</string>
-     </property>
-     <property name="text">
-      <string>Воспроизвести</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_15">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>200</x>
        <y>10</y>
-       <width>100</width>
-       <height>21</height>
+       <width>80</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton {
-border: 2px solid silver; 
+   background-color: #808080;
 border-radius: 5px;
 }
+
 QPushButton:pressed {
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 white, stop: 1 gray);
-}</string>
+    background-color: #1E90FF;
+
+}
+</string>
      </property>
      <property name="text">
       <string>Открыть</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>20</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid grey; 
+border-radius: 5px;</string>
+    </property>
+    <property name="text">
+     <string>Поворот модели</string>
+    </property>
    </widget>
   </widget>
  </widget>

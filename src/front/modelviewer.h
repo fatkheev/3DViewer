@@ -5,8 +5,10 @@
 #include <QOpenGLFunctions>
 #include <QScrollBar>
 
+
 extern "C" {
 #include "../backend.h"
+
 }
 
 class ModelViewer : public QOpenGLWidget, protected QOpenGLFunctions
@@ -29,6 +31,8 @@ public slots:
     void on_moveScrollBar_yValueChanged(int value);
     void on_moveScrollBar_zValueChanged(int value);
 
+
+    void setBackgroundColor( QColor &color);
 
 protected:
     void initializeGL() override;
