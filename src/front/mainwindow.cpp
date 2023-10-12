@@ -108,6 +108,9 @@ void MainWindow::on_pushButton_27_clicked()
     ui->label_name->setText("");
     ui->label_V->setText("");
     ui->label_F->setText("");
+    ui->spinBox->setValue(0);
+    ui->spinBox_2->setValue(0);
+    ui->spinBox_3->setValue(0);
 }
 
 void MainWindow::on_screenshot_clicked()
