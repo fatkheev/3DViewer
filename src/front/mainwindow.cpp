@@ -32,14 +32,27 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     // скрол связанный с окошком ввода
-    connect(ui->horizontalScrollBar_x, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox_x);
+    connect(ui->horizontalScrollBar_x, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
     connect(ui->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::updateHorizontalScrollBarX);
 
-    connect(ui->horizontalScrollBar_y, &QScrollBar::valueChanged, this, &MainWindow::update_spinBox_y);
+    connect(ui->horizontalScrollBar_y, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
     connect(ui->spinBox_2, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::updateHorizontalScrollBarY);
 
-    connect(ui->horizontalScrollBar_z, &QScrollBar::valueChanged, this, &MainWindow::update_spinBox_z);
+    connect(ui->horizontalScrollBar_z, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
     connect(ui->spinBox_3, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::updateHorizontalScrollBarZ);
+
+    connect(ui->moveScrollBar_x, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
+    connect(ui->spinBox_6, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::update_moveScrollBar_x);
+
+    connect(ui->moveScrollBar_y, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
+    connect(ui->spinBox_7, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::update_moveScrollBar_y);
+
+    connect(ui->moveScrollBar_z, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
+    connect(ui->spinBox_5, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::update_moveScrollBar_z);
+
+    connect(ui->ScrollBar_scale, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
+    connect(ui->spinBox_4, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::ScrollBar_scale);
+
 
 }
 
@@ -47,22 +60,22 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::update_spinbox_x(int value) {
-    ui->spinBox->setMinimum(-180);
-    ui->spinBox->setMaximum(180);
-    ui->spinBox->setValue(value);
-}
-
-void MainWindow::update_spinBox_y(int value) {
-    ui->spinBox_2->setMinimum(-180);
-    ui->spinBox_2->setMaximum(180);
-    ui->spinBox_2->setValue(value);
-}
-
-void MainWindow::update_spinBox_z(int value) {
-    ui->spinBox_3->setMinimum(-180);
-    ui->spinBox_3->setMaximum(180);
-    ui->spinBox_3->setValue(value);
+void MainWindow::update_spinbox(int value) {
+    if (sender() == ui->horizontalScrollBar_x) {
+        ui->spinBox->setValue(value);
+    } else if (sender() == ui->horizontalScrollBar_y) {
+        ui->spinBox_2->setValue(value);
+    } else if (sender() == ui->horizontalScrollBar_z) {
+        ui->spinBox_3->setValue(value);
+    } else if (sender() == ui->moveScrollBar_x) {
+        ui->spinBox_6->setValue(value);
+    } else if (sender() == ui->moveScrollBar_y) {
+        ui->spinBox_7->setValue(value);
+    } else if (sender() == ui->moveScrollBar_z) {
+        ui->spinBox_5->setValue(value);
+    } else if (sender() == ui->ScrollBar_scale) {
+        ui->spinBox_4->setValue(value);
+    }
 }
 
 void MainWindow::updateHorizontalScrollBarX(int value) {
@@ -77,6 +90,23 @@ void MainWindow::updateHorizontalScrollBarZ(int value) {
     ui->horizontalScrollBar_z->setValue(value);
 }
 
+void MainWindow::update_moveScrollBar_x(int value) {
+    ui->moveScrollBar_x->setValue(value);
+}
+
+void MainWindow::update_moveScrollBar_y(int value) {
+    ui->moveScrollBar_y->setValue(value);
+}
+
+void MainWindow::update_moveScrollBar_z(int value) {
+    ui->moveScrollBar_z->setValue(value);
+}
+
+
+void MainWindow::ScrollBar_scale(int value) {
+    ui->ScrollBar_scale->setValue(value);
+}
+
 
 void MainWindow::on_clean_clicked()
 {
@@ -87,6 +117,10 @@ void MainWindow::on_clean_clicked()
     ui->spinBox->setValue(0);
     ui->spinBox_2->setValue(0);
     ui->spinBox_3->setValue(0);
+     ui->spinBox_4->setValue(100);
+    ui->spinBox_5->setValue(0);
+    ui->spinBox_6->setValue(0);
+    ui->spinBox_7->setValue(0);
 }
 
 void MainWindow::on_pushButton_15_clicked() {
@@ -96,7 +130,7 @@ void MainWindow::on_pushButton_15_clicked() {
 
     QString filename = QFileDialog::getOpenFileName(this, "Open OBJ file", "", "OBJ Files (*.obj)");
     if(filename.isEmpty()) return;
-
+    on_clean_clicked();
     if(parse_obj(filename.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
         ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
 
@@ -173,11 +207,6 @@ void MainWindow::set_color_background()
 
 
 
-
-//void MainWindow::on_spinBox_textChanged(const QString &arg1)
-//{
-
-//}
 
 
 

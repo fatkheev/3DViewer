@@ -755,6 +755,12 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
     </widget>
     <widget class="QSpinBox" name="spinBox_2">
      <property name="geometry">
@@ -765,6 +771,12 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
     </widget>
     <widget class="QSpinBox" name="spinBox_3">
      <property name="geometry">
@@ -774,6 +786,12 @@ QPushButton:pressed {
        <width>61</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
      </property>
     </widget>
    </widget>
@@ -903,6 +921,12 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
     </widget>
     <widget class="QSpinBox" name="spinBox_5">
      <property name="geometry">
@@ -913,6 +937,12 @@ QPushButton:pressed {
        <height>20</height>
       </rect>
      </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
+     </property>
     </widget>
     <widget class="QSpinBox" name="spinBox_6">
      <property name="geometry">
@@ -922,6 +952,12 @@ QPushButton:pressed {
        <width>61</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>-180</number>
+     </property>
+     <property name="maximum">
+      <number>180</number>
      </property>
     </widget>
     <widget class="QLabel" name="label_7">
@@ -970,13 +1006,13 @@ border-radius: 5px;</string>
       <number>0</number>
      </property>
      <property name="maximum">
-      <number>180</number>
+      <number>200</number>
      </property>
      <property name="singleStep">
       <number>1</number>
      </property>
      <property name="value">
-      <number>90</number>
+      <number>100</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -1007,6 +1043,15 @@ border-radius: 5px;</string>
        <width>61</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>0</number>
+     </property>
+     <property name="maximum">
+      <number>200</number>
+     </property>
+     <property name="value">
+      <number>100</number>
      </property>
     </widget>
    </widget>

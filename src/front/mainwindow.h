@@ -42,16 +42,19 @@ private slots:
 
     void set_color_background();
 
-    void update_spinbox_x(int value);
-    void update_spinBox_y(int value);
-    void update_spinBox_z(int value);
+    void update_spinbox(int value);
+
 
     void updateHorizontalScrollBarX(int value);
     void updateHorizontalScrollBarY(int value);
     void updateHorizontalScrollBarZ(int value);
 
 
+    void update_moveScrollBar_x(int value);
+    void update_moveScrollBar_y(int value);
+    void update_moveScrollBar_z(int value);
 
+    void ScrollBar_scale(int value);
 
 
   //  void on_spinBox_textChanged(const QString &arg1);
