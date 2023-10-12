@@ -61,9 +61,7 @@ void MainWindow::on_pushButton_15_clicked() {
 void MainWindow::on_pushButton_27_clicked()
 {
 
-      ui->openGLWidget->setData(0, 0, 0, 0);
-
-
+    ui->openGLWidget->setData(0, 0, 0, 0);
     ui->label_name->setText("");
     ui->label_V->setText("");
     ui->label_F->setText("");
@@ -78,7 +76,10 @@ void MainWindow::on_screenshot_clicked()
 
      if (!filePath.isEmpty()) {
          screenshot.save(filePath);
-     }
+     }else {
+         QMessageBox::warning(this, "", "Не удалось сохранить скриншот");
+       }
+
 }
 
 void MainWindow::on_GIF_clicked()
@@ -91,7 +92,7 @@ void MainWindow::on_GIF_clicked()
     if (!fileName.isEmpty()) {
       createGif(fileName);
     } else {
-      QMessageBox::warning(this, "", "Неудалось сохранить GIF");
+      QMessageBox::warning(this, "", "Не удалось сохранить GIF");
     }
 }
 
