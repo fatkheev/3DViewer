@@ -6,6 +6,9 @@ ModelViewer::ModelViewer(QWidget *parent)
       vertices(nullptr), indexes(nullptr), face_vertex_counts(nullptr),
       rotationAngleX(0.0f), rotationAngleY(0.0f), rotationAngleZ(0.0f)  // инициализация углов
 {
+    inertiaTimer = new QTimer(this);
+    connect(inertiaTimer, &QTimer::timeout, this, &ModelViewer::applyInertia);
+    inertiaTimer->start(16);  // обновляем примерно 60 раз в секунду
 }
 
 ModelViewer::~ModelViewer() {
@@ -88,21 +91,23 @@ void ModelViewer::paintGL() {
 // Сохранение позиции и размеров
 void ModelViewer::updateVertices() {
     // Копируем исходные вершины
-        memcpy(vertices, originalVertices, num_vertices * sizeof(Vertex));
+    memcpy(vertices, originalVertices, num_vertices * sizeof(Vertex));
 
-        // Применяем масштабирование
-        scale_model(vertices, num_vertices, scaleFactor);
+    // Применяем смещение
+    move_model(vertices, num_vertices, currentOffsetX, currentOffsetY, currentOffsetZ);
 
-        // Применяем поворот
-        rotate_model(vertices, num_vertices, rotationAngleX, rotationAngleY, rotationAngleZ);
+    // Применяем масштабирование
+    scale_model(vertices, num_vertices, scaleFactor);
 
-        // Применяем смещение
-        move_model(vertices, num_vertices, currentOffsetX, currentOffsetY, currentOffsetZ);
+    // Применяем поворот
+    rotate_model(vertices, num_vertices, rotationAngleX, rotationAngleY, rotationAngleZ);
 }
 
 
 // Ротате
 void ModelViewer::on_horizontalScrollBar_xValueChanged(int value) {
+
+
     float newAngleX = static_cast<float>(value) * M_PI / 180.0f;
     rotate_model(vertices, num_vertices, newAngleX - rotationAngleX, 0.0f, 0.0f);
     rotationAngleX = newAngleX;
@@ -172,28 +177,70 @@ void ModelViewer::on_moveScrollBar_yValueChanged(int value) {
 }
 
 void ModelViewer::on_moveScrollBar_zValueChanged(int value) {
-    float targetOffset = value * 0.01f;
-    float difference = targetOffset - currentOffsetZ;
-    currentOffsetZ = targetOffset;
+    currentOffsetZ = value * 0.01f;
 
-    move_model(vertices, num_vertices, 0, 0, difference);
+    // Применяем все преобразования
     updateVertices();
+
+    // Обновляем VBO
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
 }
 
-void ModelViewer::setBackgroundColor( QColor &color)
-{
+// Ротате мышью
+void ModelViewer::mousePressEvent(QMouseEvent *event) {
+    if (event->button() == Qt::LeftButton) {
+        mousePressed = true;
+        lastMousePos = event->pos();
+    }
+}
 
-    qDebug() << "OK:"<< color;
+void ModelViewer::applyInertia() {
+    if (fabs(inertiaX) > 0.01f || fabs(inertiaY) > 0.01f) {
+        rotationAngleX += inertiaY;
+        rotationAngleY += inertiaX;
 
+        // Постепенно уменьшаем инерцию
+        inertiaX *= 0.90f;
+        inertiaY *= 0.90f;
 
-    QPalette pal = palette();
-    pal.setColor(QPalette::Window, color);
-    setAutoFillBackground(true);
-    setPalette(pal);
+        updateVertices();
 
-    qDebug() << "Background color set successfully.";
+        glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
+        glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+        update();
+    }
+}
 
+void ModelViewer::mouseMoveEvent(QMouseEvent *event) {
+    if (event->buttons() & Qt::LeftButton) {
+        int dx = event->position().x() - lastMousePos.x();
+        int dy = event->position().y() - lastMousePos.y();
+
+        // Уменьшаем скорость вращения
+        float rotationDX = dx * 0.003f;
+        float rotationDY = dy * 0.003f;
+
+        rotationAngleX += rotationDY;
+        rotationAngleY += rotationDX;
+
+        // Сохраняем движение мыши для инерции
+        inertiaX = rotationDX;
+        inertiaY = rotationDY;
+
+        updateVertices();
+
+        glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
+        glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+        update();
+    }
+
+    lastMousePos = event->pos();
+}
+
+void ModelViewer::mouseReleaseEvent(QMouseEvent *event) {
+    if (event->button() == Qt::LeftButton) {
+        mousePressed = false;
+    }
 }

@@ -28,13 +28,56 @@ MainWindow::MainWindow(QWidget *parent)
 
     // кнопки цветов фона
 
-    connect( ui->black_background, SIGNAL(clicked()), this, SLOT(set_color_background()));
+    connect( ui->red_background, SIGNAL(clicked()), this, SLOT(set_color_background()));
+
+
+    // скрол связанный с окошком ввода
+    connect(ui->horizontalScrollBar_x, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox_x);
+    connect(ui->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::updateHorizontalScrollBarX);
+
+    connect(ui->horizontalScrollBar_y, &QScrollBar::valueChanged, this, &MainWindow::update_spinBox_y);
+    connect(ui->spinBox_2, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::updateHorizontalScrollBarY);
+
+    connect(ui->horizontalScrollBar_z, &QScrollBar::valueChanged, this, &MainWindow::update_spinBox_z);
+    connect(ui->spinBox_3, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::updateHorizontalScrollBarZ);
 
 }
 
 MainWindow::~MainWindow() {
     delete ui;
 }
+
+void MainWindow::update_spinbox_x(int value) {
+    ui->spinBox->setMinimum(-180);
+    ui->spinBox->setMaximum(180);
+    ui->spinBox->setValue(value);
+}
+
+void MainWindow::update_spinBox_y(int value) {
+    ui->spinBox_2->setMinimum(-180);
+    ui->spinBox_2->setMaximum(180);
+    ui->spinBox_2->setValue(value);
+}
+
+void MainWindow::update_spinBox_z(int value) {
+    ui->spinBox_3->setMinimum(-180);
+    ui->spinBox_3->setMaximum(180);
+    ui->spinBox_3->setValue(value);
+}
+
+void MainWindow::updateHorizontalScrollBarX(int value) {
+    ui->horizontalScrollBar_x->setValue(value);
+}
+
+void MainWindow::updateHorizontalScrollBarY(int value) {
+    ui->horizontalScrollBar_y->setValue(value);
+}
+
+void MainWindow::updateHorizontalScrollBarZ(int value) {
+    ui->horizontalScrollBar_z->setValue(value);
+}
+
+
 
 void MainWindow::on_pushButton_15_clicked() {
     Vertex *vertices;
@@ -61,9 +104,7 @@ void MainWindow::on_pushButton_15_clicked() {
 void MainWindow::on_pushButton_27_clicked()
 {
 
-      ui->openGLWidget->setData(0, 0, 0, 0);
-
-
+    ui->openGLWidget->setData(0, 0, 0, 0);
     ui->label_name->setText("");
     ui->label_V->setText("");
     ui->label_F->setText("");
@@ -122,13 +163,18 @@ void MainWindow::createGif(QString fileName) {
 void MainWindow::set_color_background()
 {
 
-       QColor backgroundColor(255, 0, 0);
+     ui->openGLWidget->setStyleSheet("background-color:red;");
+    qDebug()<<"OK";
 
 
-       openGLWidget->setBackgroundColor(backgroundColor);
+
 }
 
 
 
 
+//void MainWindow::on_spinBox_textChanged(const QString &arg1)
+//{
+
+//}
 

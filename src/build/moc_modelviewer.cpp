@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ModelViewer_t {
-    const uint offsetsAndSize[26];
-    char stringdata0[287];
+    const uint offsetsAndSize[22];
+    char stringdata0[267];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_ModelViewer_t, stringdata0) + ofs), len 
@@ -39,9 +39,7 @@ QT_MOC_LITERAL(130, 30), // "on_ScrollBar_scaleValueChanged"
 QT_MOC_LITERAL(161, 30), // "on_moveScrollBar_xValueChanged"
 QT_MOC_LITERAL(192, 30), // "on_moveScrollBar_yValueChanged"
 QT_MOC_LITERAL(223, 30), // "on_moveScrollBar_zValueChanged"
-QT_MOC_LITERAL(254, 18), // "setBackgroundColor"
-QT_MOC_LITERAL(273, 7), // "QColor&"
-QT_MOC_LITERAL(281, 5) // "color"
+QT_MOC_LITERAL(254, 12) // "applyInertia"
 
     },
     "ModelViewer\0on_horizontalScrollBar_xValueChanged\0"
@@ -51,7 +49,7 @@ QT_MOC_LITERAL(281, 5) // "color"
     "on_moveScrollBar_xValueChanged\0"
     "on_moveScrollBar_yValueChanged\0"
     "on_moveScrollBar_zValueChanged\0"
-    "setBackgroundColor\0QColor&\0color"
+    "applyInertia"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,7 +74,7 @@ static const uint qt_meta_data_ModelViewer[] = {
        7,    1,   74,    2, 0x0a,    9 /* Public */,
        8,    1,   77,    2, 0x0a,   11 /* Public */,
        9,    1,   80,    2, 0x0a,   13 /* Public */,
-      10,    1,   83,    2, 0x0a,   15 /* Public */,
+      10,    0,   83,    2, 0x0a,   15 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -86,7 +84,7 @@ static const uint qt_meta_data_ModelViewer[] = {
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, 0x80000000 | 11,   12,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -104,7 +102,7 @@ void ModelViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 4: _t->on_moveScrollBar_xValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 5: _t->on_moveScrollBar_yValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->on_moveScrollBar_zValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 7: _t->setBackgroundColor((*reinterpret_cast< QColor(*)>(_a[1]))); break;
+        case 7: _t->applyInertia(); break;
         default: ;
         }
     }
@@ -118,7 +116,7 @@ const QMetaObject ModelViewer::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_ModelViewer_t
 , QtPrivate::TypeAndForceComplete<ModelViewer, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QColor &, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,

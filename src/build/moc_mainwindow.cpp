@@ -24,8 +24,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[18];
-    char stringdata0[139];
+    const uint offsetsAndSize[32];
+    char stringdata0[277];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -39,13 +39,24 @@ QT_MOC_LITERAL(62, 21), // "on_screenshot_clicked"
 QT_MOC_LITERAL(84, 14), // "on_GIF_clicked"
 QT_MOC_LITERAL(99, 9), // "createGif"
 QT_MOC_LITERAL(109, 8), // "fileName"
-QT_MOC_LITERAL(118, 20) // "set_color_background"
+QT_MOC_LITERAL(118, 20), // "set_color_background"
+QT_MOC_LITERAL(139, 16), // "update_spinbox_x"
+QT_MOC_LITERAL(156, 5), // "value"
+QT_MOC_LITERAL(162, 16), // "update_spinBox_y"
+QT_MOC_LITERAL(179, 16), // "update_spinBox_z"
+QT_MOC_LITERAL(196, 26), // "updateHorizontalScrollBarX"
+QT_MOC_LITERAL(223, 26), // "updateHorizontalScrollBarY"
+QT_MOC_LITERAL(250, 26) // "updateHorizontalScrollBarZ"
 
     },
     "MainWindow\0on_pushButton_15_clicked\0"
     "\0on_pushButton_27_clicked\0"
     "on_screenshot_clicked\0on_GIF_clicked\0"
-    "createGif\0fileName\0set_color_background"
+    "createGif\0fileName\0set_color_background\0"
+    "update_spinbox_x\0value\0update_spinBox_y\0"
+    "update_spinBox_z\0updateHorizontalScrollBarX\0"
+    "updateHorizontalScrollBarY\0"
+    "updateHorizontalScrollBarZ"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +66,7 @@ static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,12 +74,18 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    0,   51,    2, 0x08,    2 /* Private */,
-       4,    0,   52,    2, 0x08,    3 /* Private */,
-       5,    0,   53,    2, 0x08,    4 /* Private */,
-       6,    1,   54,    2, 0x08,    5 /* Private */,
-       8,    0,   57,    2, 0x08,    7 /* Private */,
+       1,    0,   86,    2, 0x08,    1 /* Private */,
+       3,    0,   87,    2, 0x08,    2 /* Private */,
+       4,    0,   88,    2, 0x08,    3 /* Private */,
+       5,    0,   89,    2, 0x08,    4 /* Private */,
+       6,    1,   90,    2, 0x08,    5 /* Private */,
+       8,    0,   93,    2, 0x08,    7 /* Private */,
+       9,    1,   94,    2, 0x08,    8 /* Private */,
+      11,    1,   97,    2, 0x08,   10 /* Private */,
+      12,    1,  100,    2, 0x08,   12 /* Private */,
+      13,    1,  103,    2, 0x08,   14 /* Private */,
+      14,    1,  106,    2, 0x08,   16 /* Private */,
+      15,    1,  109,    2, 0x08,   18 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -77,6 +94,12 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void, QMetaType::Int,   10,
 
        0        // eod
 };
@@ -93,6 +116,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->on_GIF_clicked(); break;
         case 4: _t->createGif((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 5: _t->set_color_background(); break;
+        case 6: _t->update_spinbox_x((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: _t->update_spinBox_y((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 8: _t->update_spinBox_z((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 9: _t->updateHorizontalScrollBarX((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 10: _t->updateHorizontalScrollBarY((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 11: _t->updateHorizontalScrollBarZ((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -106,7 +135,7 @@ const QMetaObject MainWindow::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
 , QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>
 
 
 >,
@@ -133,13 +162,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 12)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 12;
     }
     return _id;
 }

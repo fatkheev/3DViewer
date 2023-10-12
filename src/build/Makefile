@@ -289,6 +289,7 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
+		../front/.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
@@ -333,7 +334,7 @@ TARGET        = front.app/Contents/MacOS/front
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 12.1
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/julissad/new/3DViewer/src/build/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_DEFAULT_ARCHS = x86_64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -575,6 +576,7 @@ Makefile: ../front/front.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.conf /
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
@@ -837,6 +839,7 @@ Makefile: ../front/front.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.conf /
 /usr/local/share/qt/mkspecs/features/qt_config.prf:
 /usr/local/share/qt/mkspecs/macx-clang/qmake.conf:
 /usr/local/share/qt/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/local/share/qt/mkspecs/features/exclusive_builds.prf:
 /usr/local/share/qt/mkspecs/features/mac/sdk.prf:
 /usr/local/share/qt/mkspecs/features/toolchain.prf:
@@ -914,6 +917,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r front.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -954,6 +958,10 @@ moc_mainwindow.cpp: ../front/mainwindow.h \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
 		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
 		../backend.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
 		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
@@ -991,6 +999,10 @@ moc_modelviewer.cpp: ../front/modelviewer.h \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
 		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
 		../backend.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
@@ -1012,6 +1024,10 @@ ui_mainwindow.h: ../front/mainwindow.ui \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
 		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
 		../backend.h
 	/usr/local/share/qt/libexec/uic ../front/mainwindow.ui -o ui_mainwindow.h
 
@@ -1042,6 +1058,10 @@ main.o: ../front/main.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
 		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
 		../backend.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
 		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
@@ -1084,6 +1104,10 @@ mainwindow.o: ../front/mainwindow.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
 		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
 		../backend.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
 		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
@@ -1125,6 +1149,10 @@ modelviewer.o: ../front/modelviewer.cpp ../front/modelviewer.h \
 		/usr/local/lib/QtGui.framework/Headers/qopenglfunctions.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QScrollBar \
 		/usr/local/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/usr/local/lib/QtCore.framework/Headers/QTimer \
+		/usr/local/lib/QtCore.framework/Headers/qtimer.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
 		../backend.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/QOpenGLShaderProgram \
 		/usr/local/lib/QtOpenGL.framework/Headers/qopenglshaderprogram.h

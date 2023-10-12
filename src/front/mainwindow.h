@@ -30,6 +30,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 private slots:
     void on_pushButton_15_clicked();
     void on_pushButton_27_clicked();
@@ -41,12 +42,19 @@ private slots:
 
     void set_color_background();
 
+    void update_spinbox_x(int value);
+    void update_spinBox_y(int value);
+    void update_spinBox_z(int value);
+
+    void updateHorizontalScrollBarX(int value);
+    void updateHorizontalScrollBarY(int value);
+    void updateHorizontalScrollBarZ(int value);
 
 
 
 
 
-
+  //  void on_spinBox_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
