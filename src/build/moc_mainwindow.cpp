@@ -25,7 +25,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     const uint offsetsAndSize[32];
-    char stringdata0[277];
+    char stringdata0[269];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -34,27 +34,27 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
 QT_MOC_LITERAL(0, 10), // "MainWindow"
 QT_MOC_LITERAL(11, 24), // "on_pushButton_15_clicked"
 QT_MOC_LITERAL(36, 0), // ""
-QT_MOC_LITERAL(37, 24), // "on_pushButton_27_clicked"
-QT_MOC_LITERAL(62, 21), // "on_screenshot_clicked"
-QT_MOC_LITERAL(84, 14), // "on_GIF_clicked"
-QT_MOC_LITERAL(99, 9), // "createGif"
-QT_MOC_LITERAL(109, 8), // "fileName"
-QT_MOC_LITERAL(118, 20), // "set_color_background"
-QT_MOC_LITERAL(139, 16), // "update_spinbox_x"
-QT_MOC_LITERAL(156, 5), // "value"
-QT_MOC_LITERAL(162, 16), // "update_spinBox_y"
-QT_MOC_LITERAL(179, 16), // "update_spinBox_z"
-QT_MOC_LITERAL(196, 26), // "updateHorizontalScrollBarX"
-QT_MOC_LITERAL(223, 26), // "updateHorizontalScrollBarY"
-QT_MOC_LITERAL(250, 26) // "updateHorizontalScrollBarZ"
+QT_MOC_LITERAL(37, 16), // "on_clean_clicked"
+QT_MOC_LITERAL(54, 21), // "on_screenshot_clicked"
+QT_MOC_LITERAL(76, 14), // "on_GIF_clicked"
+QT_MOC_LITERAL(91, 9), // "createGif"
+QT_MOC_LITERAL(101, 8), // "fileName"
+QT_MOC_LITERAL(110, 20), // "set_color_background"
+QT_MOC_LITERAL(131, 16), // "update_spinbox_x"
+QT_MOC_LITERAL(148, 5), // "value"
+QT_MOC_LITERAL(154, 16), // "update_spinBox_y"
+QT_MOC_LITERAL(171, 16), // "update_spinBox_z"
+QT_MOC_LITERAL(188, 26), // "updateHorizontalScrollBarX"
+QT_MOC_LITERAL(215, 26), // "updateHorizontalScrollBarY"
+QT_MOC_LITERAL(242, 26) // "updateHorizontalScrollBarZ"
 
     },
     "MainWindow\0on_pushButton_15_clicked\0"
-    "\0on_pushButton_27_clicked\0"
-    "on_screenshot_clicked\0on_GIF_clicked\0"
-    "createGif\0fileName\0set_color_background\0"
-    "update_spinbox_x\0value\0update_spinBox_y\0"
-    "update_spinBox_z\0updateHorizontalScrollBarX\0"
+    "\0on_clean_clicked\0on_screenshot_clicked\0"
+    "on_GIF_clicked\0createGif\0fileName\0"
+    "set_color_background\0update_spinbox_x\0"
+    "value\0update_spinBox_y\0update_spinBox_z\0"
+    "updateHorizontalScrollBarX\0"
     "updateHorizontalScrollBarY\0"
     "updateHorizontalScrollBarZ"
 };
@@ -111,7 +111,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         (void)_t;
         switch (_id) {
         case 0: _t->on_pushButton_15_clicked(); break;
-        case 1: _t->on_pushButton_27_clicked(); break;
+        case 1: _t->on_clean_clicked(); break;
         case 2: _t->on_screenshot_clicked(); break;
         case 3: _t->on_GIF_clicked(); break;
         case 4: _t->createGif((*reinterpret_cast< QString(*)>(_a[1]))); break;

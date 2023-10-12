@@ -33,7 +33,7 @@ public:
 
 private slots:
     void on_pushButton_15_clicked();
-    void on_pushButton_27_clicked();
+    void on_clean_clicked();
     void on_screenshot_clicked();
 
     void on_GIF_clicked();
@@ -55,6 +55,8 @@ private slots:
 
 
   //  void on_spinBox_textChanged(const QString &arg1);
+
+
 
 private:
     Ui::MainWindow *ui;

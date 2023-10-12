@@ -84,7 +84,7 @@ public:
     QLabel *label_20;
     QSpinBox *spinBox_4;
     QGroupBox *groupBox_3;
-    QPushButton *pushButton_27;
+    QPushButton *clean;
     QGroupBox *groupBox_5;
     QLabel *label_16;
     QLabel *label_18;
@@ -463,10 +463,10 @@ public:
         groupBox_3 = new QGroupBox(centralwidget);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         groupBox_3->setGeometry(QRect(660, 600, 391, 81));
-        pushButton_27 = new QPushButton(groupBox_3);
-        pushButton_27->setObjectName(QString::fromUtf8("pushButton_27"));
-        pushButton_27->setGeometry(QRect(300, 10, 80, 20));
-        pushButton_27->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        clean = new QPushButton(groupBox_3);
+        clean->setObjectName(QString::fromUtf8("clean"));
+        clean->setGeometry(QRect(300, 10, 80, 20));
+        clean->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "   background-color: #CD5C5C;\n"
 "border-radius: 5px;\n"
 "}\n"
@@ -613,7 +613,7 @@ public:
         groupBox_8->setTitle(QString());
         label_20->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\201\321\210\321\202\320\260\320\261", nullptr));
         groupBox_3->setTitle(QString());
-        pushButton_27->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\260", nullptr));
+        clean->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\260", nullptr));
         groupBox_5->setTitle(QString());
         label_16->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265:", nullptr));
         label_18->setText(QCoreApplication::translate("MainWindow", "\320\222\320\265\321\200\321\210\320\270\320\275\321\213:", nullptr));

@@ -78,6 +78,16 @@ void MainWindow::updateHorizontalScrollBarZ(int value) {
 }
 
 
+void MainWindow::on_clean_clicked()
+{
+    ui->openGLWidget->setData(0, 0, 0, 0);
+    ui->label_name->setText("");
+    ui->label_V->setText("");
+    ui->label_F->setText("");
+    ui->spinBox->setValue(0);
+    ui->spinBox_2->setValue(0);
+    ui->spinBox_3->setValue(0);
+}
 
 void MainWindow::on_pushButton_15_clicked() {
     Vertex *vertices;
@@ -99,18 +109,6 @@ void MainWindow::on_pushButton_15_clicked() {
         ui->label_V->setText(QString("%1").arg(num_vertices));
         ui->label_F->setText(QString("%1").arg(num_faces));
     }
-}
-
-void MainWindow::on_pushButton_27_clicked()
-{
-
-    ui->openGLWidget->setData(0, 0, 0, 0);
-    ui->label_name->setText("");
-    ui->label_V->setText("");
-    ui->label_F->setText("");
-    ui->spinBox->setValue(0);
-    ui->spinBox_2->setValue(0);
-    ui->spinBox_3->setValue(0);
 }
 
 void MainWindow::on_screenshot_clicked()
@@ -180,4 +178,6 @@ void MainWindow::set_color_background()
 //{
 
 //}
+
+
 

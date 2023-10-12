@@ -1022,7 +1022,7 @@ border-radius: 5px;</string>
     <property name="title">
      <string/>
     </property>
-    <widget class="QPushButton" name="pushButton_27">
+    <widget class="QPushButton" name="clean">
      <property name="geometry">
       <rect>
        <x>300</x>
