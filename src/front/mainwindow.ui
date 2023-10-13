@@ -51,12 +51,12 @@ border-radius: 10px;</string>
      </property>
      <item>
       <property name="text">
-       <string>параллельная</string>
+       <string>Параллельная</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>центральная</string>
+       <string>Центральная</string>
       </property>
      </item>
     </widget>
@@ -334,7 +334,7 @@ QPushButton:pressed {
       </property>
      </item>
     </widget>
-    <widget class="QScrollBar" name="horizontalScrollBar">
+    <widget class="QScrollBar" name="horizontal_scroll_edge">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -342,6 +342,15 @@ QPushButton:pressed {
        <width>160</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>30</number>
+     </property>
+     <property name="pageStep">
+      <number>10</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -440,7 +449,7 @@ border-radius: 5px;</string>
       <string>Размер вершин</string>
      </property>
     </widget>
-    <widget class="QScrollBar" name="horizontalScrollBar_2">
+    <widget class="QScrollBar" name="horizontal_sccrol_vertice">
      <property name="geometry">
       <rect>
        <x>20</x>

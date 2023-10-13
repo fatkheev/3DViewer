@@ -5,6 +5,8 @@
 #include <QImageWriter>
 
 
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
@@ -28,7 +30,35 @@ MainWindow::MainWindow(QWidget *parent)
 
     // кнопки цветов фона
 
-    connect( ui->red_background, SIGNAL(clicked()), this, SLOT(set_color_background()));
+    connect(ui->green_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(Qt::green); });
+    connect(ui->red_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(Qt::red); });
+    connect(ui->black_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::black); });
+    connect(ui->blue_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::blue); });
+    connect(ui->yellow_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::yellow); });
+    connect(ui->orange_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(QColor(255, 165, 0)); });
+    connect(ui->white_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::white); });
+    connect(ui->purply_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(QColor(128, 0, 128)); });
+    connect(ui->pink_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(QColor(255, 192, 203)); });
+
+
+    // кнопки цвета ребер
+
+    connect(ui->yellow_edge, &QPushButton::clicked, this, [this]() {openGLWidget->set_edge_color(Qt::yellow); });
+    connect(ui->orange_edge, &QPushButton::clicked, this, [this]() { openGLWidget->set_edge_color(QColor(255, 165, 0)); });
+    connect(ui->white_edge, &QPushButton::clicked, this, [this]() { openGLWidget->set_edge_color(Qt::white); });
+    connect(ui->purply_edge, &QPushButton::clicked, this, [this]() {openGLWidget->set_edge_color(QColor(128, 0, 128)); });
+
+    // кнопки цвета вершин
+
+    connect(ui->green_vertex, &QPushButton::clicked, this, [this]() {openGLWidget->set_vertex_color(Qt::green); });
+    connect(ui->red_vertex, &QPushButton::clicked, this, [this]() { openGLWidget->set_vertex_color(Qt::red); });
+    connect(ui->black_vertex, &QPushButton::clicked, this, [this]() { openGLWidget->set_vertex_color(Qt::black); });
+    connect(ui->blue_vertex, &QPushButton::clicked, this, [this]() {openGLWidget->set_vertex_color(Qt::blue); });
+
+    //скрол толщины ребер
+
+    connect(ui->horizontal_scroll_edge, &QScrollBar::valueChanged, this, &MainWindow::horizontal_scroll_edge);
+
 
 
     // скрол связанный с окошком ввода
@@ -54,8 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->spinBox_4, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::ScrollBar_scale);
 
     connect(ui->ProjectionBox, SIGNAL(currentIndexChanged(int)),
-            openGLWidget, SLOT(on_ProjectionBox_currentIndexChanged(int)));
-
+                openGLWidget, SLOT(on_ProjectionBox_currentIndexChanged(int)));
 
 
 }
@@ -106,11 +135,9 @@ void MainWindow::update_moveScrollBar_z(int value) {
     ui->moveScrollBar_z->setValue(value);
 }
 
-
 void MainWindow::ScrollBar_scale(int value) {
     ui->ScrollBar_scale->setValue(value);
 }
-
 
 void MainWindow::on_clean_clicked()
 {
@@ -121,10 +148,13 @@ void MainWindow::on_clean_clicked()
     ui->spinBox->setValue(0);
     ui->spinBox_2->setValue(0);
     ui->spinBox_3->setValue(0);
-     ui->spinBox_4->setValue(100);
+    ui->spinBox_4->setValue(100);
     ui->spinBox_5->setValue(0);
     ui->spinBox_6->setValue(0);
     ui->spinBox_7->setValue(0);
+    ui->horizontal_scroll_edge->setValue(0);
+   openGLWidget->set_background_color(Qt::black);
+    openGLWidget->set_edge_color(Qt::white);
 }
 
 void MainWindow::on_pushButton_15_clicked() {
@@ -198,19 +228,10 @@ void MainWindow::createGif(QString fileName) {
   QMessageBox::information(this, "GIF READY", "GIF сохранен успешно");
 }
 
-
-void MainWindow::set_color_background()
+void MainWindow::horizontal_scroll_edge(int action)
 {
-
-     ui->openGLWidget->setStyleSheet("background-color:red;");
-    qDebug()<<"OK";
-
-
+    ui->openGLWidget ->line_edge=action;
+    ui->openGLWidget->update();
 
 }
-
-
-
-
-
 
