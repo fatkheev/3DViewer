@@ -16,12 +16,15 @@ SOURCES += \
 
 HEADERS += \
     ../backend.h \
+    ../gif.h \
     mainwindow.h \
     modelviewer.h
-    backend.h
+
 
 FORMS += \
     mainwindow.ui
+
+CONFIG += lrelease
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

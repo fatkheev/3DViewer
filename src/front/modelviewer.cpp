@@ -4,7 +4,7 @@
 ModelViewer::ModelViewer(QWidget *parent)
     : QOpenGLWidget(parent), vertexVBO(0), indexVBO(0), num_vertices(0), num_faces(0),
       vertices(nullptr), indexes(nullptr), face_vertex_counts(nullptr),
-      rotationAngleX(0.0f), rotationAngleY(0.0f), rotationAngleZ(0.0f)  // инициализация углов
+      rotationAngleX(0.0f), rotationAngleY(0.0f), rotationAngleZ(0.0f), currentProjectionType(0)  // инициализация углов
 {
     inertiaTimer = new QTimer(this);
     connect(inertiaTimer, &QTimer::timeout, this, &ModelViewer::applyInertia);
@@ -73,6 +73,15 @@ void ModelViewer::resizeGL(int w, int h) {
 void ModelViewer::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // Установка проекционной матрицы
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    if (currentProjectionType == 0) {
+        glFrustum(-1, 1, -1, 1, 1, 99999);
+    } else {
+        glOrtho(-1, 1, -1, 1, -1, 99999);
+    }
+
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
@@ -106,6 +115,8 @@ void ModelViewer::updateVertices() {
 
 // Ротате
 void ModelViewer::on_horizontalScrollBar_xValueChanged(int value) {
+
+
     float newAngleX = static_cast<float>(value) * M_PI / 180.0f;
     rotate_model(vertices, num_vertices, newAngleX - rotationAngleX, 0.0f, 0.0f);
     rotationAngleX = newAngleX;
@@ -241,4 +252,10 @@ void ModelViewer::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         mousePressed = false;
     }
+}
+
+void ModelViewer::on_ProjectionBox_currentIndexChanged(int index)
+{
+    currentProjectionType = index;  // 0 for Perspective, 1 for Orthographic
+    update();  // обновляем сцену, чтобы увидеть изменения
 }

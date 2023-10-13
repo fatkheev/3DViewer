@@ -48,11 +48,13 @@ static constexpr auto qt_meta_stringdata_CLASSModelViewerENDCLASS = QtMocHelpers
     "on_moveScrollBar_xValueChanged",
     "on_moveScrollBar_yValueChanged",
     "on_moveScrollBar_zValueChanged",
-    "applyInertia"
+    "applyInertia",
+    "on_ProjectionBox_currentIndexChanged",
+    "index"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSModelViewerENDCLASS_t {
-    uint offsetsAndSizes[22];
+    uint offsetsAndSizes[26];
     char stringdata0[12];
     char stringdata1[37];
     char stringdata2[1];
@@ -64,6 +66,8 @@ struct qt_meta_stringdata_CLASSModelViewerENDCLASS_t {
     char stringdata8[31];
     char stringdata9[31];
     char stringdata10[13];
+    char stringdata11[37];
+    char stringdata12[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSModelViewerENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -79,7 +83,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSModelViewerENDCLASS_t qt_meta_s
         QT_MOC_LITERAL(161, 30),  // "on_moveScrollBar_xValueChanged"
         QT_MOC_LITERAL(192, 30),  // "on_moveScrollBar_yValueChanged"
         QT_MOC_LITERAL(223, 30),  // "on_moveScrollBar_zValueChanged"
-        QT_MOC_LITERAL(254, 12)   // "applyInertia"
+        QT_MOC_LITERAL(254, 12),  // "applyInertia"
+        QT_MOC_LITERAL(267, 36),  // "on_ProjectionBox_currentIndex..."
+        QT_MOC_LITERAL(304, 5)   // "index"
     },
     "ModelViewer",
     "on_horizontalScrollBar_xValueChanged",
@@ -91,7 +97,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSModelViewerENDCLASS_t qt_meta_s
     "on_moveScrollBar_xValueChanged",
     "on_moveScrollBar_yValueChanged",
     "on_moveScrollBar_zValueChanged",
-    "applyInertia"
+    "applyInertia",
+    "on_ProjectionBox_currentIndexChanged",
+    "index"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -103,7 +111,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSModelViewerENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -111,14 +119,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSModelViewerENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   62,    2, 0x0a,    1 /* Public */,
-       4,    1,   65,    2, 0x0a,    3 /* Public */,
-       5,    1,   68,    2, 0x0a,    5 /* Public */,
-       6,    1,   71,    2, 0x0a,    7 /* Public */,
-       7,    1,   74,    2, 0x0a,    9 /* Public */,
-       8,    1,   77,    2, 0x0a,   11 /* Public */,
-       9,    1,   80,    2, 0x0a,   13 /* Public */,
-      10,    0,   83,    2, 0x0a,   15 /* Public */,
+       1,    1,   68,    2, 0x0a,    1 /* Public */,
+       4,    1,   71,    2, 0x0a,    3 /* Public */,
+       5,    1,   74,    2, 0x0a,    5 /* Public */,
+       6,    1,   77,    2, 0x0a,    7 /* Public */,
+       7,    1,   80,    2, 0x0a,    9 /* Public */,
+       8,    1,   83,    2, 0x0a,   11 /* Public */,
+       9,    1,   86,    2, 0x0a,   13 /* Public */,
+      10,    0,   89,    2, 0x0a,   15 /* Public */,
+      11,    1,   90,    2, 0x0a,   16 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -129,6 +138,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSModelViewerENDCLASS[] = {
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   12,
 
        0        // eod
 };
@@ -164,7 +174,10 @@ Q_CONSTINIT const QMetaObject ModelViewer::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'applyInertia'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_ProjectionBox_currentIndexChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -183,6 +196,7 @@ void ModelViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 5: _t->on_moveScrollBar_yValueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 6: _t->on_moveScrollBar_zValueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 7: _t->applyInertia(); break;
+        case 8: _t->on_ProjectionBox_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -209,13 +223,13 @@ int ModelViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

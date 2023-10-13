@@ -32,6 +32,7 @@ public slots:
     void on_moveScrollBar_zValueChanged(int value);
     void applyInertia();
 
+    void on_ProjectionBox_currentIndexChanged(int index);
 
 protected:
     void initializeGL() override;
@@ -60,6 +61,8 @@ private:
     float inertiaX = 0.0f;
     float inertiaY = 0.0f;
     QTimer *inertiaTimer;
+
+    int currentProjectionType;
 };
 
 #endif // MODELVIEWER_H
