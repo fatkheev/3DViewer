@@ -49,8 +49,9 @@ private slots:
     void update_moveScrollBar_z(int value);
     void ScrollBar_scale(int value);
 
-
     void horizontal_scroll_edge(int action);
+    int countUniqueEdges(Face *faces, int num_faces);
+
 
 private:
     Ui::MainWindow *ui;

@@ -24,8 +24,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[38];
-    char stringdata0[327];
+    const uint offsetsAndSize[46];
+    char stringdata0[366];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -49,7 +49,11 @@ QT_MOC_LITERAL(235, 22), // "update_moveScrollBar_y"
 QT_MOC_LITERAL(258, 22), // "update_moveScrollBar_z"
 QT_MOC_LITERAL(281, 15), // "ScrollBar_scale"
 QT_MOC_LITERAL(297, 22), // "horizontal_scroll_edge"
-QT_MOC_LITERAL(320, 6) // "action"
+QT_MOC_LITERAL(320, 6), // "action"
+QT_MOC_LITERAL(327, 16), // "countUniqueEdges"
+QT_MOC_LITERAL(344, 5), // "Face*"
+QT_MOC_LITERAL(350, 5), // "faces"
+QT_MOC_LITERAL(356, 9) // "num_faces"
 
     },
     "MainWindow\0on_pushButton_15_clicked\0"
@@ -60,7 +64,8 @@ QT_MOC_LITERAL(320, 6) // "action"
     "updateHorizontalScrollBarZ\0"
     "update_moveScrollBar_x\0update_moveScrollBar_y\0"
     "update_moveScrollBar_z\0ScrollBar_scale\0"
-    "horizontal_scroll_edge\0action"
+    "horizontal_scroll_edge\0action\0"
+    "countUniqueEdges\0Face*\0faces\0num_faces"
 };
 #undef QT_MOC_LITERAL
 
@@ -70,7 +75,7 @@ static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -78,20 +83,21 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   98,    2, 0x08,    1 /* Private */,
-       3,    0,   99,    2, 0x08,    2 /* Private */,
-       4,    0,  100,    2, 0x08,    3 /* Private */,
-       5,    0,  101,    2, 0x08,    4 /* Private */,
-       6,    1,  102,    2, 0x08,    5 /* Private */,
-       8,    1,  105,    2, 0x08,    7 /* Private */,
-      10,    1,  108,    2, 0x08,    9 /* Private */,
-      11,    1,  111,    2, 0x08,   11 /* Private */,
-      12,    1,  114,    2, 0x08,   13 /* Private */,
-      13,    1,  117,    2, 0x08,   15 /* Private */,
-      14,    1,  120,    2, 0x08,   17 /* Private */,
-      15,    1,  123,    2, 0x08,   19 /* Private */,
-      16,    1,  126,    2, 0x08,   21 /* Private */,
-      17,    1,  129,    2, 0x08,   23 /* Private */,
+       1,    0,  104,    2, 0x08,    1 /* Private */,
+       3,    0,  105,    2, 0x08,    2 /* Private */,
+       4,    0,  106,    2, 0x08,    3 /* Private */,
+       5,    0,  107,    2, 0x08,    4 /* Private */,
+       6,    1,  108,    2, 0x08,    5 /* Private */,
+       8,    1,  111,    2, 0x08,    7 /* Private */,
+      10,    1,  114,    2, 0x08,    9 /* Private */,
+      11,    1,  117,    2, 0x08,   11 /* Private */,
+      12,    1,  120,    2, 0x08,   13 /* Private */,
+      13,    1,  123,    2, 0x08,   15 /* Private */,
+      14,    1,  126,    2, 0x08,   17 /* Private */,
+      15,    1,  129,    2, 0x08,   19 /* Private */,
+      16,    1,  132,    2, 0x08,   21 /* Private */,
+      17,    1,  135,    2, 0x08,   23 /* Private */,
+      19,    2,  138,    2, 0x08,   25 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -108,6 +114,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Int,    9,
     QMetaType::Void, QMetaType::Int,    9,
     QMetaType::Void, QMetaType::Int,   18,
+    QMetaType::Int, 0x80000000 | 20, QMetaType::Int,   21,   22,
 
        0        // eod
 };
@@ -132,6 +139,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 11: _t->update_moveScrollBar_z((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 12: _t->ScrollBar_scale((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 13: _t->horizontal_scroll_edge((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: { int _r = _t->countUniqueEdges((*reinterpret_cast< Face*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -145,7 +154,7 @@ const QMetaObject MainWindow::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
 , QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<Face *, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>
 
 
 >,
@@ -172,13 +181,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 14;
+        _id -= 15;
     }
     return _id;
 }

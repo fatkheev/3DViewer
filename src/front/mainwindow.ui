@@ -51,12 +51,12 @@ border-radius: 10px;</string>
      </property>
      <item>
       <property name="text">
-       <string>Параллельная</string>
+       <string>Центральная</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Центральная</string>
+       <string>Параллельная</string>
       </property>
      </item>
     </widget>

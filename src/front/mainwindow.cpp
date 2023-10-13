@@ -3,7 +3,8 @@
 #include "../gif.h"
 #include <QLayout>
 #include <QImageWriter>
-
+#include <set>
+#include <utility>
 
 
 
@@ -175,7 +176,8 @@ void MainWindow::on_pushButton_15_clicked() {
         // Устанавливаем значения для меток
         ui->label_name->setText(fileNameOnly);
         ui->label_V->setText(QString("%1").arg(num_vertices));
-        ui->label_F->setText(QString("%1").arg(num_faces));
+        int uniqueEdgesCount = countUniqueEdges(faces, num_faces);
+        ui->label_F->setText(QString("%1").arg(uniqueEdgesCount));
     }
 }
 
@@ -235,3 +237,20 @@ void MainWindow::horizontal_scroll_edge(int action)
 
 }
 
+// Подсчет ребер
+int MainWindow::countUniqueEdges(Face *faces, int num_faces) {
+    std::set<std::pair<int, int>> uniqueEdges;
+
+    for (int i = 0; i < num_faces; ++i) {
+        for (int j = 0; j < faces[i].num_vertices; ++j) {
+            int v1 = faces[i].vertices[j];
+            int v2 = faces[i].vertices[(j + 1) % faces[i].num_vertices];
+
+            if (v1 > v2) std::swap(v1, v2);
+
+            uniqueEdges.insert({v1, v2});
+        }
+    }
+
+    return uniqueEdges.size();
+}
