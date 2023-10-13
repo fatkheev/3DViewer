@@ -1,11 +1,16 @@
 #ifndef MODELVIEWER_H
 #define MODELVIEWER_H
+#define GL_SILENCE_DEPRECATION // чтобы игнорировать предупреждения связанные с устаревшими функциями OpenGL
+
+
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QScrollBar>
 #include <QTimer>
 #include <QMouseEvent>
+#include <QPalette>
+#include <QColorDialog>
 
 extern "C" {
 #include "../backend.h"
@@ -20,6 +25,11 @@ public:
     void updateVertices();
     ~ModelViewer();
     float scaleFactor = 1.0f;
+    QColor backgroundColor;
+    QColor edgeColor;
+    double line_edge = 1;
+
+
 
 public slots:
     void on_horizontalScrollBar_xValueChanged(int value);
@@ -31,6 +41,10 @@ public slots:
     void on_moveScrollBar_yValueChanged(int value);
     void on_moveScrollBar_zValueChanged(int value);
     void applyInertia();
+    void set_background_color(const QColor &color);
+    void set_edge_color(const QColor &color);
+    void set_vertex_color (const QColor &color);
+   // void horizontal_scroll_edge(int value);
 
 
 protected:
@@ -60,6 +74,7 @@ private:
     float inertiaX = 0.0f;
     float inertiaY = 0.0f;
     QTimer *inertiaTimer;
+
 };
 
 #endif // MODELVIEWER_H

@@ -73,6 +73,8 @@ void ModelViewer::resizeGL(int w, int h) {
 void ModelViewer::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    set_background_color(backgroundColor);   // Изменение цвета фона
+
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
@@ -81,10 +83,16 @@ void ModelViewer::paintGL() {
 
     int start_idx = 0;
     for (int i = 0; i < num_faces; ++i) {
+
+        glColor3f(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF()); // изменения цвета ребер
+
         glDrawElements(GL_LINE_LOOP, face_vertex_counts[i], GL_UNSIGNED_INT, (void*)(start_idx * sizeof(GLuint)));
         start_idx += face_vertex_counts[i];
     }
+        glLineWidth(this->line_edge);
 
+//    glEnable(GL_LINE_STIPPLE);
+//    glLineStipple(50, 0xAAAA);   // для пунктиных ребер
     glDisableVertexAttribArray(0);
 }
 
@@ -243,4 +251,24 @@ void ModelViewer::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         mousePressed = false;
     }
+}
+
+
+// работа с цветом
+void ModelViewer::set_background_color(const QColor &color)
+{
+        QColor clearColor = color;  // Создаем копию цвета
+        clearColor.setAlpha(255);  // Устанавливаем альфа-канал на полную непрозрачность
+        glClearColor(clearColor.redF(), clearColor.greenF(), clearColor.blueF(), clearColor.alphaF());
+        backgroundColor = color;  // Сохраняем цвет фона
+        update();  // Запускаем перерисовку OpenGL виджета
+  }
+
+void ModelViewer:: set_edge_color(const QColor &color) {
+    edgeColor=color;
+    update();
+}
+
+void ModelViewer :: set_vertex_color (const QColor &color) {
+    qDebug() << "ok";
 }

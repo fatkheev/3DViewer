@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ModelViewer_t {
-    const uint offsetsAndSize[22];
-    char stringdata0[267];
+    const uint offsetsAndSize[30];
+    char stringdata0[326];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_ModelViewer_t, stringdata0) + ofs), len 
@@ -39,7 +39,11 @@ QT_MOC_LITERAL(130, 30), // "on_ScrollBar_scaleValueChanged"
 QT_MOC_LITERAL(161, 30), // "on_moveScrollBar_xValueChanged"
 QT_MOC_LITERAL(192, 30), // "on_moveScrollBar_yValueChanged"
 QT_MOC_LITERAL(223, 30), // "on_moveScrollBar_zValueChanged"
-QT_MOC_LITERAL(254, 12) // "applyInertia"
+QT_MOC_LITERAL(254, 12), // "applyInertia"
+QT_MOC_LITERAL(267, 20), // "set_background_color"
+QT_MOC_LITERAL(288, 5), // "color"
+QT_MOC_LITERAL(294, 14), // "set_edge_color"
+QT_MOC_LITERAL(309, 16) // "set_vertex_color"
 
     },
     "ModelViewer\0on_horizontalScrollBar_xValueChanged\0"
@@ -49,7 +53,8 @@ QT_MOC_LITERAL(254, 12) // "applyInertia"
     "on_moveScrollBar_xValueChanged\0"
     "on_moveScrollBar_yValueChanged\0"
     "on_moveScrollBar_zValueChanged\0"
-    "applyInertia"
+    "applyInertia\0set_background_color\0"
+    "color\0set_edge_color\0set_vertex_color"
 };
 #undef QT_MOC_LITERAL
 
@@ -59,7 +64,7 @@ static const uint qt_meta_data_ModelViewer[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -67,14 +72,17 @@ static const uint qt_meta_data_ModelViewer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   62,    2, 0x0a,    1 /* Public */,
-       4,    1,   65,    2, 0x0a,    3 /* Public */,
-       5,    1,   68,    2, 0x0a,    5 /* Public */,
-       6,    1,   71,    2, 0x0a,    7 /* Public */,
-       7,    1,   74,    2, 0x0a,    9 /* Public */,
-       8,    1,   77,    2, 0x0a,   11 /* Public */,
-       9,    1,   80,    2, 0x0a,   13 /* Public */,
-      10,    0,   83,    2, 0x0a,   15 /* Public */,
+       1,    1,   80,    2, 0x0a,    1 /* Public */,
+       4,    1,   83,    2, 0x0a,    3 /* Public */,
+       5,    1,   86,    2, 0x0a,    5 /* Public */,
+       6,    1,   89,    2, 0x0a,    7 /* Public */,
+       7,    1,   92,    2, 0x0a,    9 /* Public */,
+       8,    1,   95,    2, 0x0a,   11 /* Public */,
+       9,    1,   98,    2, 0x0a,   13 /* Public */,
+      10,    0,  101,    2, 0x0a,   15 /* Public */,
+      11,    1,  102,    2, 0x0a,   16 /* Public */,
+      13,    1,  105,    2, 0x0a,   18 /* Public */,
+      14,    1,  108,    2, 0x0a,   20 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -85,6 +93,9 @@ static const uint qt_meta_data_ModelViewer[] = {
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QColor,   12,
+    QMetaType::Void, QMetaType::QColor,   12,
+    QMetaType::Void, QMetaType::QColor,   12,
 
        0        // eod
 };
@@ -103,6 +114,9 @@ void ModelViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 5: _t->on_moveScrollBar_yValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->on_moveScrollBar_zValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: _t->applyInertia(); break;
+        case 8: _t->set_background_color((*reinterpret_cast< const QColor(*)>(_a[1]))); break;
+        case 9: _t->set_edge_color((*reinterpret_cast< const QColor(*)>(_a[1]))); break;
+        case 10: _t->set_vertex_color((*reinterpret_cast< const QColor(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -116,7 +130,7 @@ const QMetaObject ModelViewer::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_ModelViewer_t
 , QtPrivate::TypeAndForceComplete<ModelViewer, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<int, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QColor &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QColor &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QColor &, std::false_type>
 
 
 >,
@@ -145,13 +159,13 @@ int ModelViewer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 11;
     }
     return _id;
 }

@@ -43,13 +43,13 @@ public:
     QPushButton *pink_background;
     QGroupBox *groupBox_2;
     QComboBox *comboBox_2;
-    QScrollBar *horizontalScrollBar;
+    QScrollBar *horizontal_scroll_edge;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
     QComboBox *comboBox_4;
     QLabel *label_5;
-    QScrollBar *horizontalScrollBar_2;
+    QScrollBar *horizontal_sccrol_vertice;
     QPushButton *green_vertex;
     QPushButton *blue_vertex;
     QPushButton *black_vertex;
@@ -232,10 +232,13 @@ public:
         comboBox_2->addItem(QString());
         comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
         comboBox_2->setGeometry(QRect(220, 40, 171, 20));
-        horizontalScrollBar = new QScrollBar(groupBox_2);
-        horizontalScrollBar->setObjectName(QString::fromUtf8("horizontalScrollBar"));
-        horizontalScrollBar->setGeometry(QRect(220, 100, 160, 16));
-        horizontalScrollBar->setOrientation(Qt::Horizontal);
+        horizontal_scroll_edge = new QScrollBar(groupBox_2);
+        horizontal_scroll_edge->setObjectName(QString::fromUtf8("horizontal_scroll_edge"));
+        horizontal_scroll_edge->setGeometry(QRect(220, 100, 160, 16));
+        horizontal_scroll_edge->setMinimum(1);
+        horizontal_scroll_edge->setMaximum(30);
+        horizontal_scroll_edge->setPageStep(10);
+        horizontal_scroll_edge->setOrientation(Qt::Horizontal);
         label_2 = new QLabel(groupBox_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(280, 10, 51, 20));
@@ -262,10 +265,10 @@ public:
         label_5->setGeometry(QRect(40, 70, 111, 20));
         label_5->setStyleSheet(QString::fromUtf8("border: 2px solid grey; \n"
 "border-radius: 5px;"));
-        horizontalScrollBar_2 = new QScrollBar(groupBox_2);
-        horizontalScrollBar_2->setObjectName(QString::fromUtf8("horizontalScrollBar_2"));
-        horizontalScrollBar_2->setGeometry(QRect(20, 100, 160, 16));
-        horizontalScrollBar_2->setOrientation(Qt::Horizontal);
+        horizontal_sccrol_vertice = new QScrollBar(groupBox_2);
+        horizontal_sccrol_vertice->setObjectName(QString::fromUtf8("horizontal_sccrol_vertice"));
+        horizontal_sccrol_vertice->setGeometry(QRect(20, 100, 160, 16));
+        horizontal_sccrol_vertice->setOrientation(Qt::Horizontal);
         green_vertex = new QPushButton(groupBox_2);
         green_vertex->setObjectName(QString::fromUtf8("green_vertex"));
         green_vertex->setGeometry(QRect(40, 130, 20, 20));
@@ -580,8 +583,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         groupBox->setTitle(QString());
-        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\277\320\260\321\200\320\260\320\273\320\273\320\265\320\273\321\214\320\275\320\260\321\217", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "\321\206\320\265\320\275\321\202\321\200\320\260\320\273\321\214\320\275\320\260\321\217", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "\320\237\320\260\321\200\320\260\320\273\320\273\320\265\320\273\321\214\320\275\320\260\321\217", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "\320\246\320\265\320\275\321\202\321\200\320\260\320\273\321\214\320\275\320\260\321\217", nullptr));
 
         label->setText(QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277 \320\277\321\200\320\276\320\265\320\272\321\206\320\270\320\270", nullptr));
         label_6->setStyleSheet(QCoreApplication::translate("MainWindow", "border: 2px solid grey; \n"
