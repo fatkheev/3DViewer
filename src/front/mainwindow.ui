@@ -40,7 +40,7 @@ border-radius: 10px;</string>
     <property name="title">
      <string/>
     </property>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="ProjectionBox">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -51,12 +51,12 @@ border-radius: 10px;</string>
      </property>
      <item>
       <property name="text">
-       <string>Параллельная</string>
+       <string>Центральная</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Центральная</string>
+       <string>Параллельная</string>
       </property>
      </item>
     </widget>
@@ -314,7 +314,7 @@ QPushButton:pressed {
     <property name="title">
      <string/>
     </property>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="type_edge">
      <property name="geometry">
       <rect>
        <x>220</x>
@@ -325,12 +325,12 @@ QPushButton:pressed {
      </property>
      <item>
       <property name="text">
-       <string>сплошной</string>
+       <string>Сплошной</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>пунктирный</string>
+       <string>Пунктирный</string>
       </property>
      </item>
     </widget>
@@ -347,10 +347,10 @@ QPushButton:pressed {
       <number>1</number>
      </property>
      <property name="maximum">
-      <number>30</number>
+      <number>20</number>
      </property>
      <property name="pageStep">
-      <number>10</number>
+      <number>1</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -1281,7 +1281,7 @@ QPushButton:pressed {
       <string>GIF</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_15">
+    <widget class="QPushButton" name="open_file">
      <property name="geometry">
       <rect>
        <x>200</x>

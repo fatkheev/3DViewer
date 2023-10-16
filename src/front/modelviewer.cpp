@@ -4,7 +4,7 @@
 ModelViewer::ModelViewer(QWidget *parent)
     : QOpenGLWidget(parent), vertexVBO(0), indexVBO(0), num_vertices(0), num_faces(0),
       vertices(nullptr), indexes(nullptr), face_vertex_counts(nullptr),
-      rotationAngleX(0.0f), rotationAngleY(0.0f), rotationAngleZ(0.0f)  // инициализация углов
+      rotationAngleX(0.0f), rotationAngleY(0.0f), rotationAngleZ(0.0f), currentProjectionType(0)  // инициализация углов
 {
     inertiaTimer = new QTimer(this);
     connect(inertiaTimer, &QTimer::timeout, this, &ModelViewer::applyInertia);
@@ -71,29 +71,42 @@ void ModelViewer::resizeGL(int w, int h) {
 }
 
 void ModelViewer::paintGL() {
+    glClearColor(backgroundColor.redF(), backgroundColor.greenF(),
+                 backgroundColor.blueF(), backgroundColor.alphaF());
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    set_background_color(backgroundColor);   // Изменение цвета фона
+    // Установка проекционной матрицы
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    if (currentProjectionType == 0) {
+        glOrtho(-1.5, 1.5, -1.5, 1.5, -2, 1000);
+          } else {
+            glFrustum(-1, 1, -1, 1, 1, 99999);
+            glTranslatef(0, 0, -2.8);
+          }
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexVBO);
 
     int start_idx = 0;
     for (int i = 0; i < num_faces; ++i) {
+        if (current_type_edge == 1) {
+            glEnable(GL_LINE_STIPPLE);
+            glLineStipple(1, 0x00FF);
+        } else {
+            glDisable(GL_LINE_STIPPLE);
+        }
 
-        glColor3f(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF()); // изменения цвета ребер
-
+        glLineWidth(this->line_edge);
+        glColor3f(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF());
         glDrawElements(GL_LINE_LOOP, face_vertex_counts[i], GL_UNSIGNED_INT, (void*)(start_idx * sizeof(GLuint)));
+
         start_idx += face_vertex_counts[i];
     }
-        glLineWidth(this->line_edge);
 
-//    glEnable(GL_LINE_STIPPLE);
-//    glLineStipple(50, 0xAAAA);   // для пунктиных ребер
-    glDisableVertexAttribArray(0);
 }
 
 // Сохранение позиции и размеров
@@ -222,6 +235,7 @@ void ModelViewer::applyInertia() {
 }
 
 void ModelViewer::mouseMoveEvent(QMouseEvent *event) {
+
     if (event->buttons() & Qt::LeftButton) {
         int dx = event->position().x() - lastMousePos.x();
         int dy = event->position().y() - lastMousePos.y();
@@ -271,4 +285,37 @@ void ModelViewer:: set_edge_color(const QColor &color) {
 
 void ModelViewer :: set_vertex_color (const QColor &color) {
     qDebug() << "ok";
+    //добавить цвета вершин
+
+
+
+
+}
+
+void ModelViewer::on_ProjectionBox_currentIndexChanged(int index)
+{
+    currentProjectionType = index;  // 0 for Perspective, 1 for Orthographic
+    update();  // обновляем сцену, чтобы увидеть изменения
+}
+
+void ModelViewer::on_type_edge_activated(int index)
+{
+    current_type_edge=index;
+    update();
+}
+
+
+// скрол колесиком мыши
+void ModelViewer::wheelEvent(QWheelEvent *event) {
+    int delta = event->angleDelta().y();
+
+    if (delta > 0) {
+        scaleFactor *= 1.1;
+    } else if (delta < 0) {
+        scaleFactor /= 1.1;
+    }
+    updateVertices();
+    glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
+    glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+    update();
 }

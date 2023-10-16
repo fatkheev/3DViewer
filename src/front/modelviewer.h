@@ -44,7 +44,10 @@ public slots:
     void set_background_color(const QColor &color);
     void set_edge_color(const QColor &color);
     void set_vertex_color (const QColor &color);
-   // void horizontal_scroll_edge(int value);
+
+
+    void on_ProjectionBox_currentIndexChanged(int index);
+    void on_type_edge_activated(int index);
 
 
 protected:
@@ -55,7 +58,7 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-
+   void wheelEvent(QWheelEvent *event)override;
 private:
     GLuint vertexVBO, indexVBO;
     int num_vertices, num_faces;
@@ -75,6 +78,8 @@ private:
     float inertiaY = 0.0f;
     QTimer *inertiaTimer;
 
+    int currentProjectionType;  // 0 for Perspective, 1 for Orthographic
+    int current_type_edge=0;
 };
 
 #endif // MODELVIEWER_H

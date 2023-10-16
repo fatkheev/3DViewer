@@ -3,7 +3,8 @@
 #include "../gif.h"
 #include <QLayout>
 #include <QImageWriter>
-
+#include <set>
+#include <utility>
 
 
 
@@ -32,9 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->green_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(Qt::green); });
     connect(ui->red_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(Qt::red); });
-    connect(ui->black_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::black); });
+    connect(ui->black_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(Qt::black); });
     connect(ui->blue_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::blue); });
-    connect(ui->yellow_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::yellow); });
+    connect(ui->yellow_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(Qt::yellow); });
     connect(ui->orange_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(QColor(255, 165, 0)); });
     connect(ui->white_background, &QPushButton::clicked, this, [this]() { openGLWidget->set_background_color(Qt::white); });
     connect(ui->purply_background, &QPushButton::clicked, this, [this]() {openGLWidget->set_background_color(QColor(128, 0, 128)); });
@@ -44,15 +45,15 @@ MainWindow::MainWindow(QWidget *parent)
     // кнопки цвета ребер
 
     connect(ui->yellow_edge, &QPushButton::clicked, this, [this]() {openGLWidget->set_edge_color(Qt::yellow); });
-    connect(ui->orange_edge, &QPushButton::clicked, this, [this]() { openGLWidget->set_edge_color(QColor(255, 165, 0)); });
-    connect(ui->white_edge, &QPushButton::clicked, this, [this]() { openGLWidget->set_edge_color(Qt::white); });
+    connect(ui->orange_edge, &QPushButton::clicked, this, [this]() {openGLWidget->set_edge_color(QColor(255, 165, 0)); });
+    connect(ui->white_edge, &QPushButton::clicked, this, [this]() {openGLWidget->set_edge_color(Qt::white); });
     connect(ui->purply_edge, &QPushButton::clicked, this, [this]() {openGLWidget->set_edge_color(QColor(128, 0, 128)); });
 
     // кнопки цвета вершин
 
     connect(ui->green_vertex, &QPushButton::clicked, this, [this]() {openGLWidget->set_vertex_color(Qt::green); });
     connect(ui->red_vertex, &QPushButton::clicked, this, [this]() { openGLWidget->set_vertex_color(Qt::red); });
-    connect(ui->black_vertex, &QPushButton::clicked, this, [this]() { openGLWidget->set_vertex_color(Qt::black); });
+    connect(ui->black_vertex, &QPushButton::clicked, this, [this]() {openGLWidget->set_vertex_color(Qt::black); });
     connect(ui->blue_vertex, &QPushButton::clicked, this, [this]() {openGLWidget->set_vertex_color(Qt::blue); });
 
     //скрол толщины ребер
@@ -81,7 +82,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->spinBox_5, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::update_moveScrollBar_z);
 
     connect(ui->ScrollBar_scale, &QScrollBar::valueChanged, this, &MainWindow::update_spinbox);
-    connect(ui->spinBox_4, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::ScrollBar_scale);
+    connect(ui->spinBox_4, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::scroll_bar_scale);
+
+    connect(ui->ProjectionBox, SIGNAL(currentIndexChanged(int)),openGLWidget, SLOT(on_ProjectionBox_currentIndexChanged(int)));
+
+    connect(ui->type_edge, SIGNAL(currentIndexChanged(int)),openGLWidget, SLOT(on_type_edge_activated(int)));
 
 
 }
@@ -132,7 +137,7 @@ void MainWindow::update_moveScrollBar_z(int value) {
     ui->moveScrollBar_z->setValue(value);
 }
 
-void MainWindow::ScrollBar_scale(int value) {
+void MainWindow::scroll_bar_scale(int value) {
     ui->ScrollBar_scale->setValue(value);
 }
 
@@ -152,16 +157,22 @@ void MainWindow::on_clean_clicked()
     ui->horizontal_scroll_edge->setValue(0);
    openGLWidget->set_background_color(Qt::black);
     openGLWidget->set_edge_color(Qt::white);
+   ui->type_edge->setCurrentIndex(0);
+   ui->ProjectionBox->setCurrentIndex(0);
+
+
+//
 }
 
-void MainWindow::on_pushButton_15_clicked() {
+void MainWindow::on_open_file_clicked()
+{
     Vertex *vertices;
     Face *faces;
     int num_vertices, num_faces;
 
     QString filename = QFileDialog::getOpenFileName(this, "Open OBJ file", "", "OBJ Files (*.obj)");
     if(filename.isEmpty()) return;
-    on_clean_clicked();
+   on_clean_clicked();
     if(parse_obj(filename.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
         ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
 
@@ -172,7 +183,8 @@ void MainWindow::on_pushButton_15_clicked() {
         // Устанавливаем значения для меток
         ui->label_name->setText(fileNameOnly);
         ui->label_V->setText(QString("%1").arg(num_vertices));
-        ui->label_F->setText(QString("%1").arg(num_faces));
+        int uniqueEdgesCount = countUniqueEdges(faces, num_faces);
+        ui->label_F->setText(QString("%1").arg(uniqueEdgesCount));
     }
 }
 
@@ -196,13 +208,13 @@ void MainWindow::on_GIF_clicked()
         this, tr("Сохранение GIF"), temp + "/images", tr("Gif (*.gif)"));
 
     if (!fileName.isEmpty()) {
-      createGif(fileName);
+      create_gif(fileName);
     } else {
       QMessageBox::warning(this, "", "Неудалось сохранить GIF");
     }
 }
 
-void MainWindow::createGif(QString fileName) {
+void MainWindow::create_gif(QString fileName) {
   QImage img(openGLWidget->size(), QImage::Format_RGB32), img640_480;
   QPainter painter(&img);
   QTime dieTime;
@@ -231,4 +243,23 @@ void MainWindow::horizontal_scroll_edge(int action)
     ui->openGLWidget->update();
 
 }
+
+// Подсчет ребер
+int MainWindow::countUniqueEdges(Face *faces, int num_faces) {
+    std::set<std::pair<int, int>> uniqueEdges;
+
+    for (int i = 0; i < num_faces; ++i) {
+        for (int j = 0; j < faces[i].num_vertices; ++j) {
+            int v1 = faces[i].vertices[j];
+            int v2 = faces[i].vertices[(j + 1) % faces[i].num_vertices];
+
+            if (v1 > v2) std::swap(v1, v2);
+
+            uniqueEdges.insert({v1, v2});
+        }
+    }
+
+    return uniqueEdges.size();
+}
+
 
