@@ -25,45 +25,45 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     const uint offsetsAndSize[46];
-    char stringdata0[366];
+    char stringdata0[364];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 10), // "MainWindow"
-QT_MOC_LITERAL(11, 24), // "on_pushButton_15_clicked"
-QT_MOC_LITERAL(36, 0), // ""
-QT_MOC_LITERAL(37, 16), // "on_clean_clicked"
-QT_MOC_LITERAL(54, 21), // "on_screenshot_clicked"
-QT_MOC_LITERAL(76, 14), // "on_GIF_clicked"
-QT_MOC_LITERAL(91, 9), // "createGif"
-QT_MOC_LITERAL(101, 8), // "fileName"
-QT_MOC_LITERAL(110, 14), // "update_spinbox"
-QT_MOC_LITERAL(125, 5), // "value"
-QT_MOC_LITERAL(131, 26), // "updateHorizontalScrollBarX"
-QT_MOC_LITERAL(158, 26), // "updateHorizontalScrollBarY"
-QT_MOC_LITERAL(185, 26), // "updateHorizontalScrollBarZ"
-QT_MOC_LITERAL(212, 22), // "update_moveScrollBar_x"
-QT_MOC_LITERAL(235, 22), // "update_moveScrollBar_y"
-QT_MOC_LITERAL(258, 22), // "update_moveScrollBar_z"
-QT_MOC_LITERAL(281, 15), // "ScrollBar_scale"
-QT_MOC_LITERAL(297, 22), // "horizontal_scroll_edge"
-QT_MOC_LITERAL(320, 6), // "action"
-QT_MOC_LITERAL(327, 16), // "countUniqueEdges"
-QT_MOC_LITERAL(344, 5), // "Face*"
-QT_MOC_LITERAL(350, 5), // "faces"
-QT_MOC_LITERAL(356, 9) // "num_faces"
+QT_MOC_LITERAL(11, 20), // "on_open_file_clicked"
+QT_MOC_LITERAL(32, 0), // ""
+QT_MOC_LITERAL(33, 16), // "on_clean_clicked"
+QT_MOC_LITERAL(50, 21), // "on_screenshot_clicked"
+QT_MOC_LITERAL(72, 14), // "on_GIF_clicked"
+QT_MOC_LITERAL(87, 10), // "create_gif"
+QT_MOC_LITERAL(98, 8), // "fileName"
+QT_MOC_LITERAL(107, 14), // "update_spinbox"
+QT_MOC_LITERAL(122, 5), // "value"
+QT_MOC_LITERAL(128, 26), // "updateHorizontalScrollBarX"
+QT_MOC_LITERAL(155, 26), // "updateHorizontalScrollBarY"
+QT_MOC_LITERAL(182, 26), // "updateHorizontalScrollBarZ"
+QT_MOC_LITERAL(209, 22), // "update_moveScrollBar_x"
+QT_MOC_LITERAL(232, 22), // "update_moveScrollBar_y"
+QT_MOC_LITERAL(255, 22), // "update_moveScrollBar_z"
+QT_MOC_LITERAL(278, 16), // "scroll_bar_scale"
+QT_MOC_LITERAL(295, 22), // "horizontal_scroll_edge"
+QT_MOC_LITERAL(318, 6), // "action"
+QT_MOC_LITERAL(325, 16), // "countUniqueEdges"
+QT_MOC_LITERAL(342, 5), // "Face*"
+QT_MOC_LITERAL(348, 5), // "faces"
+QT_MOC_LITERAL(354, 9) // "num_faces"
 
     },
-    "MainWindow\0on_pushButton_15_clicked\0"
-    "\0on_clean_clicked\0on_screenshot_clicked\0"
-    "on_GIF_clicked\0createGif\0fileName\0"
+    "MainWindow\0on_open_file_clicked\0\0"
+    "on_clean_clicked\0on_screenshot_clicked\0"
+    "on_GIF_clicked\0create_gif\0fileName\0"
     "update_spinbox\0value\0updateHorizontalScrollBarX\0"
     "updateHorizontalScrollBarY\0"
     "updateHorizontalScrollBarZ\0"
     "update_moveScrollBar_x\0update_moveScrollBar_y\0"
-    "update_moveScrollBar_z\0ScrollBar_scale\0"
+    "update_moveScrollBar_z\0scroll_bar_scale\0"
     "horizontal_scroll_edge\0action\0"
     "countUniqueEdges\0Face*\0faces\0num_faces"
 };
@@ -125,11 +125,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_pushButton_15_clicked(); break;
+        case 0: _t->on_open_file_clicked(); break;
         case 1: _t->on_clean_clicked(); break;
         case 2: _t->on_screenshot_clicked(); break;
         case 3: _t->on_GIF_clicked(); break;
-        case 4: _t->createGif((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->create_gif((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 5: _t->update_spinbox((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->updateHorizontalScrollBarX((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: _t->updateHorizontalScrollBarY((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -137,7 +137,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 9: _t->update_moveScrollBar_x((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 10: _t->update_moveScrollBar_y((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 11: _t->update_moveScrollBar_z((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->ScrollBar_scale((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 12: _t->scroll_bar_scale((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 13: _t->horizontal_scroll_edge((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 14: { int _r = _t->countUniqueEdges((*reinterpret_cast< Face*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;

@@ -71,40 +71,72 @@ void ModelViewer::resizeGL(int w, int h) {
 }
 
 void ModelViewer::paintGL() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(backgroundColor.redF(), backgroundColor.greenF(),
+                 backgroundColor.blueF(), backgroundColor.alphaF());
 
-    set_background_color(backgroundColor);   // Изменение цвета фона
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Установка проекционной матрицы
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     if (currentProjectionType == 0) {
         glOrtho(-1.5, 1.5, -1.5, 1.5, -2, 1000);
-          } else {
-            glFrustum(-1, 1, -1, 1, 1, 99999);
-            glTranslatef(0, 0, -2.8);
-          }
+    } else {
+        glFrustum(-1, 1, -1, 1, 1, 99999);
+        glTranslatef(0, 0, -2.8);
+    }
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexVBO);
 
     int start_idx = 0;
     for (int i = 0; i < num_faces; ++i) {
+        if (current_type_edge == 1) {
+            glEnable(GL_LINE_STIPPLE);
+            glLineStipple(1, 0x00FF);
+        } else {
+            glDisable(GL_LINE_STIPPLE);
+        }
 
-        glColor3f(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF()); // изменения цвета ребер
-
+        glLineWidth(this->line_edge);
+        glColor3f(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF());
         glDrawElements(GL_LINE_LOOP, face_vertex_counts[i], GL_UNSIGNED_INT, (void*)(start_idx * sizeof(GLuint)));
         start_idx += face_vertex_counts[i];
     }
-    glLineWidth(this->line_edge);
 
-    //    glEnable(GL_LINE_STIPPLE);
-    //    glLineStipple(50, 0xAAAA);   // для пунктиных ребер
-    glDisableVertexAttribArray(0);
+    // Рисование вершин
+    glColor3f(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());
+    glPointSize(vertexSize * 50);  // Множитель для размера, можно настроить
+    switch(vertexShape) {
+        case 0:  // Откл.
+            break;
+        case 1:  // Круг
+            for (int i = 0; i < num_vertices; ++i) {
+                glBegin(GL_POLYGON);
+                for (int j = 0; j < 360; j += 10) {
+                    float degInRad = j * M_PI / 180.0f;
+                    glVertex3f(vertices[i].x + cos(degInRad) * vertexSize,
+                               vertices[i].y + sin(degInRad) * vertexSize,
+                               vertices[i].z);
+                }
+                glEnd();
+            }
+            break;
+        case 2:  // Квадрат
+            for (int i = 0; i < num_vertices; ++i) {
+                glBegin(GL_QUADS);
+                glVertex3f(vertices[i].x - vertexSize, vertices[i].y - vertexSize, vertices[i].z);
+                glVertex3f(vertices[i].x + vertexSize, vertices[i].y - vertexSize, vertices[i].z);
+                glVertex3f(vertices[i].x + vertexSize, vertices[i].y + vertexSize, vertices[i].z);
+                glVertex3f(vertices[i].x - vertexSize, vertices[i].y + vertexSize, vertices[i].z);
+                glEnd();
+            }
+            break;
+    }
 }
+
 
 // Сохранение позиции и размеров
 void ModelViewer::updateVertices() {
@@ -232,6 +264,7 @@ void ModelViewer::applyInertia() {
 }
 
 void ModelViewer::mouseMoveEvent(QMouseEvent *event) {
+
     if (event->buttons() & Qt::LeftButton) {
         int dx = event->position().x() - lastMousePos.x();
         int dy = event->position().y() - lastMousePos.y();
@@ -279,12 +312,52 @@ void ModelViewer:: set_edge_color(const QColor &color) {
     update();
 }
 
-void ModelViewer :: set_vertex_color (const QColor &color) {
-    qDebug() << "ok";
-}
+//void ModelViewer :: set_vertex_color (const QColor &color) {
+//    qDebug() << "ok";
+//    //добавить цвета вершин
+
+//}
 
 void ModelViewer::on_ProjectionBox_currentIndexChanged(int index)
 {
     currentProjectionType = index;  // 0 for Perspective, 1 for Orthographic
     update();  // обновляем сцену, чтобы увидеть изменения
+}
+
+void ModelViewer::on_type_edge_activated(int index)
+{
+    current_type_edge=index;
+    update();
+}
+
+
+// скрол колесиком мыши
+void ModelViewer::wheelEvent(QWheelEvent *event) {
+    int delta = event->angleDelta().y();
+
+    if (delta > 0) {
+        scaleFactor *= 1.1;
+    } else if (delta < 0) {
+        scaleFactor /= 1.1;
+    }
+    updateVertices();
+    glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
+    glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+    update();
+}
+
+// Цвета вершин
+void ModelViewer::on_type_V_activated(int index) {
+    vertexShape = index;
+    update();
+}
+
+void ModelViewer::on_horizontal_sccrol_vertice_valueChanged(int value) {
+    vertexSize = value * 0.01f;  // Можно настроить коэффициент масштабирования по своему усмотрению
+    update();
+}
+
+void ModelViewer::setVertexColor(const QColor &color) {
+    vertexColor = color;
+    update();
 }

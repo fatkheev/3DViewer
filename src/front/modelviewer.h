@@ -43,10 +43,16 @@ public slots:
     void applyInertia();
     void set_background_color(const QColor &color);
     void set_edge_color(const QColor &color);
-    void set_vertex_color (const QColor &color);
-   // void horizontal_scroll_edge(int value);
+//    void set_vertex_color (const QColor &color);
+
 
     void on_ProjectionBox_currentIndexChanged(int index);
+    void on_type_edge_activated(int index);
+
+    // Цвета вершин
+    void on_type_V_activated(int index);
+    void on_horizontal_sccrol_vertice_valueChanged(int value);
+    void setVertexColor(const QColor &color);
 
 
 protected:
@@ -57,7 +63,7 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-
+   void wheelEvent(QWheelEvent *event)override;
 private:
     GLuint vertexVBO, indexVBO;
     int num_vertices, num_faces;
@@ -78,7 +84,12 @@ private:
     QTimer *inertiaTimer;
 
     int currentProjectionType;  // 0 for Perspective, 1 for Orthographic
+    int current_type_edge=0;
 
+    // Цвета вершин
+    int vertexShape = 0;  // 0: откл., 1: круг, 2: квадрат
+    float vertexSize = 0.03f;  // размер вершин
+    QColor vertexColor = Qt::white;  // цвет вершин
 };
 
 #endif // MODELVIEWER_H

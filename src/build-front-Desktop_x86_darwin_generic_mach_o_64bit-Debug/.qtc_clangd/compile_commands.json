@@ -7,7 +7,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -43,7 +43,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -74,7 +74,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/main.cpp"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/main.cpp"
 },
 {
@@ -85,7 +85,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -121,7 +121,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -152,7 +152,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/mainwindow.cpp"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/mainwindow.cpp"
 },
 {
@@ -163,7 +163,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -199,7 +199,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -230,7 +230,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/modelviewer.cpp"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/modelviewer.cpp"
 },
 {
@@ -241,7 +241,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -277,7 +277,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -308,7 +308,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/backend.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/backend.h"
 },
 {
@@ -319,7 +319,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -355,7 +355,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -386,7 +386,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/gif.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/gif.h"
 },
 {
@@ -397,7 +397,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -433,7 +433,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -464,7 +464,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/mainwindow.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/mainwindow.h"
 },
 {
@@ -475,7 +475,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -511,7 +511,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -542,7 +542,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/modelviewer.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/modelviewer.h"
 },
 {
@@ -553,7 +553,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -589,7 +589,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -618,10 +618,10 @@
         "-Wno-unknown-pragmas",
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/ui_mainwindow.h"
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/ui_mainwindow.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
-    "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/ui_mainwindow.h"
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
+    "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/ui_mainwindow.h"
 },
 {
     "arguments": [
@@ -631,7 +631,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -665,7 +665,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -694,7 +694,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/func/parser.c"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/func/parser.c"
 },
 {
@@ -705,7 +705,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -739,7 +739,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -768,7 +768,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/backend.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/backend.h"
 },
 {
@@ -779,7 +779,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -813,7 +813,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -842,7 +842,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/gif.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/gif.h"
 },
 {
@@ -853,7 +853,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -887,7 +887,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -916,7 +916,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/mainwindow.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/mainwindow.h"
 },
 {
@@ -927,7 +927,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -961,7 +961,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -990,7 +990,7 @@
         "-Wno-documentation-unknown-command",
         "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/modelviewer.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
     "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/modelviewer.h"
 },
 {
@@ -1001,7 +1001,7 @@
         "-I",
         "/opt/goinfre/mathosha/Qt Creator.app/Contents/Resources/cplusplus/wrappedQtHeaders/QtCore",
         "-I",
-        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-ITitzu/clang-uiheader-tmQEja",
+        "/private/var/folders/zz/zyxvpxvq6csfxvn_n003wfm400z3n1/T/QtCreator-bMuPJj/clang-uiheader-klBxLZ",
         "-nostdinc",
         "-nostdinc++",
         "-pipe",
@@ -1035,7 +1035,7 @@
         "-I",
         "/usr/local/lib/QtCore.framework/Headers",
         "-I",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build",
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug",
         "-I",
         "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers",
         "-I",
@@ -1062,9 +1062,9 @@
         "-Wno-unknown-pragmas",
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
-        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/ui_mainwindow.h"
+        "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/ui_mainwindow.h"
     ],
-    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/.qtc_clangd",
-    "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build/ui_mainwindow.h"
+    "directory": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qtc_clangd",
+    "file": "/Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/ui_mainwindow.h"
 }
 ]

@@ -42,12 +42,12 @@ public:
     QPushButton *orange_background;
     QPushButton *pink_background;
     QGroupBox *groupBox_2;
-    QComboBox *comboBox_2;
+    QComboBox *type_edge;
     QScrollBar *horizontal_scroll_edge;
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
-    QComboBox *comboBox_4;
+    QComboBox *type_V;
     QLabel *label_5;
     QScrollBar *horizontal_sccrol_vertice;
     QPushButton *green_vertex;
@@ -94,7 +94,7 @@ public:
     QLabel *label_F;
     QPushButton *screenshot;
     QPushButton *GIF;
-    QPushButton *pushButton_15;
+    QPushButton *open_file;
     QLabel *label_14;
 
     void setupUi(QMainWindow *MainWindow)
@@ -227,17 +227,17 @@ public:
         groupBox_2 = new QGroupBox(centralwidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
         groupBox_2->setGeometry(QRect(660, 430, 391, 161));
-        comboBox_2 = new QComboBox(groupBox_2);
-        comboBox_2->addItem(QString());
-        comboBox_2->addItem(QString());
-        comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
-        comboBox_2->setGeometry(QRect(220, 40, 171, 20));
+        type_edge = new QComboBox(groupBox_2);
+        type_edge->addItem(QString());
+        type_edge->addItem(QString());
+        type_edge->setObjectName(QString::fromUtf8("type_edge"));
+        type_edge->setGeometry(QRect(220, 40, 171, 20));
         horizontal_scroll_edge = new QScrollBar(groupBox_2);
         horizontal_scroll_edge->setObjectName(QString::fromUtf8("horizontal_scroll_edge"));
         horizontal_scroll_edge->setGeometry(QRect(220, 100, 160, 16));
         horizontal_scroll_edge->setMinimum(1);
-        horizontal_scroll_edge->setMaximum(30);
-        horizontal_scroll_edge->setPageStep(10);
+        horizontal_scroll_edge->setMaximum(20);
+        horizontal_scroll_edge->setPageStep(1);
         horizontal_scroll_edge->setOrientation(Qt::Horizontal);
         label_2 = new QLabel(groupBox_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
@@ -254,12 +254,12 @@ public:
         label_4->setGeometry(QRect(60, 10, 71, 20));
         label_4->setStyleSheet(QString::fromUtf8("border: 2px solid grey; \n"
 "border-radius: 5px;"));
-        comboBox_4 = new QComboBox(groupBox_2);
-        comboBox_4->addItem(QString());
-        comboBox_4->addItem(QString());
-        comboBox_4->addItem(QString());
-        comboBox_4->setObjectName(QString::fromUtf8("comboBox_4"));
-        comboBox_4->setGeometry(QRect(11, 40, 171, 20));
+        type_V = new QComboBox(groupBox_2);
+        type_V->addItem(QString());
+        type_V->addItem(QString());
+        type_V->addItem(QString());
+        type_V->setObjectName(QString::fromUtf8("type_V"));
+        type_V->setGeometry(QRect(11, 40, 171, 20));
         label_5 = new QLabel(groupBox_2);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(40, 70, 111, 20));
@@ -268,6 +268,10 @@ public:
         horizontal_sccrol_vertice = new QScrollBar(groupBox_2);
         horizontal_sccrol_vertice->setObjectName(QString::fromUtf8("horizontal_sccrol_vertice"));
         horizontal_sccrol_vertice->setGeometry(QRect(20, 100, 160, 16));
+        horizontal_sccrol_vertice->setMinimum(2);
+        horizontal_sccrol_vertice->setMaximum(15);
+        horizontal_sccrol_vertice->setPageStep(1);
+        horizontal_sccrol_vertice->setValue(2);
         horizontal_sccrol_vertice->setOrientation(Qt::Horizontal);
         green_vertex = new QPushButton(groupBox_2);
         green_vertex->setObjectName(QString::fromUtf8("green_vertex"));
@@ -554,10 +558,10 @@ public:
 "\n"
 "}\n"
 ""));
-        pushButton_15 = new QPushButton(groupBox_3);
-        pushButton_15->setObjectName(QString::fromUtf8("pushButton_15"));
-        pushButton_15->setGeometry(QRect(200, 10, 80, 20));
-        pushButton_15->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        open_file = new QPushButton(groupBox_3);
+        open_file->setObjectName(QString::fromUtf8("open_file"));
+        open_file->setGeometry(QRect(200, 10, 80, 20));
+        open_file->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "   background-color: #808080;\n"
 "border-radius: 5px;\n"
 "}\n"
@@ -600,15 +604,15 @@ public:
         orange_background->setText(QString());
         pink_background->setText(QString());
         groupBox_2->setTitle(QString());
-        comboBox_2->setItemText(0, QCoreApplication::translate("MainWindow", "\321\201\320\277\320\273\320\276\321\210\320\275\320\276\320\271", nullptr));
-        comboBox_2->setItemText(1, QCoreApplication::translate("MainWindow", "\320\277\321\203\320\275\320\272\321\202\320\270\321\200\320\275\321\213\320\271", nullptr));
+        type_edge->setItemText(0, QCoreApplication::translate("MainWindow", "\320\241\320\277\320\273\320\276\321\210\320\275\320\276\320\271", nullptr));
+        type_edge->setItemText(1, QCoreApplication::translate("MainWindow", "\320\237\321\203\320\275\320\272\321\202\320\270\321\200\320\275\321\213\320\271", nullptr));
 
         label_2->setText(QCoreApplication::translate("MainWindow", "\320\240\320\265\320\261\321\200\320\260", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "\320\242\320\276\320\273\321\211\320\270\320\275\320\260 \321\200\320\265\320\261\320\265\321\200", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "\320\222\320\265\321\200\321\210\320\270\320\275\321\213", nullptr));
-        comboBox_4->setItemText(0, QCoreApplication::translate("MainWindow", "\320\272\321\200\321\203\320\263", nullptr));
-        comboBox_4->setItemText(1, QCoreApplication::translate("MainWindow", "\320\272\320\262\320\260\320\264\321\200\320\260\321\202", nullptr));
-        comboBox_4->setItemText(2, QCoreApplication::translate("MainWindow", "\320\276\321\202\320\272\320\273.", nullptr));
+        type_V->setItemText(0, QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\320\273.", nullptr));
+        type_V->setItemText(1, QCoreApplication::translate("MainWindow", "\320\232\321\200\321\203\320\263", nullptr));
+        type_V->setItemText(2, QCoreApplication::translate("MainWindow", "\320\232\320\262\320\260\320\264\321\200\320\260\321\202", nullptr));
 
         label_5->setText(QCoreApplication::translate("MainWindow", "\320\240\320\260\320\267\320\274\320\265\321\200 \320\262\320\265\321\200\321\210\320\270\320\275", nullptr));
         green_vertex->setText(QString());
@@ -641,7 +645,7 @@ public:
         label_F->setText(QString());
         screenshot->setText(QCoreApplication::translate("MainWindow", "\320\241\320\272\321\200\320\270\320\275\321\210\320\276\321\202", nullptr));
         GIF->setText(QCoreApplication::translate("MainWindow", "GIF", nullptr));
-        pushButton_15->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
+        open_file->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\262\320\276\321\200\320\276\321\202 \320\274\320\276\320\264\320\265\320\273\320\270", nullptr));
     } // retranslateUi
 
