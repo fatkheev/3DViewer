@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    loadSettings();
     openGLWidget = ui->openGLWidget;
 
     // Связывание сигналов и слотов
@@ -94,9 +95,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->type_edge, SIGNAL(currentIndexChanged(int)),openGLWidget, SLOT(on_type_edge_activated(int)));
 
 
+
 }
 
 MainWindow::~MainWindow() {
+    saveSettings();
     delete ui;
 }
 
@@ -178,7 +181,7 @@ void MainWindow::on_open_file_clicked()
 
     QString filename = QFileDialog::getOpenFileName(this, "Open OBJ file", "", "OBJ Files (*.obj)");
     if(filename.isEmpty()) return;
-   on_clean_clicked();
+//   on_clean_clicked();
     if(parse_obj(filename.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
         ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
 
@@ -268,4 +271,40 @@ int MainWindow::countUniqueEdges(Face *faces, int num_faces) {
     return uniqueEdges.size();
 }
 
+// Сохранение
+void MainWindow::saveSettings() {
+    QSettings settings("YourOrganization", "YourApp");
 
+    // Сохраняем геометрию и состояние главного окна
+    settings.setValue("mainWindowGeometry", saveGeometry());
+    settings.setValue("mainWindowState", saveState());
+
+    // Положение ползунков
+    settings.setValue("horizontalScrollBar_x", ui->horizontalScrollBar_x->value());
+    settings.setValue("horizontalScrollBar_y", ui->horizontalScrollBar_y->value());
+    settings.setValue("horizontalScrollBar_z", ui->horizontalScrollBar_z->value());
+
+    settings.setValue("ScrollBar_scale", ui->ScrollBar_scale->value());
+
+}
+
+void MainWindow::loadSettings() {
+    QSettings settings("YourOrganization", "YourApp");
+
+    // Восстанавливаем геометрию и состояние главного окна
+    restoreGeometry(settings.value("mainWindowGeometry").toByteArray());
+    restoreState(settings.value("mainWindowState").toByteArray());
+
+    // Положение ползунков
+    ui->horizontalScrollBar_x->setValue(settings.value("horizontalScrollBar_x", 0).toInt());
+    ui->spinBox->setValue(ui->horizontalScrollBar_x->value());
+
+    ui->horizontalScrollBar_y->setValue(settings.value("horizontalScrollBar_y", 0).toInt());
+    ui->spinBox_2->setValue(ui->horizontalScrollBar_y->value());
+
+    ui->horizontalScrollBar_z->setValue(settings.value("horizontalScrollBar_z", 0).toInt());
+    ui->spinBox_3->setValue(ui->horizontalScrollBar_z->value());
+
+    ui->ScrollBar_scale->setValue(settings.value("ScrollBar_scale", 0).toInt());
+    ui->spinBox_4->setValue(ui->ScrollBar_scale->value());
+}

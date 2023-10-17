@@ -55,6 +55,10 @@ private:
     Ui::MainWindow *ui;
     ModelViewer* openGLWidget;
 //    ModelViewer *modelViewer;
+
+    // Сохранение
+    void saveSettings();
+    void loadSettings();
 };
 
 #endif // MAINWINDOW_H

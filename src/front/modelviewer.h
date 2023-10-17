@@ -29,6 +29,10 @@ public:
     QColor edgeColor;
     double line_edge = 1;
 
+// Сохранение
+    void saveSettings();
+    void loadSettings();
+
 
 
 public slots:
@@ -90,6 +94,7 @@ private:
     int vertexShape = 0;  // 0: откл., 1: круг, 2: квадрат
     float vertexSize = 0.03f;  // размер вершин
     QColor vertexColor = Qt::white;  // цвет вершин
+
 };
 
 #endif // MODELVIEWER_H
