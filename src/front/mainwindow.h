@@ -54,7 +54,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     ModelViewer* openGLWidget;
-//    ModelViewer *modelViewer;
+    ModelViewer *modelViewer;
 
     // Сохранение
     void saveSettings();

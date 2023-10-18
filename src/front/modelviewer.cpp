@@ -404,6 +404,4 @@ void ModelViewer::loadSettings() {
     vertexShape = settings.value("vertexShape", 0).toInt();
 
     settings.endGroup();
-
-    update();
 }

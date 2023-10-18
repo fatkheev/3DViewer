@@ -33,8 +33,6 @@ public:
     void saveSettings();
     void loadSettings();
 
-
-
 public slots:
     void on_horizontalScrollBar_xValueChanged(int value);
     void on_horizontalScrollBar_yValueChanged(int value);

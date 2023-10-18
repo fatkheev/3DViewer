@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    loadSettings();
+    ui->setupUi(this);    
+
     openGLWidget = ui->openGLWidget;
 
     // Связывание сигналов и слотов
@@ -93,7 +93,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->ProjectionBox, SIGNAL(currentIndexChanged(int)),openGLWidget, SLOT(on_ProjectionBox_currentIndexChanged(int)));
 
     connect(ui->type_edge, SIGNAL(currentIndexChanged(int)),openGLWidget, SLOT(on_type_edge_activated(int)));
-
 
 
 }
@@ -307,4 +306,5 @@ void MainWindow::loadSettings() {
 
     ui->ScrollBar_scale->setValue(settings.value("ScrollBar_scale", 0).toInt());
     ui->spinBox_4->setValue(ui->ScrollBar_scale->value());
+
 }
