@@ -45,14 +45,7 @@ public slots:
     void applyInertia();
     void set_background_color(const QColor &color);
     void set_edge_color(const QColor &color);
-
-
-    // Обеспечиваю доступ для сохранения настроек
-    QColor getBackgroundColor() const { return backgroundColor; }
-    void setBackgroundColor(const QColor &color) { backgroundColor = color; }
-
-    QColor getEdgeColor() const { return edgeColor; }
-    void setEdgeColor(const QColor &color) { edgeColor = color; }
+//    void set_vertex_color (const QColor &color);
 
 
     void on_ProjectionBox_currentIndexChanged(int index);

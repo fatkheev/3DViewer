@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);    
     loadSettings();
     timer = new QTimer(0);
 
@@ -97,6 +97,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->type_edge, SIGNAL(currentIndexChanged(int)),openGLWidget, SLOT(on_type_edge_activated(int)));
 
     connect(timer, SIGNAL(timeout()), this, SLOT(create_gif()));
+
+    connect(ui->get_settings, &QPushButton::clicked, this, &MainWindow::applySettingsToModel);
+
 }
 
 MainWindow::~MainWindow() {
@@ -196,7 +199,7 @@ void MainWindow::on_open_file_clicked()
         int uniqueEdgesCount = countUniqueEdges(faces, num_faces);
         ui->label_F->setText(QString("%1").arg(uniqueEdgesCount));
     }
-//    openGLWidget->set_edge_color(Qt::white);
+    applySettingsToModel();
 }
 
 void MainWindow::on_screenshot_clicked()
@@ -296,36 +299,111 @@ void MainWindow::saveSettings() {
     settings.setValue("horizontalScrollBar_x", ui->horizontalScrollBar_x->value());
     settings.setValue("horizontalScrollBar_y", ui->horizontalScrollBar_y->value());
     settings.setValue("horizontalScrollBar_z", ui->horizontalScrollBar_z->value());
+
+    // Положение ползунка масштабирования
     settings.setValue("ScrollBar_scale", ui->ScrollBar_scale->value());
 
-    // Добавляем сохранение параметров из ModelViewer
-    settings.setValue("backgroundColor", openGLWidget->getBackgroundColor());
-    settings.setValue("edgeColor", openGLWidget->getEdgeColor());
+    // Сохраняем положение ползунков перемещения
+    settings.setValue("moveScrollBar_x", ui->moveScrollBar_x->value());
+    settings.setValue("moveScrollBar_y", ui->moveScrollBar_y->value());
+    settings.setValue("moveScrollBar_z", ui->moveScrollBar_z->value());
+
+    // Сохраняем текущий индекс проекции
+    settings.setValue("ProjectionBox", ui->ProjectionBox->currentIndex());
+
+    // Сохраняем текущий для формы точки
+    settings.setValue("type_V_index", ui->type_V->currentIndex());
+
+    // Сохраняем текущий индекс для ребра
+    settings.setValue("type_edge_index", ui->type_edge->currentIndex());
+
+    // Сохраняем размер вершины
+    settings.setValue("horizontal_sccrol_vertice_value", ui->horizontal_sccrol_vertice->value());
+
+    // Сохраняем размер ребра
+    settings.setValue("horizontal_scroll_edge_value", ui->horizontal_scroll_edge->value());
 
 }
 
-
 void MainWindow::loadSettings() {
-
     QSettings settings("YourOrganization", "YourApp");
 
     // Восстанавливаем геометрию и состояние главного окна
     restoreGeometry(settings.value("mainWindowGeometry").toByteArray());
     restoreState(settings.value("mainWindowState").toByteArray());
 
-    // Положение ползунков
+    // Положение ползунков поворота
     ui->horizontalScrollBar_x->setValue(settings.value("horizontalScrollBar_x", 0).toInt());
     ui->spinBox->setValue(ui->horizontalScrollBar_x->value());
 
     ui->horizontalScrollBar_y->setValue(settings.value("horizontalScrollBar_y", 0).toInt());
     ui->spinBox_2->setValue(ui->horizontalScrollBar_y->value());
 
-
     ui->horizontalScrollBar_z->setValue(settings.value("horizontalScrollBar_z", 0).toInt());
     ui->spinBox_3->setValue(ui->horizontalScrollBar_z->value());
 
-
+    // Положение ползунка масштабирования
     ui->ScrollBar_scale->setValue(settings.value("ScrollBar_scale", 0).toInt());
     ui->spinBox_4->setValue(ui->ScrollBar_scale->value());
 
+    // Восстанавливаем положение ползунков перемещения
+    ui->moveScrollBar_x->setValue(settings.value("moveScrollBar_x", 0).toInt());
+    ui->spinBox_6->setValue(ui->moveScrollBar_x->value());
+
+    ui->moveScrollBar_y->setValue(settings.value("moveScrollBar_y", 0).toInt());
+    ui->spinBox_7->setValue(ui->moveScrollBar_y->value());
+
+    ui->moveScrollBar_z->setValue(settings.value("moveScrollBar_z", 0).toInt());
+    ui->spinBox_5->setValue(ui->moveScrollBar_z->value());
+
+    // Восстанавливаем текущий индекс QComboBox
+    ui->ProjectionBox->setCurrentIndex(settings.value("ProjectionBox", 0).toInt());
+
+    // Восстанавливаем текущий индекс для формы точки
+    int defaultTypeVIndex = 0;  // Это значение по умолчанию (0 - первый элемент в списке)
+    ui->type_V->setCurrentIndex(settings.value("type_V_index", defaultTypeVIndex).toInt());
+
+    // Восстанавливаем текущий индекс для ребра
+    int defaultTypeEdgeIndex = 0;  // Это значение по умолчанию (0 - первый элемент в списке)
+    ui->type_edge->setCurrentIndex(settings.value("type_edge_index", defaultTypeEdgeIndex).toInt());
+
+    // Восстанавливаем размер вершины
+    int defaultVerticeScrollValue = 0;  // Это значение по умолчанию
+    ui->horizontal_sccrol_vertice->setValue(settings.value("horizontal_sccrol_vertice_value", defaultVerticeScrollValue).toInt());
+
+    // Восстанавливаем размер ребра
+    int defaultEdgeScrollValue = 0;  // Это значение по умолчанию
+    ui->horizontal_scroll_edge->setValue(settings.value("horizontal_scroll_edge_value", defaultEdgeScrollValue).toInt());
+
+    ui->openGLWidget->update();
+}
+
+// Функция применения настроек
+void MainWindow::applySettingsToModel() {
+    // Принудительный вызов слотов для поворота и масштабирования модели
+    openGLWidget->on_horizontalScrollBar_xValueChanged(ui->horizontalScrollBar_x->value());
+    openGLWidget->on_horizontalScrollBar_yValueChanged(ui->horizontalScrollBar_y->value());
+    openGLWidget->on_horizontalScrollBar_zValueChanged(ui->horizontalScrollBar_z->value());
+    openGLWidget->on_ScrollBar_scaleValueChanged(ui->ScrollBar_scale->value());
+    openGLWidget->on_moveScrollBar_xValueChanged(ui->moveScrollBar_x->value());
+    openGLWidget->on_moveScrollBar_yValueChanged(ui->moveScrollBar_y->value());
+    openGLWidget->on_moveScrollBar_zValueChanged(ui->moveScrollBar_z->value());
+
+    // Применяем выбранную проекцию
+    openGLWidget->on_ProjectionBox_currentIndexChanged(ui->ProjectionBox->currentIndex());
+
+    // Применяем форму точки
+    openGLWidget->on_type_V_activated(ui->type_V->currentIndex());
+
+    // Применяем форму ребра
+    openGLWidget->on_type_edge_activated(ui->type_edge->currentIndex());
+
+    // Применяем размер вершины
+    openGLWidget->on_horizontal_sccrol_vertice_valueChanged(ui->horizontal_sccrol_vertice->value());
+
+    // Применяем размер ребра
+    horizontal_scroll_edge(ui->horizontal_scroll_edge->value());
+
+    // Запрос на перерисовку виджета
+    ui->openGLWidget->update();
 }

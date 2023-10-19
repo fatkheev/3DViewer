@@ -41,6 +41,8 @@ void gif_button_text();
     void on_GIF_clicked();
     void create_gif();
 
+    void applySettingsToModel();
+
 
     void update_spinbox(int value);
     void updateHorizontalScrollBarX(int value);

@@ -96,6 +96,7 @@ public:
     QPushButton *screenshot;
     QPushButton *GIF;
     QPushButton *open_file;
+    QPushButton *get_settings;
     QLabel *label_14;
 
     void setupUi(QMainWindow *MainWindow)
@@ -492,7 +493,7 @@ public:
         groupBox_3->setGeometry(QRect(660, 600, 391, 81));
         clean = new QPushButton(groupBox_3);
         clean->setObjectName(QString::fromUtf8("clean"));
-        clean->setGeometry(QRect(300, 10, 80, 20));
+        clean->setGeometry(QRect(350, 10, 21, 20));
         clean->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "   background-color: #CD5C5C;\n"
 "border-radius: 5px;\n"
@@ -539,7 +540,7 @@ public:
         label_F->setStyleSheet(QString::fromUtf8(""));
         screenshot = new QPushButton(groupBox_3);
         screenshot->setObjectName(QString::fromUtf8("screenshot"));
-        screenshot->setGeometry(QRect(105, 10, 81, 20));
+        screenshot->setGeometry(QRect(100, 10, 75, 20));
         screenshot->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "   background-color: #808080;\n"
 "border-radius: 5px;\n"
@@ -552,7 +553,7 @@ public:
 ""));
         GIF = new QPushButton(groupBox_3);
         GIF->setObjectName(QString::fromUtf8("GIF"));
-        GIF->setGeometry(QRect(10, 10, 80, 20));
+        GIF->setGeometry(QRect(20, 10, 75, 20));
         GIF->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "   background-color: #808080;\n"
 "border-radius: 5px;\n"
@@ -565,8 +566,21 @@ public:
 ""));
         open_file = new QPushButton(groupBox_3);
         open_file->setObjectName(QString::fromUtf8("open_file"));
-        open_file->setGeometry(QRect(203, 10, 80, 20));
+        open_file->setGeometry(QRect(180, 10, 75, 20));
         open_file->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"   background-color: #808080;\n"
+"border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #1E90FF;\n"
+"\n"
+"}\n"
+""));
+        get_settings = new QPushButton(groupBox_3);
+        get_settings->setObjectName(QString::fromUtf8("get_settings"));
+        get_settings->setGeometry(QRect(260, 10, 75, 20));
+        get_settings->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "   background-color: #808080;\n"
 "border-radius: 5px;\n"
 "}\n"
@@ -641,7 +655,7 @@ public:
         groupBox_8->setTitle(QString());
         label_20->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\321\201\321\210\321\202\320\260\320\261", nullptr));
         groupBox_3->setTitle(QString());
-        clean->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\274\320\265\320\275\320\260", nullptr));
+        clean->setText(QCoreApplication::translate("MainWindow", "\320\245", nullptr));
         groupBox_5->setTitle(QString());
         label_16->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265:", nullptr));
         label_18->setText(QCoreApplication::translate("MainWindow", "\320\222\320\265\321\200\321\210\320\270\320\275\321\213:", nullptr));
@@ -652,6 +666,7 @@ public:
         screenshot->setText(QCoreApplication::translate("MainWindow", "\320\241\320\272\321\200\320\270\320\275\321\210\320\276\321\202", nullptr));
         GIF->setText(QCoreApplication::translate("MainWindow", "GIF", nullptr));
         open_file->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
+        get_settings->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\320\275\320\270\321\202\321\214", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\262\320\276\321\200\320\276\321\202 \320\274\320\276\320\264\320\265\320\273\320\270", nullptr));
     } // retranslateUi
 

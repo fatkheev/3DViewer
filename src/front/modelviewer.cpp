@@ -11,11 +11,11 @@ ModelViewer::ModelViewer(QWidget *parent)
     connect(inertiaTimer, &QTimer::timeout, this, &ModelViewer::applyInertia);
     inertiaTimer->start(16);  // обновляем примерно 60 раз в секунду
 
-//    loadSettings();
+    loadSettings();
 }
 
 ModelViewer::~ModelViewer() {
-//    saveSettings();
+    saveSettings();
     delete[] indexes;
     delete[] face_vertex_counts;
     delete[] originalVertices;
@@ -316,6 +316,11 @@ void ModelViewer:: set_edge_color(const QColor &color) {
     update();
 }
 
+//void ModelViewer :: set_vertex_color (const QColor &color) {
+//    qDebug() << "ok";
+//    //добавить цвета вершин
+
+//}
 
 void ModelViewer::on_ProjectionBox_currentIndexChanged(int index)
 {
@@ -359,4 +364,37 @@ void ModelViewer::on_horizontal_sccrol_vertice_valueChanged(int value) {
 void ModelViewer::setVertexColor(const QColor &color) {
     vertexColor = color;
     update();
+}
+
+// Сохранение
+void ModelViewer::saveSettings() {
+    QSettings settings("YourOrganization", "YourApp");
+
+    settings.beginGroup("ModelViewer");
+
+    // Настройки вида
+    settings.setValue("currentProjectionType", currentProjectionType);
+    settings.setValue("backgroundColor", backgroundColor);
+    settings.setValue("edgeColor", edgeColor);
+
+    settings.setValue("vertexColor", vertexColor);
+    settings.setValue("edgeColor", edgeColor);
+
+    settings.endGroup();
+}
+
+void ModelViewer::loadSettings() {
+    QSettings settings("YourOrganization", "YourApp");
+
+    settings.beginGroup("ModelViewer");
+
+    // Настройки вида
+    currentProjectionType = settings.value("currentProjectionType", 0).toInt();
+    backgroundColor = settings.value("backgroundColor", QColor(Qt::black)).value<QColor>();
+    edgeColor = settings.value("edgeColor", QColor(Qt::white)).value<QColor>();
+
+    vertexColor = settings.value("vertexColor", QColor(Qt::white)).value<QColor>();
+    edgeColor = settings.value("edgeColor", QColor(Qt::white)).value<QColor>();
+
+    settings.endGroup();
 }
