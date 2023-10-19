@@ -12,7 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);    
+    ui->setupUi(this);
+    loadSettings();
+    timer = new QTimer(0);
 
     openGLWidget = ui->openGLWidget;
 
@@ -94,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->type_edge, SIGNAL(currentIndexChanged(int)),openGLWidget, SLOT(on_type_edge_activated(int)));
 
-
+    connect(timer, SIGNAL(timeout()), this, SLOT(create_gif()));
 }
 
 MainWindow::~MainWindow() {
@@ -194,6 +196,7 @@ void MainWindow::on_open_file_clicked()
         int uniqueEdgesCount = countUniqueEdges(faces, num_faces);
         ui->label_F->setText(QString("%1").arg(uniqueEdgesCount));
     }
+//    openGLWidget->set_edge_color(Qt::white);
 }
 
 void MainWindow::on_screenshot_clicked()
@@ -210,40 +213,51 @@ void MainWindow::on_screenshot_clicked()
 
 void MainWindow::on_GIF_clicked()
 {
-    QString temp = QCoreApplication::applicationDirPath();
-    temp.resize(temp.size() - 38);
-    QString fileName = QFileDialog::getSaveFileName(
-        this, tr("Сохранение GIF"), temp + "/images", tr("Gif (*.gif)"));
-
-    if (!fileName.isEmpty()) {
-      create_gif(fileName);
+    filePat = QFileDialog::getSaveFileName(this, tr("Сохрнить Gif"), "/", tr("Файлы (*.gif)"));
+    if (filePat.isEmpty()) {
+      QMessageBox::warning(this, tr("Ошибка"), tr("Файл не был сохранен."));
     } else {
-      QMessageBox::warning(this, "", "Неудалось сохранить GIF");
+      ui->GIF->setEnabled(false);
+      gif_frame = new QGifImage;
+      gif_frame->setDefaultDelay(10);
+      timer->setInterval(100);
+      timecount = 1;
+      timer->start();
+      connect(timer, &QTimer::timeout, this, &MainWindow::gif_button_text);
+
     }
+
 }
 
-void MainWindow::create_gif(QString fileName) {
-  QImage img(openGLWidget->size(), QImage::Format_RGB32), img640_480;
-  QPainter painter(&img);
-  QTime dieTime;
-  GifWriter gif;
-  QByteArray ba = fileName.toLocal8Bit();
-  const char *c_str = ba.data();
-  GifBegin(&gif, c_str, 640, 480, 10);
+void MainWindow::gif_button_text()
+{
+    ui->GIF->setText(QString::number(timecount / 10) + " сек");
 
-  for (int i = 1; i <= 50; ++i) {
-    if (i % 10 == 0) ui->GIF->setText(QString::number(i / 10) + " сек");
-    openGLWidget->render(&painter);
-    img640_480 = img.scaled(QSize(640, 480));
-    GifWriteFrame(&gif, img640_480.bits(), 640, 480, 10);
-    dieTime = QTime::currentTime().addMSecs(100);
-    while (QTime::currentTime() < dieTime)
-      QCoreApplication::processEvents(QEventLoop::AllEvents, 10);
-  }
-  ui->GIF->setText("GIF");
-  GifEnd(&gif);
-  QMessageBox::information(this, "GIF READY", "GIF сохранен успешно");
 }
+
+void MainWindow::create_gif() {
+    if (gif_frame && timer) {
+          QImage img = openGLWidget->grabFramebuffer();
+          QSize img_size(640, 480);
+          QImage scaled_img = img.scaled(img_size);
+          gif_frame->addFrame(scaled_img);
+          int MaxFrames = 50;
+          if (timecount == MaxFrames) {
+              timer->stop();
+               ui->GIF->setText("GIF");
+              gif_frame->save(filePat);
+              QMessageBox::information(0, "/", "Gif успешно сохранен.");
+              delete gif_frame;
+                gif_frame = nullptr;
+                ui->GIF->setEnabled(true);
+
+          }
+          timecount++;
+      }
+
+}
+
+
 
 void MainWindow::horizontal_scroll_edge(int action)
 {
@@ -282,12 +296,17 @@ void MainWindow::saveSettings() {
     settings.setValue("horizontalScrollBar_x", ui->horizontalScrollBar_x->value());
     settings.setValue("horizontalScrollBar_y", ui->horizontalScrollBar_y->value());
     settings.setValue("horizontalScrollBar_z", ui->horizontalScrollBar_z->value());
-
     settings.setValue("ScrollBar_scale", ui->ScrollBar_scale->value());
+
+    // Добавляем сохранение параметров из ModelViewer
+    settings.setValue("backgroundColor", openGLWidget->getBackgroundColor());
+    settings.setValue("edgeColor", openGLWidget->getEdgeColor());
 
 }
 
+
 void MainWindow::loadSettings() {
+
     QSettings settings("YourOrganization", "YourApp");
 
     // Восстанавливаем геометрию и состояние главного окна
@@ -301,10 +320,15 @@ void MainWindow::loadSettings() {
     ui->horizontalScrollBar_y->setValue(settings.value("horizontalScrollBar_y", 0).toInt());
     ui->spinBox_2->setValue(ui->horizontalScrollBar_y->value());
 
+
     ui->horizontalScrollBar_z->setValue(settings.value("horizontalScrollBar_z", 0).toInt());
     ui->spinBox_3->setValue(ui->horizontalScrollBar_z->value());
 
+
     ui->ScrollBar_scale->setValue(settings.value("ScrollBar_scale", 0).toInt());
     ui->spinBox_4->setValue(ui->ScrollBar_scale->value());
+
+    settings.setValue("backgroundColor", openGLWidget->getBackgroundColor());
+    settings.setValue("edgeColor", openGLWidget->getEdgeColor());
 
 }

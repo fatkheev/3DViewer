@@ -18,7 +18,7 @@
 
 #include <QColorDialog>
 #include <QPalette>
-
+#include "qgifimage.h"
 
 
 namespace Ui {
@@ -37,8 +37,11 @@ private slots:
     void on_open_file_clicked();
     void on_clean_clicked();
     void on_screenshot_clicked();
+void gif_button_text();
     void on_GIF_clicked();
-    void create_gif(QString fileName);
+    void create_gif();
+
+
     void update_spinbox(int value);
     void updateHorizontalScrollBarX(int value);
     void updateHorizontalScrollBarY(int value);
@@ -55,6 +58,12 @@ private:
     Ui::MainWindow *ui;
     ModelViewer* openGLWidget;
     ModelViewer *modelViewer;
+
+    QGifImage *gif_frame;
+      QTimer *timer;
+      QString filePat;
+      int timecount = 0;
+
 
     // Сохранение
     void saveSettings();

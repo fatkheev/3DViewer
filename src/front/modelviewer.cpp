@@ -11,11 +11,11 @@ ModelViewer::ModelViewer(QWidget *parent)
     connect(inertiaTimer, &QTimer::timeout, this, &ModelViewer::applyInertia);
     inertiaTimer->start(16);  // обновляем примерно 60 раз в секунду
 
-    loadSettings();
+//    loadSettings();
 }
 
 ModelViewer::~ModelViewer() {
-    saveSettings();
+//    saveSettings();
     delete[] indexes;
     delete[] face_vertex_counts;
     delete[] originalVertices;
@@ -316,11 +316,6 @@ void ModelViewer:: set_edge_color(const QColor &color) {
     update();
 }
 
-//void ModelViewer :: set_vertex_color (const QColor &color) {
-//    qDebug() << "ok";
-//    //добавить цвета вершин
-
-//}
 
 void ModelViewer::on_ProjectionBox_currentIndexChanged(int index)
 {
@@ -364,44 +359,4 @@ void ModelViewer::on_horizontal_sccrol_vertice_valueChanged(int value) {
 void ModelViewer::setVertexColor(const QColor &color) {
     vertexColor = color;
     update();
-}
-
-// Сохранение
-void ModelViewer::saveSettings() {
-    QSettings settings("YourOrganization", "YourApp");
-
-    settings.beginGroup("ModelViewer");
-
-    // Настройки вида
-    settings.setValue("rotationAngleX", rotationAngleX);
-    settings.setValue("rotationAngleY", rotationAngleY);
-    settings.setValue("rotationAngleZ", rotationAngleZ);
-    settings.setValue("scaleFactor", scaleFactor);
-    settings.setValue("currentProjectionType", currentProjectionType);
-    settings.setValue("backgroundColor", backgroundColor);
-    settings.setValue("edgeColor", edgeColor);
-    settings.setValue("vertexColor", vertexColor);
-    settings.setValue("vertexSize", vertexSize);
-    settings.setValue("vertexShape", vertexShape);
-    settings.endGroup();
-}
-
-void ModelViewer::loadSettings() {
-    QSettings settings("YourOrganization", "YourApp");
-
-    settings.beginGroup("ModelViewer");
-
-    // Настройки вида
-    rotationAngleX = settings.value("rotationAngleX", 0.0f).toFloat();
-    rotationAngleY = settings.value("rotationAngleY", 0.0f).toFloat();
-    rotationAngleZ = settings.value("rotationAngleZ", 0.0f).toFloat();
-    scaleFactor = settings.value("scaleFactor", 1.0f).toFloat();
-    currentProjectionType = settings.value("currentProjectionType", 0).toInt();
-    backgroundColor = settings.value("backgroundColor", QColor(Qt::black)).value<QColor>();
-    edgeColor = settings.value("edgeColor", QColor(Qt::white)).value<QColor>();
-    vertexColor = settings.value("vertexColor", QColor(Qt::white)).value<QColor>();
-    vertexSize = settings.value("vertexSize", 0.01f).toFloat();
-    vertexShape = settings.value("vertexShape", 0).toInt();
-
-    settings.endGroup();
 }

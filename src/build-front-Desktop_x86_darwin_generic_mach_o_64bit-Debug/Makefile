@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_QML_DEBUG -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DGIFIMAGE_NO_LIB -DQT_QML_DEBUG -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wall -Wextra -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wall -Wextra -fPIC $(DEFINES)
-INCPATH       = -I../front -I. -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I/usr/local/share/qt/mkspecs/macx-clang -F/usr/local/lib
+INCPATH       = -I../front -I. -I../front/QtGifImage/src/gifimage -I../front/QtGifImage/src/3rdParty/giflib -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/AGL.framework/Headers -I/usr/local/share/qt/mkspecs/macx-clang -F/usr/local/lib
 QMAKE         = /usr/local/Cellar/qt/6.2.3/bin/qmake6
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -52,18 +52,62 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../func/parser.c \
+SOURCES       = ../front/QtGifImage/src/3rdParty/giflib/dgif_lib.c \
+		../front/QtGifImage/src/3rdParty/giflib/egif_lib.c \
+		../front/QtGifImage/src/3rdParty/giflib/gif_err.c \
+		../front/QtGifImage/src/3rdParty/giflib/gif_hash.c \
+		../front/QtGifImage/src/3rdParty/giflib/gifalloc.c \
+		../front/QtGifImage/src/3rdParty/giflib/quantize.c \
+		../front/QtGifImage/src/gifimage/qgifimage.cpp \
+		../func/parser.c \
 		../front/main.cpp \
 		../front/mainwindow.cpp \
 		../front/modelviewer.cpp moc_mainwindow.cpp \
 		moc_modelviewer.cpp
-OBJECTS       = parser.o \
+OBJECTS       = dgif_lib.o \
+		egif_lib.o \
+		gif_err.o \
+		gif_hash.o \
+		gifalloc.o \
+		quantize.o \
+		qgifimage.o \
+		parser.o \
 		main.o \
 		mainwindow.o \
 		modelviewer.o \
 		moc_mainwindow.o \
 		moc_modelviewer.o
-DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
+DIST          = ../front/QtGifImage-master/README.md \
+		../front/QtGifImage-master/examples/gifimage/creategif/doc/images/demo1.gif \
+		../front/QtGifImage-master/examples/gifimage/creategif/doc/src/creategif.qdoc \
+		../front/QtGifImage-master/examples/gifimage/extractFrames/doc/src/extractframes.qdoc \
+		../front/QtGifImage-master/examples/gifimage/extractFrames/test.gif \
+		../front/QtGifImage-master/index.qdoc \
+		../front/QtGifImage-master/lib/QtGifImage.framework/Resources/Info.plist \
+		../front/QtGifImage-master/lib/QtGifImage.framework/Resources/QtGifImage.prl \
+		../front/QtGifImage-master/lib/QtGifImage.framework/Versions/A/Resources/Info.plist \
+		../front/QtGifImage-master/lib/QtGifImage.framework/Versions/A/Resources/QtGifImage.prl \
+		../front/QtGifImage-master/lib/QtGifImage.framework/Versions/Current/Resources/Info.plist \
+		../front/QtGifImage-master/lib/QtGifImage.framework/Versions/Current/Resources/QtGifImage.prl \
+		../front/QtGifImage-master/lib/pkgconfig/Qt6GifImage.pc \
+		../front/QtGifImage-master/mkspecs/modules-inst/qt_lib_gifimage.pri \
+		../front/QtGifImage-master/mkspecs/modules-inst/qt_lib_gifimage_private.pri \
+		../front/QtGifImage-master/mkspecs/modules/qt_lib_gifimage.pri \
+		../front/QtGifImage-master/qtgifimage.qdoc \
+		../front/QtGifImage-master/src/3rdParty/giflib.pri \
+		../front/QtGifImage-master/src/3rdParty/giflib/AUTHORS \
+		../front/QtGifImage-master/src/3rdParty/giflib/COPYING \
+		../front/QtGifImage-master/src/3rdParty/giflib/README \
+		../front/QtGifImage-master/src/gifimage/doc/qtgifimage.qdocconf \
+		../front/QtGifImage-master/src/gifimage/doc/src/examples.qdoc \
+		../front/QtGifImage-master/src/gifimage/doc/src/index.qdoc \
+		../front/QtGifImage-master/src/gifimage/doc/src/qtgifimage.qdoc \
+		../front/QtGifImage-master/src/gifimage/doc/src/usage.qdoc \
+		../front/QtGifImage-master/src/gifimage/qdoc_wrapper.sh \
+		../front/QtGifImage-master/src/gifimage/qtgifimage.pri \
+		../front/QtGifImage-master/sync.profile \
+		../front/QtGifImage-master/tests/auto/qgifimage/test.gif \
+		/usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/device_config.prf \
 		/usr/local/share/qt/mkspecs/common/unix.conf \
 		/usr/local/share/qt/mkspecs/common/mac.conf \
@@ -289,13 +333,14 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
-		../front/.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
 		/usr/local/share/qt/mkspecs/features/mac/toolchain.prf \
 		/usr/local/share/qt/mkspecs/features/default_pre.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_pre.prf \
+		../front/QtGifImage/src/3rdParty/giflib.pri \
+		../front/QtGifImage/src/gifimage/qtgifimage.pri \
 		/usr/local/share/qt/mkspecs/features/resolve_config.prf \
 		/usr/local/share/qt/mkspecs/features/default_post.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_post.prf \
@@ -319,10 +364,20 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/exceptions.prf \
 		/usr/local/share/qt/mkspecs/features/yacc.prf \
 		/usr/local/share/qt/mkspecs/features/lex.prf \
-		../front/front.pro ../backend.h \
+		../front/front.pro ../front/QtGifImage/src/gifimage/qgifglobal.h \
+		../front/QtGifImage/src/gifimage/qgifimage.h \
+		../front/QtGifImage/src/gifimage/qgifimage_p.h \
+		../backend.h \
 		../gif.h \
 		../front/mainwindow.h \
-		../front/modelviewer.h ../func/parser.c \
+		../front/modelviewer.h ../front/QtGifImage/src/3rdParty/giflib/dgif_lib.c \
+		../front/QtGifImage/src/3rdParty/giflib/egif_lib.c \
+		../front/QtGifImage/src/3rdParty/giflib/gif_err.c \
+		../front/QtGifImage/src/3rdParty/giflib/gif_hash.c \
+		../front/QtGifImage/src/3rdParty/giflib/gifalloc.c \
+		../front/QtGifImage/src/3rdParty/giflib/quantize.c \
+		../front/QtGifImage/src/gifimage/qgifimage.cpp \
+		../func/parser.c \
 		../front/main.cpp \
 		../front/mainwindow.cpp \
 		../front/modelviewer.cpp
@@ -334,7 +389,7 @@ TARGET        = front.app/Contents/MacOS/front
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 12.1
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qmake.stash
+EXPORT__QMAKE_STASH_ = 
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_DEFAULT_ARCHS = x86_64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -576,13 +631,14 @@ Makefile: ../front/front.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.conf /
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
 		/usr/local/share/qt/mkspecs/features/mac/toolchain.prf \
 		/usr/local/share/qt/mkspecs/features/default_pre.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_pre.prf \
+		../front/QtGifImage/src/3rdParty/giflib.pri \
+		../front/QtGifImage/src/gifimage/qtgifimage.pri \
 		/usr/local/share/qt/mkspecs/features/resolve_config.prf \
 		/usr/local/share/qt/mkspecs/features/default_post.prf \
 		/usr/local/share/qt/mkspecs/features/mac/default_post.prf \
@@ -839,13 +895,14 @@ Makefile: ../front/front.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.conf /
 /usr/local/share/qt/mkspecs/features/qt_config.prf:
 /usr/local/share/qt/mkspecs/macx-clang/qmake.conf:
 /usr/local/share/qt/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /usr/local/share/qt/mkspecs/features/exclusive_builds.prf:
 /usr/local/share/qt/mkspecs/features/mac/sdk.prf:
 /usr/local/share/qt/mkspecs/features/toolchain.prf:
 /usr/local/share/qt/mkspecs/features/mac/toolchain.prf:
 /usr/local/share/qt/mkspecs/features/default_pre.prf:
 /usr/local/share/qt/mkspecs/features/mac/default_pre.prf:
+../front/QtGifImage/src/3rdParty/giflib.pri:
+../front/QtGifImage/src/gifimage/qtgifimage.pri:
 /usr/local/share/qt/mkspecs/features/resolve_config.prf:
 /usr/local/share/qt/mkspecs/features/default_post.prf:
 /usr/local/share/qt/mkspecs/features/mac/default_post.prf:
@@ -905,8 +962,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../backend.h ../gif.h ../front/mainwindow.h ../front/modelviewer.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../func/parser.c ../front/main.cpp ../front/mainwindow.cpp ../front/modelviewer.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../front/QtGifImage/src/gifimage/qgifglobal.h ../front/QtGifImage/src/gifimage/qgifimage.h ../front/QtGifImage/src/gifimage/qgifimage_p.h ../backend.h ../gif.h ../front/mainwindow.h ../front/modelviewer.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../front/QtGifImage/src/3rdParty/giflib/dgif_lib.c ../front/QtGifImage/src/3rdParty/giflib/egif_lib.c ../front/QtGifImage/src/3rdParty/giflib/gif_err.c ../front/QtGifImage/src/3rdParty/giflib/gif_hash.c ../front/QtGifImage/src/3rdParty/giflib/gifalloc.c ../front/QtGifImage/src/3rdParty/giflib/quantize.c ../front/QtGifImage/src/gifimage/qgifimage.cpp ../func/parser.c ../front/main.cpp ../front/mainwindow.cpp ../front/modelviewer.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../front/mainwindow.ui $(DISTDIR)/
 
 
@@ -917,7 +974,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r front.app
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -992,9 +1048,21 @@ moc_mainwindow.cpp: ../front/mainwindow.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtCore.framework/Headers/QDebug \
 		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		../front/QtGifImage/src/gifimage/qgifimage.h \
+		../front/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
-	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../front/mainwindow.h -o moc_mainwindow.cpp
+	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/QtGifImage/src/gifimage -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/QtGifImage/src/3rdParty/giflib -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../front/mainwindow.h -o moc_mainwindow.cpp
 
 moc_modelviewer.cpp: ../front/modelviewer.h \
 		/usr/local/lib/QtOpenGLWidgets.framework/Headers/QOpenGLWidget \
@@ -1014,7 +1082,7 @@ moc_modelviewer.cpp: ../front/modelviewer.h \
 		../backend.h \
 		moc_predefs.h \
 		/usr/local/share/qt/libexec/moc
-	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../front/modelviewer.h -o moc_modelviewer.cpp
+	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/mathosha/Desktop/GITHUB/3DViewer/src/build-front-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/QtGifImage/src/gifimage -I/Users/mathosha/Desktop/GITHUB/3DViewer/src/front/QtGifImage/src/3rdParty/giflib -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../front/modelviewer.h -o moc_modelviewer.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1054,6 +1122,56 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+dgif_lib.o: ../front/QtGifImage/src/3rdParty/giflib/dgif_lib.c ../front/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o dgif_lib.o ../front/QtGifImage/src/3rdParty/giflib/dgif_lib.c
+
+egif_lib.o: ../front/QtGifImage/src/3rdParty/giflib/egif_lib.c ../front/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o egif_lib.o ../front/QtGifImage/src/3rdParty/giflib/egif_lib.c
+
+gif_err.o: ../front/QtGifImage/src/3rdParty/giflib/gif_err.c ../front/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gif_err.o ../front/QtGifImage/src/3rdParty/giflib/gif_err.c
+
+gif_hash.o: ../front/QtGifImage/src/3rdParty/giflib/gif_hash.c ../front/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_hash.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_lib_private.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gif_hash.o ../front/QtGifImage/src/3rdParty/giflib/gif_hash.c
+
+gifalloc.o: ../front/QtGifImage/src/3rdParty/giflib/gifalloc.c ../front/QtGifImage/src/3rdParty/giflib/gif_lib.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gifalloc.o ../front/QtGifImage/src/3rdParty/giflib/gifalloc.c
+
+quantize.o: ../front/QtGifImage/src/3rdParty/giflib/quantize.c ../front/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_lib_private.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o quantize.o ../front/QtGifImage/src/3rdParty/giflib/quantize.c
+
+qgifimage.o: ../front/QtGifImage/src/gifimage/qgifimage.cpp ../front/QtGifImage/src/gifimage/qgifimage.h \
+		../front/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		../front/QtGifImage/src/gifimage/qgifimage_p.h \
+		../front/QtGifImage/src/3rdParty/giflib/gif_lib.h \
+		/usr/local/lib/QtCore.framework/Headers/QFile \
+		/usr/local/lib/QtCore.framework/Headers/qfile.h \
+		/usr/local/lib/QtCore.framework/Headers/QDebug \
+		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		/usr/local/lib/QtCore.framework/Headers/QScopedPointer \
+		/usr/local/lib/QtCore.framework/Headers/qscopedpointer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qgifimage.o ../front/QtGifImage/src/gifimage/qgifimage.cpp
 
 parser.o: ../func/parser.c ../backend.h
 	$(CC) -c $(CFLAGS) $(INCPATH) -o parser.o ../func/parser.c
@@ -1104,6 +1222,18 @@ main.o: ../front/main.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtCore.framework/Headers/QDebug \
 		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		../front/QtGifImage/src/gifimage/qgifimage.h \
+		../front/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
 		/usr/local/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../front/main.cpp
@@ -1154,6 +1284,18 @@ mainwindow.o: ../front/mainwindow.cpp ../front/mainwindow.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtCore.framework/Headers/QDebug \
 		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		../front/QtGifImage/src/gifimage/qgifimage.h \
+		../front/QtGifImage/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
 		ui_mainwindow.h \
 		../gif.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QLayout \
