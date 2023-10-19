@@ -328,7 +328,4 @@ void MainWindow::loadSettings() {
     ui->ScrollBar_scale->setValue(settings.value("ScrollBar_scale", 0).toInt());
     ui->spinBox_4->setValue(ui->ScrollBar_scale->value());
 
-    settings.setValue("backgroundColor", openGLWidget->getBackgroundColor());
-    settings.setValue("edgeColor", openGLWidget->getEdgeColor());
-
 }
