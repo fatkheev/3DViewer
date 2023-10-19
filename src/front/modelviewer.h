@@ -29,7 +29,9 @@ public:
     QColor edgeColor;
     double line_edge = 1;
 
-
+// Сохранение
+    void saveSettings();
+    void loadSettings();
 
 public slots:
     void on_horizontalScrollBar_xValueChanged(int value);
@@ -43,11 +45,16 @@ public slots:
     void applyInertia();
     void set_background_color(const QColor &color);
     void set_edge_color(const QColor &color);
-    void set_vertex_color (const QColor &color);
+//    void set_vertex_color (const QColor &color);
 
 
     void on_ProjectionBox_currentIndexChanged(int index);
     void on_type_edge_activated(int index);
+
+    // Цвета вершин
+    void on_type_V_activated(int index);
+    void on_horizontal_sccrol_vertice_valueChanged(int value);
+    void setVertexColor(const QColor &color);
 
 
 protected:
@@ -80,6 +87,12 @@ private:
 
     int currentProjectionType;  // 0 for Perspective, 1 for Orthographic
     int current_type_edge=0;
+
+    // Цвета вершин
+    int vertexShape = 0;  // 0: откл., 1: круг, 2: квадрат
+    float vertexSize = 0.03f;  // размер вершин
+    QColor vertexColor = Qt::white;  // цвет вершин
+
 };
 
 #endif // MODELVIEWER_H

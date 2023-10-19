@@ -347,7 +347,7 @@ QPushButton:pressed {
       <number>1</number>
      </property>
      <property name="maximum">
-      <number>20</number>
+      <number>8</number>
      </property>
      <property name="pageStep">
       <number>1</number>
@@ -407,7 +407,7 @@ border-radius: 5px;</string>
       <string>Вершины</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_4">
+    <widget class="QComboBox" name="type_V">
      <property name="geometry">
       <rect>
        <x>11</x>
@@ -418,17 +418,17 @@ border-radius: 5px;</string>
      </property>
      <item>
       <property name="text">
-       <string>круг</string>
+       <string>Откл.</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>квадрат</string>
+       <string>Круг</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>откл.</string>
+       <string>Квадрат</string>
       </property>
      </item>
     </widget>
@@ -457,6 +457,18 @@ border-radius: 5px;</string>
        <width>160</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="minimum">
+      <number>2</number>
+     </property>
+     <property name="maximum">
+      <number>7</number>
+     </property>
+     <property name="pageStep">
+      <number>1</number>
+     </property>
+     <property name="value">
+      <number>2</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -801,6 +813,22 @@ QPushButton:pressed {
      </property>
      <property name="maximum">
       <number>180</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:red;</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -1234,7 +1262,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="screenshot">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>105</x>
        <y>10</y>
        <width>81</width>
        <height>20</height>
@@ -1284,7 +1312,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="open_file">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>203</x>
        <y>10</y>
        <width>80</width>
        <height>20</height>

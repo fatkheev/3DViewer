@@ -1,5 +1,6 @@
 #include "modelviewer.h"
 #include <QOpenGLShaderProgram>
+#include <QSettings>
 
 ModelViewer::ModelViewer(QWidget *parent)
     : QOpenGLWidget(parent), vertexVBO(0), indexVBO(0), num_vertices(0), num_faces(0),
@@ -9,9 +10,12 @@ ModelViewer::ModelViewer(QWidget *parent)
     inertiaTimer = new QTimer(this);
     connect(inertiaTimer, &QTimer::timeout, this, &ModelViewer::applyInertia);
     inertiaTimer->start(16);  // обновляем примерно 60 раз в секунду
+
+    loadSettings();
 }
 
 ModelViewer::~ModelViewer() {
+    saveSettings();
     delete[] indexes;
     delete[] face_vertex_counts;
     delete[] originalVertices;
@@ -81,10 +85,10 @@ void ModelViewer::paintGL() {
     glLoadIdentity();
     if (currentProjectionType == 0) {
         glOrtho(-1.5, 1.5, -1.5, 1.5, -2, 1000);
-          } else {
-            glFrustum(-1, 1, -1, 1, 1, 99999);
-            glTranslatef(0, 0, -2.8);
-          }
+    } else {
+        glFrustum(-1, 1, -1, 1, 1, 99999);
+        glTranslatef(0, 0, -2.8);
+    }
 
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
@@ -103,11 +107,40 @@ void ModelViewer::paintGL() {
         glLineWidth(this->line_edge);
         glColor3f(edgeColor.redF(), edgeColor.greenF(), edgeColor.blueF());
         glDrawElements(GL_LINE_LOOP, face_vertex_counts[i], GL_UNSIGNED_INT, (void*)(start_idx * sizeof(GLuint)));
-
         start_idx += face_vertex_counts[i];
     }
 
+    // Рисование вершин
+    glColor3f(vertexColor.redF(), vertexColor.greenF(), vertexColor.blueF());
+    glPointSize(vertexSize * 50);  // Множитель для размера, можно настроить
+    switch(vertexShape) {
+        case 0:  // Откл.
+            break;
+        case 1:  // Круг
+            for (int i = 0; i < num_vertices; ++i) {
+                glBegin(GL_POLYGON);
+                for (int j = 0; j < 360; j += 10) {
+                    float degInRad = j * M_PI / 180.0f;
+                    glVertex3f(vertices[i].x + cos(degInRad) * vertexSize,
+                               vertices[i].y + sin(degInRad) * vertexSize,
+                               vertices[i].z);
+                }
+                glEnd();
+            }
+            break;
+        case 2:  // Квадрат
+            for (int i = 0; i < num_vertices; ++i) {
+                glBegin(GL_QUADS);
+                glVertex3f(vertices[i].x - vertexSize, vertices[i].y - vertexSize, vertices[i].z);
+                glVertex3f(vertices[i].x + vertexSize, vertices[i].y - vertexSize, vertices[i].z);
+                glVertex3f(vertices[i].x + vertexSize, vertices[i].y + vertexSize, vertices[i].z);
+                glVertex3f(vertices[i].x - vertexSize, vertices[i].y + vertexSize, vertices[i].z);
+                glEnd();
+            }
+            break;
+    }
 }
+
 
 // Сохранение позиции и размеров
 void ModelViewer::updateVertices() {
@@ -283,14 +316,11 @@ void ModelViewer:: set_edge_color(const QColor &color) {
     update();
 }
 
-void ModelViewer :: set_vertex_color (const QColor &color) {
-    qDebug() << "ok";
-    //добавить цвета вершин
+//void ModelViewer :: set_vertex_color (const QColor &color) {
+//    qDebug() << "ok";
+//    //добавить цвета вершин
 
-
-
-
-}
+//}
 
 void ModelViewer::on_ProjectionBox_currentIndexChanged(int index)
 {
@@ -318,4 +348,60 @@ void ModelViewer::wheelEvent(QWheelEvent *event) {
     glBindBuffer(GL_ARRAY_BUFFER, vertexVBO);
     glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
     update();
+}
+
+// Цвета вершин
+void ModelViewer::on_type_V_activated(int index) {
+    vertexShape = index;
+    update();
+}
+
+void ModelViewer::on_horizontal_sccrol_vertice_valueChanged(int value) {
+    vertexSize = value * 0.01f;  // Можно настроить коэффициент масштабирования по своему усмотрению
+    update();
+}
+
+void ModelViewer::setVertexColor(const QColor &color) {
+    vertexColor = color;
+    update();
+}
+
+// Сохранение
+void ModelViewer::saveSettings() {
+    QSettings settings("YourOrganization", "YourApp");
+
+    settings.beginGroup("ModelViewer");
+
+    // Настройки вида
+    settings.setValue("rotationAngleX", rotationAngleX);
+    settings.setValue("rotationAngleY", rotationAngleY);
+    settings.setValue("rotationAngleZ", rotationAngleZ);
+    settings.setValue("scaleFactor", scaleFactor);
+    settings.setValue("currentProjectionType", currentProjectionType);
+    settings.setValue("backgroundColor", backgroundColor);
+    settings.setValue("edgeColor", edgeColor);
+    settings.setValue("vertexColor", vertexColor);
+    settings.setValue("vertexSize", vertexSize);
+    settings.setValue("vertexShape", vertexShape);
+    settings.endGroup();
+}
+
+void ModelViewer::loadSettings() {
+    QSettings settings("YourOrganization", "YourApp");
+
+    settings.beginGroup("ModelViewer");
+
+    // Настройки вида
+    rotationAngleX = settings.value("rotationAngleX", 0.0f).toFloat();
+    rotationAngleY = settings.value("rotationAngleY", 0.0f).toFloat();
+    rotationAngleZ = settings.value("rotationAngleZ", 0.0f).toFloat();
+    scaleFactor = settings.value("scaleFactor", 1.0f).toFloat();
+    currentProjectionType = settings.value("currentProjectionType", 0).toInt();
+    backgroundColor = settings.value("backgroundColor", QColor(Qt::black)).value<QColor>();
+    edgeColor = settings.value("edgeColor", QColor(Qt::white)).value<QColor>();
+    vertexColor = settings.value("vertexColor", QColor(Qt::white)).value<QColor>();
+    vertexSize = settings.value("vertexSize", 0.01f).toFloat();
+    vertexShape = settings.value("vertexShape", 0).toInt();
+
+    settings.endGroup();
 }
