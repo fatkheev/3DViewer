@@ -70,6 +70,9 @@ private:
     // Сохранение
     void saveSettings();
     void loadSettings();
+
+    // Для пути файла
+    QString lastOpenedFilePath;
 };
 
 #endif // MAINWINDOW_H

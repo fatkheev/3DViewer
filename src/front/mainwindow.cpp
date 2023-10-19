@@ -174,7 +174,20 @@ void MainWindow::on_clean_clicked()
     ui->horizontal_sccrol_vertice->setValue(2);
     ui->type_V->setCurrentIndex(0);
     openGLWidget->setVertexColor(Qt::white);
-//
+
+    if(!lastOpenedFilePath.isEmpty()) {
+            // Если путь к последнему открытому файлу не пуст, загрузите его заново
+            Vertex *vertices;
+            Face *faces;
+            int num_vertices, num_faces;
+
+            if(parse_obj(lastOpenedFilePath.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
+                ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
+            }
+            applySettingsToModel();
+        }
+
+//    applySettingsToModel();
 }
 
 void MainWindow::on_open_file_clicked()
@@ -184,7 +197,9 @@ void MainWindow::on_open_file_clicked()
     int num_vertices, num_faces;
 
     QString filename = QFileDialog::getOpenFileName(this, "Open OBJ file", "", "OBJ Files (*.obj)");
-    if(filename.isEmpty()) return;
+        if(filename.isEmpty()) return;
+        lastOpenedFilePath = filename;
+
 //   on_clean_clicked();
     if(parse_obj(filename.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
         ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
