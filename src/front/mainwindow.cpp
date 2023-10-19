@@ -183,11 +183,19 @@ void MainWindow::on_clean_clicked()
 
             if(parse_obj(lastOpenedFilePath.toStdString().c_str(), &vertices, &num_vertices, &faces, &num_faces) == 0) {
                 ui->openGLWidget->setData(vertices, num_vertices, faces, num_faces);
+
+                // Извлекаем имя файла из полного пути
+                QFileInfo fileInfo(lastOpenedFilePath);
+                QString fileNameOnly = fileInfo.fileName();
+
+                // Устанавливаем значения для меток
+                ui->label_name->setText(fileNameOnly);
+                ui->label_V->setText(QString("%1").arg(num_vertices));
+                int uniqueEdgesCount = countUniqueEdges(faces, num_faces);
+                ui->label_F->setText(QString("%1").arg(uniqueEdgesCount));
             }
             applySettingsToModel();
         }
-
-//    applySettingsToModel();
 }
 
 void MainWindow::on_open_file_clicked()
