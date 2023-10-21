@@ -22,6 +22,9 @@ FILE* open_file(const char *filename);
 // Открытие объектного файла
 FILE* open_file(const char *filename);
 
+// Проверка на цифру
+int check_digit(const char *str);
+
 // Запись точек и граней в массивы
 int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Face **faces_out, int *num_faces);
 

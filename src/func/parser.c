@@ -9,7 +9,7 @@ FILE* open_file(const char *filename) {
     return file;
 }
 
-int count_vertex_indices_in_face_string(const char *str) {
+int check_digit(const char *str) {
     int count = 0;
     char *ptr = (char *)str;
     while (*ptr) {
@@ -88,7 +88,7 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
                 faces = realloc(faces, sizeof(Face) * max_faces);
             }
 
-            int count = count_vertex_indices_in_face_string(line) - 1;
+            int count = check_digit(line) - 1;
             faces[faceIndex].vertices = malloc(sizeof(int) * count);
             faces[faceIndex].num_vertices = count;
 
