@@ -60,6 +60,8 @@ leaks:
 
 clean: 
 	rm -rf *.o front/calc.pro.*
+	rm -rf front/*.o
+	rm -rf front/moc_*
 	rm -rf *.o build*
 	rm -rf *.o test
 	rm -rf *.o *.a
