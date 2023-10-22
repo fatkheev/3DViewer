@@ -1,136 +1,122 @@
 #include "../backend.h"
 
-// Открываем файл для чтения и возвращаем указатель на него.
 FILE* open_file(const char *filename) {
-    FILE *file = fopen(filename, "r"); // Открыть файл на чтение.
-    if (!file) { // Если файл не удалось открыть:
-        printf("Failed to open file: %s\n", filename); // Вывести ошибку.
-        return NULL; // Вернуть NULL.
+    FILE *file = fopen(filename, "r");
+    if (!file) {
+        printf("Failed to open file: %s\n", filename);
+        return NULL;
     }
-    return file; // Вернуть указатель на файл.
+    return file;
 }
 
-// Проверяем количество цифр (вершин) в строке.
 int check_digit(const char *str) {
     int count = 0;
-    char *ptr = (char *)str; // Указатель на начало строки.
-    while (*ptr) { // Пока не достигнут конец строки.
-        if (*ptr >= '0' && *ptr <= '9') { // Если текущий символ - число.
-            count++; // Увеличить счетчик.
-            while (*ptr && *ptr != ' ') ptr++; // Пропустить символы до следующего пробела.
+    char *ptr = (char *)str;
+    while (*ptr) {
+        if (*ptr >= '0' && *ptr <= '9') { // если текущий символ - число
+            count++;
+            while (*ptr && *ptr != ' ') ptr++; // пропускаем все символы до следующего пробела
         } else {
-            ptr++; // Перейти к следующему символу.
+            ptr++;
         }
     }
-    return count + 1; // Возвращаем количество цифр + 1.
+    return count + 1;
 }
 
-// Разбор файла .obj и заполнение массивов вершин и граней.
 int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Face **faces_out, int *num_faces) {
-    FILE *file = open_file(filename); // Открыть файл.
-    if (!file) { // Если файл не удалось открыть:
-        return -1; // Вернуть ошибку.
+    FILE *file = open_file(filename);
+    if (!file) {
+        return -1;
     }
 
-    char line[128]; // Массив для текущей строки файла.
-    int max_vertices = 1000; // Максимальное количество вершин (изначально).
-    int max_faces = 1000; // Максимальное количество граней (изначально).
-    Vertex *vertices = malloc(sizeof(Vertex) * max_vertices); // Выделение памяти под вершины.
-    Face *faces = malloc(sizeof(Face) * max_faces); // Выделение памяти под грани.
-    int vertexIndex = 0; // Текущий индекс вершины.
-    int faceIndex = 0; // Текущий индекс грани.
-    
-    // Начальные значения для определения границ объекта.
+    char line[128];
+    int max_vertices = 1000;
+    int max_faces = 1000;
+    Vertex *vertices = malloc(sizeof(Vertex) * max_vertices);
+    Face *faces = malloc(sizeof(Face) * max_faces);
+    int vertexIndex = 0;
+    int faceIndex = 0;
+
     float maxAbsValue = 0.0f;
     float minX = INFINITY, minY = INFINITY, minZ = INFINITY;
     float maxX = -INFINITY, maxY = -INFINITY, maxZ = -INFINITY;
 
-    // Первый проход: определение границ объекта.
     while (fgets(line, sizeof(line), file)) {
-        if (line[0] == 'v' && line[1] == ' ') { // Если строка содержит вершину.
+        if (line[0] == 'v' && line[1] == ' ') {
             Vertex v;
-            sscanf(line, "v %f %f %f\n", &v.x, &v.y, &v.z); // Читаем координаты вершины.
+            sscanf(line, "v %f %f %f\n", &v.x, &v.y, &v.z);
 
-            // Определение границ объекта.
             if (fabs(v.x) > maxAbsValue) maxAbsValue = fabs(v.x);
             if (fabs(v.y) > maxAbsValue) maxAbsValue = fabs(v.y);
             if (fabs(v.z) > maxAbsValue) maxAbsValue = fabs(v.z);
+
             if (v.x > maxX) maxX = v.x;
             if (v.y > maxY) maxY = v.y;
             if (v.z > maxZ) maxZ = v.z;
+
             if (v.x < minX) minX = v.x;
             if (v.y < minY) minY = v.y;
             if (v.z < minZ) minZ = v.z;
         }
     }
 
-    // Расчет коэффициента масштабирования и центра объекта.
     float scaleFactor = (maxAbsValue > 1.0f) ? (1.0f / maxAbsValue) : 1.0f;
     float centerX = (minX + maxX) / 2.0f;
     float centerY = (minY + maxY) / 2.0f;
     float centerZ = (minZ + maxZ) / 2.0f;
 
-    fseek(file, 0, SEEK_SET); // Возвращаем указатель в начало файла.
+    fseek(file, 0, SEEK_SET);
 
-    // Второй проход: чтение вершин и граней, масштабирование и центрирование вершин.
     while (fgets(line, sizeof(line), file)) {
-        if (line[0] == 'v' && line[1] == ' ') { // Если строка содержит вершину.
-            if (vertexIndex == max_vertices) { // Если текущее количество вершин достигло максимума.
-                max_vertices *= 2; // Удваиваем максимальное количество вершин.
-                vertices = realloc(vertices, sizeof(Vertex) * max_vertices); // Выделяем дополнительную память.
+        if (line[0] == 'v' && line[1] == ' ') {
+            if (vertexIndex == max_vertices) {
+                max_vertices *= 2;
+                vertices = realloc(vertices, sizeof(Vertex) * max_vertices);
             }
-            sscanf(line, "v %f %f %f\n", &vertices[vertexIndex].x, &vertices[vertexIndex].y, &vertices[vertexIndex].z); // Читаем координаты вершины.
 
-            // Масштабирование и центрирование вершины.
+            sscanf(line, "v %f %f %f\n", &vertices[vertexIndex].x, &vertices[vertexIndex].y, &vertices[vertexIndex].z);
+
             vertices[vertexIndex].x = (vertices[vertexIndex].x - centerX) * scaleFactor;
             vertices[vertexIndex].y = (vertices[vertexIndex].y - centerY) * scaleFactor;
             vertices[vertexIndex].z = (vertices[vertexIndex].z - centerZ) * scaleFactor;
 
-            vertexIndex++; // Увеличиваем индекс текущей вершины.
-        } else if (line[0] == 'f' && line[1] == ' ') { // Если строка содержит грань.
-            int count = check_digit(line) - 1; // Считаем количество вершин в грани.
-            int *tempVertices = malloc(sizeof(int) * count); // Выделяем временную память под индексы вершин грани.
-            bool validFace = true; // Флаг для проверки корректности грани.
+            vertexIndex++;
+        } else if (line[0] == 'f' && line[1] == ' ') {
+            if (faceIndex == max_faces) {
+                max_faces *= 2;
+                faces = realloc(faces, sizeof(Face) * max_faces);
+            }
+
+            int count = check_digit(line) - 1;
+            faces[faceIndex].vertices = malloc(sizeof(int) * count);
+            faces[faceIndex].num_vertices = count;
 
             int i = 0;
-            char *token = strtok(line + 2, " "); // Разбиваем строку на токены (индексы вершин).
-            while (token != NULL && validFace) { // Пока есть токены и грань считается корректной.
-                int idx = strtol(token, NULL, 10); // Преобразуем токен (строку) в число.
-                if (idx < 0) { // Если индекс отрицательный, конвертируем его в положительный.
-                    idx = vertexIndex + idx + 1;
+            char *token = strtok(line + 2, " ");
+            while (token != NULL) {
+                int idx = strtol(token, NULL, 10);
+                if (idx > 0 && idx <= vertexIndex) {  // Проверка на допустимость индекса
+                    faces[faceIndex].vertices[i++] = idx;
+                } else if (idx < 0 && abs(idx) <= vertexIndex) {
+                    faces[faceIndex].vertices[i++] = vertexIndex + idx + 1;
                 }
-                // Проверка на корректность индекса вершины.
-                if (idx > vertexIndex || idx <= 0) {
-                    validFace = false; // Если индекс некорректен, помечаем грань как некорректную.
-                } else {
-                    tempVertices[i++] = idx; // Если все в порядке, сохраняем индекс вершины.
-                }
-                token = strtok(NULL, " "); // Переходим к следующему токену.
+                token = strtok(NULL, " ");
             }
-
-            if (validFace) { // Если грань корректна:
-                if (faceIndex == max_faces) { // Если текущее количество граней достигло максимума.
-                    max_faces *= 2; // Удваиваем максимальное количество граней.
-                    faces = realloc(faces, sizeof(Face) * max_faces); // Выделяем дополнительную память.
-                }
-                faces[faceIndex].vertices = tempVertices; // Сохраняем индексы вершин в грани.
-                faces[faceIndex].num_vertices = count; // Сохраняем количество вершин в грани.
-                faceIndex++; // Увеличиваем индекс текущей грани.
-            } else {
-                free(tempVertices); // Если грань некорректна, освобождаем выделенную память.
-            }
+            faceIndex++;
         }
     }
 
-    fclose(file); // Закрываем файл.
+    fclose(file);
 
-    *vertices_out = vertices; // Возвращаем массив вершин.
-    *faces_out = faces; // Возвращаем массив граней.
-    *num_vertices = vertexIndex; // Возвращаем общее количество вершин.
-    *num_faces = faceIndex; // Возвращаем общее количество граней.
+    *vertices_out = vertices;
+    *faces_out = faces;
+    *num_vertices = vertexIndex;
+    *num_faces = faceIndex;
 
-    return 0; // Возвращаем успешное выполнение.
+    return 0;
 }
+
+
 
 // Поворот объекта
 void rotate_model(Vertex *vertices, int num_vertices, float angleX, float angleY, float angleZ) {
