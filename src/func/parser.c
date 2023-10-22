@@ -83,26 +83,36 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
 
             vertexIndex++;
         } else if (line[0] == 'f' && line[1] == ' ') {
-            if (faceIndex == max_faces) {
-                max_faces *= 2;
-                faces = realloc(faces, sizeof(Face) * max_faces);
-            }
-
             int count = check_digit(line) - 1;
-            faces[faceIndex].vertices = malloc(sizeof(int) * count);
-            faces[faceIndex].num_vertices = count;
+            int *tempVertices = malloc(sizeof(int) * count);
+            bool validFace = true;
 
             int i = 0;
             char *token = strtok(line + 2, " ");
-            while (token != NULL) {
+            while (token != NULL && validFace) {
                 int idx = strtol(token, NULL, 10);
                 if (idx < 0) {
                     idx = vertexIndex + idx + 1;
                 }
-                faces[faceIndex].vertices[i++] = idx;
+                if (idx > vertexIndex || idx <= 0) {
+                    validFace = false;
+                } else {
+                    tempVertices[i++] = idx;
+                }
                 token = strtok(NULL, " ");
             }
-            faceIndex++;
+
+            if (validFace) {
+                if (faceIndex == max_faces) {
+                    max_faces *= 2;
+                    faces = realloc(faces, sizeof(Face) * max_faces);
+                }
+                faces[faceIndex].vertices = tempVertices;
+                faces[faceIndex].num_vertices = count;
+                faceIndex++;
+            } else {
+                free(tempVertices);
+            }
         }
     }
 
@@ -115,6 +125,7 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
 
     return 0;
 }
+
 
 
 // Поворот объекта

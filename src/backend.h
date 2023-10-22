@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdbool.h>
 
 typedef struct {
     float x, y, z;
@@ -27,6 +28,8 @@ int check_digit(const char *str);
 
 // Запись точек и граней в массивы
 int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Face **faces_out, int *num_faces);
+
+
 
 // Поворот модели
 void rotate_model(Vertex *vertices, int num_vertices, float angleX, float angleY, float angleZ);
