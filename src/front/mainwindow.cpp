@@ -98,7 +98,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(timer, SIGNAL(timeout()), this, SLOT(create_gif()));
 
-    connect(ui->get_settings, &QPushButton::clicked, this, &MainWindow::applySettingsToModel);
 
 }
 
@@ -247,22 +246,15 @@ void MainWindow::on_GIF_clicked()
       gif_frame = new QGifImage;
       gif_frame->setDefaultDelay(10);
       timer->setInterval(100);
-      timecount = 1;
+      timecount = 10;
       timer->start();
-      connect(timer, &QTimer::timeout, this, &MainWindow::gif_button_text);
-
     }
-
-}
-
-void MainWindow::gif_button_text()
-{
-    ui->GIF->setText(QString::number(timecount / 10) + " сек");
 
 }
 
 void MainWindow::create_gif() {
     if (gif_frame && timer) {
+        ui->GIF->setText(QString::number(timecount / 10) + " сек");
           QImage img = openGLWidget->grabFramebuffer();
           QSize img_size(640, 480);
           QImage scaled_img = img.scaled(img_size);
@@ -270,19 +262,18 @@ void MainWindow::create_gif() {
           int MaxFrames = 50;
           if (timecount == MaxFrames) {
               timer->stop();
-               ui->GIF->setText("GIF");
               gif_frame->save(filePat);
               QMessageBox::information(0, "/", "Gif успешно сохранен.");
               delete gif_frame;
                 gif_frame = nullptr;
                 ui->GIF->setEnabled(true);
-
+               ui->GIF->setText("GIF");
           }
           timecount++;
+
       }
 
 }
-
 
 
 void MainWindow::horizontal_scroll_edge(int action)

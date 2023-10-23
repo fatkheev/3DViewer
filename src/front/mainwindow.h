@@ -37,9 +37,9 @@ private slots:
     void on_open_file_clicked();
     void on_clean_clicked();
     void on_screenshot_clicked();
-void gif_button_text();
     void on_GIF_clicked();
     void create_gif();
+
 
     void applySettingsToModel();
 

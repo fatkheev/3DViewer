@@ -1107,9 +1107,9 @@ border-radius: 5px;</string>
     <widget class="QPushButton" name="clean">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>290</x>
        <y>10</y>
-       <width>21</width>
+       <width>75</width>
        <height>20</height>
       </rect>
      </property>
@@ -1126,7 +1126,7 @@ QPushButton:pressed {
 </string>
      </property>
      <property name="text">
-      <string>Х</string>
+      <string>Отменить</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_5">
@@ -1262,7 +1262,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="screenshot">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>110</x>
        <y>10</y>
        <width>75</width>
        <height>20</height>
@@ -1312,7 +1312,7 @@ QPushButton:pressed {
     <widget class="QPushButton" name="open_file">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>200</x>
        <y>10</y>
        <width>75</width>
        <height>20</height>
@@ -1332,31 +1332,6 @@ QPushButton:pressed {
      </property>
      <property name="text">
       <string>Открыть</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="get_settings">
-     <property name="geometry">
-      <rect>
-       <x>260</x>
-       <y>10</y>
-       <width>75</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-   background-color: #808080;
-border-radius: 5px;
-}
-
-QPushButton:pressed {
-    background-color: #1E90FF;
-
-}
-</string>
-     </property>
-     <property name="text">
-      <string>Применить</string>
      </property>
     </widget>
    </widget>

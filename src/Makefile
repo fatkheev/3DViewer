@@ -77,5 +77,6 @@ clean:
 
 main: clean
 	$(CC) $(CFLAGS) -c func/*.c
-	$(CC) $(CFLAGS) main.c *.o -o main
+	$(CC) 
+	$(CFLAGS) main.c *.o -o main
 	./main
