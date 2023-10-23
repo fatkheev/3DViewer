@@ -9,7 +9,7 @@ FILE* open_file(const char *filename) {
     return file;
 }
 
-int count_vertex_indices_in_face_string(const char *str) {
+int check_digit(const char *str) {
     int count = 0;
     char *ptr = (char *)str;
     while (*ptr) {
@@ -41,7 +41,6 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
     float minX = INFINITY, minY = INFINITY, minZ = INFINITY;
     float maxX = -INFINITY, maxY = -INFINITY, maxZ = -INFINITY;
 
-    // Первый проход: определение границ и нахождение maxAbsValue
     while (fgets(line, sizeof(line), file)) {
         if (line[0] == 'v' && line[1] == ' ') {
             Vertex v;
@@ -66,15 +65,15 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
     float centerY = (minY + maxY) / 2.0f;
     float centerZ = (minZ + maxZ) / 2.0f;
 
-    fseek(file, 0, SEEK_SET);  // Вернемся к началу файла
+    fseek(file, 0, SEEK_SET);
 
-    // Второй проход: масштабирование и центрирование вершин, заполнение массивов
     while (fgets(line, sizeof(line), file)) {
         if (line[0] == 'v' && line[1] == ' ') {
             if (vertexIndex == max_vertices) {
                 max_vertices *= 2;
                 vertices = realloc(vertices, sizeof(Vertex) * max_vertices);
             }
+
             sscanf(line, "v %f %f %f\n", &vertices[vertexIndex].x, &vertices[vertexIndex].y, &vertices[vertexIndex].z);
 
             vertices[vertexIndex].x = (vertices[vertexIndex].x - centerX) * scaleFactor;
@@ -88,7 +87,7 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
                 faces = realloc(faces, sizeof(Face) * max_faces);
             }
 
-            int count = count_vertex_indices_in_face_string(line) - 1;
+            int count = check_digit(line) - 1;
             faces[faceIndex].vertices = malloc(sizeof(int) * count);
             faces[faceIndex].num_vertices = count;
 
@@ -96,10 +95,11 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
             char *token = strtok(line + 2, " ");
             while (token != NULL) {
                 int idx = strtol(token, NULL, 10);
-                if (idx < 0) {
-                    idx = vertexIndex + idx + 1;
+                if (idx > 0 && idx <= vertexIndex) {  // Проверка на допустимость индекса
+                    faces[faceIndex].vertices[i++] = idx;
+                } else if (idx < 0 && abs(idx) <= vertexIndex) {
+                    faces[faceIndex].vertices[i++] = vertexIndex + idx + 1;
                 }
-                faces[faceIndex].vertices[i++] = idx;
                 token = strtok(NULL, " ");
             }
             faceIndex++;
@@ -115,6 +115,7 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
 
     return 0;
 }
+
 
 
 // Поворот объекта

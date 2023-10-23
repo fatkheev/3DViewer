@@ -1107,9 +1107,9 @@ border-radius: 5px;</string>
     <widget class="QPushButton" name="clean">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>350</x>
        <y>10</y>
-       <width>80</width>
+       <width>21</width>
        <height>20</height>
       </rect>
      </property>
@@ -1126,7 +1126,7 @@ QPushButton:pressed {
 </string>
      </property>
      <property name="text">
-      <string>Отмена</string>
+      <string>Х</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_5">
@@ -1262,9 +1262,9 @@ QPushButton:pressed {
     <widget class="QPushButton" name="screenshot">
      <property name="geometry">
       <rect>
-       <x>105</x>
+       <x>100</x>
        <y>10</y>
-       <width>81</width>
+       <width>75</width>
        <height>20</height>
       </rect>
      </property>
@@ -1287,9 +1287,9 @@ QPushButton:pressed {
     <widget class="QPushButton" name="GIF">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>10</y>
-       <width>80</width>
+       <width>75</width>
        <height>20</height>
       </rect>
      </property>
@@ -1312,9 +1312,9 @@ QPushButton:pressed {
     <widget class="QPushButton" name="open_file">
      <property name="geometry">
       <rect>
-       <x>203</x>
+       <x>180</x>
        <y>10</y>
-       <width>80</width>
+       <width>75</width>
        <height>20</height>
       </rect>
      </property>
@@ -1332,6 +1332,31 @@ QPushButton:pressed {
      </property>
      <property name="text">
       <string>Открыть</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="get_settings">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>10</y>
+       <width>75</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+   background-color: #808080;
+border-radius: 5px;
+}
+
+QPushButton:pressed {
+    background-color: #1E90FF;
+
+}
+</string>
+     </property>
+     <property name="text">
+      <string>Применить</string>
      </property>
     </widget>
    </widget>

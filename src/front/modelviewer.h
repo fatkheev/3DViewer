@@ -69,7 +69,7 @@ protected:
 private:
     GLuint vertexVBO, indexVBO;
     int num_vertices, num_faces;
-    Vertex *vertices = nullptr, *originalVertices = nullptr;
+    Vertex *vertices = nullptr, *originalVertices = nullptr, *faces = nullptr;
     GLuint *indexes = nullptr;
     int *face_vertex_counts = nullptr;
     float rotationAngleX = 0.0, rotationAngleY = 0.0, rotationAngleZ = 0.0;

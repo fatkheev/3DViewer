@@ -56,10 +56,12 @@ valgrind:
 	valgrind --vgdb=no --leak-check=full --show-reachable=yes --show-leak-kinds=all --track-origins=yes --verbose --read-var-info=yes ./build/$(PROGNAME).app/Contents/MacOS/$(PROGNAME)
 
 leaks:
-	leaks -atExit -- ./build/Contents/MacOS/calc
+	leaks -atExit -- ./build/Contents/MacOS/front
 
 clean: 
 	rm -rf *.o front/calc.pro.*
+	rm -rf front/*.o
+	rm -rf front/moc_*
 	rm -rf *.o build*
 	rm -rf *.o test
 	rm -rf *.o *.a

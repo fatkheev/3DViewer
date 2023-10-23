@@ -373,16 +373,13 @@ void ModelViewer::saveSettings() {
     settings.beginGroup("ModelViewer");
 
     // Настройки вида
-    settings.setValue("rotationAngleX", rotationAngleX);
-    settings.setValue("rotationAngleY", rotationAngleY);
-    settings.setValue("rotationAngleZ", rotationAngleZ);
-    settings.setValue("scaleFactor", scaleFactor);
     settings.setValue("currentProjectionType", currentProjectionType);
     settings.setValue("backgroundColor", backgroundColor);
     settings.setValue("edgeColor", edgeColor);
+
     settings.setValue("vertexColor", vertexColor);
-    settings.setValue("vertexSize", vertexSize);
-    settings.setValue("vertexShape", vertexShape);
+    settings.setValue("edgeColor", edgeColor);
+
     settings.endGroup();
 }
 
@@ -392,16 +389,12 @@ void ModelViewer::loadSettings() {
     settings.beginGroup("ModelViewer");
 
     // Настройки вида
-    rotationAngleX = settings.value("rotationAngleX", 0.0f).toFloat();
-    rotationAngleY = settings.value("rotationAngleY", 0.0f).toFloat();
-    rotationAngleZ = settings.value("rotationAngleZ", 0.0f).toFloat();
-    scaleFactor = settings.value("scaleFactor", 1.0f).toFloat();
     currentProjectionType = settings.value("currentProjectionType", 0).toInt();
     backgroundColor = settings.value("backgroundColor", QColor(Qt::black)).value<QColor>();
     edgeColor = settings.value("edgeColor", QColor(Qt::white)).value<QColor>();
+
     vertexColor = settings.value("vertexColor", QColor(Qt::white)).value<QColor>();
-    vertexSize = settings.value("vertexSize", 0.01f).toFloat();
-    vertexShape = settings.value("vertexShape", 0).toInt();
+    edgeColor = settings.value("edgeColor", QColor(Qt::white)).value<QColor>();
 
     settings.endGroup();
 }

@@ -37,9 +37,11 @@ private slots:
     void on_open_file_clicked();
     void on_clean_clicked();
     void on_screenshot_clicked();
-void gif_button_text();
     void on_GIF_clicked();
     void create_gif();
+
+
+    void applySettingsToModel();
 
 
     void update_spinbox(int value);
@@ -68,6 +70,9 @@ private:
     // Сохранение
     void saveSettings();
     void loadSettings();
+
+    // Для пути файла
+    QString lastOpenedFilePath;
 };
 
 #endif // MAINWINDOW_H
