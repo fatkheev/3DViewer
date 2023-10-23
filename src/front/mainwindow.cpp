@@ -98,7 +98,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(timer, SIGNAL(timeout()), this, SLOT(create_gif()));
 
-    connect(ui->get_settings, &QPushButton::clicked, this, &MainWindow::applySettingsToModel);
 
 }
 
