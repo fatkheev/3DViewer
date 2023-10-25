@@ -5,7 +5,7 @@ int main() {
     Face *faces;
     int num_vertices, num_faces;
 
-    if (parse_obj("cubefour_eb.obj", &vertices, &num_vertices, &faces, &num_faces) != 0) {
+    if (parse_obj("test.obj", &vertices, &num_vertices, &faces, &num_faces) != 0) {
         printf("Error parsing obj file\n");
         return 1;
     }

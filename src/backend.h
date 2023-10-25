@@ -26,8 +26,22 @@ FILE* open_file(const char *filename);
 // Проверка на цифру
 int check_digit(const char *str);
 
+
+
+// Парсер вершин
+void parse_vertex(char *line, Vertex *vertex, float centerX, float centerY, float centerZ, float scaleFactor);
+
+// Парсер граней
+void parse_face(char *line, Face *face, int vertexIndex);
+
+// Функция определения максимальных и минимальных значений
+void find_extremes(FILE *file, float *maxAbsValue, float *minX, float *minY, float *minZ, float *maxX, float *maxY, float *maxZ);
+
+
+
 // Запись точек и граней в массивы
 int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Face **faces_out, int *num_faces);
+
 
 
 

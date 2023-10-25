@@ -30,78 +30,37 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
     }
 
     char line[128];
-    int max_vertices = 1000;
-    int max_faces = 1000;
+    int max_vertices = 1000, max_faces = 1000, vertexIndex = 0, faceIndex = 0;
     Vertex *vertices = malloc(sizeof(Vertex) * max_vertices);
     Face *faces = malloc(sizeof(Face) * max_faces);
-    int vertexIndex = 0;
-    int faceIndex = 0;
-
     float maxAbsValue = 0.0f;
-    float minX = INFINITY, minY = INFINITY, minZ = INFINITY;
-    float maxX = -INFINITY, maxY = -INFINITY, maxZ = -INFINITY;
+    float minX = INFINITY, minY = INFINITY, minZ = INFINITY, maxX = -INFINITY, maxY = -INFINITY, maxZ = -INFINITY;
 
-    while (fgets(line, sizeof(line), file)) {
-        if (line[0] == 'v' && line[1] == ' ') {
-            Vertex v;
-            sscanf(line, "v %f %f %f\n", &v.x, &v.y, &v.z);
-
-            if (fabs(v.x) > maxAbsValue) maxAbsValue = fabs(v.x);
-            if (fabs(v.y) > maxAbsValue) maxAbsValue = fabs(v.y);
-            if (fabs(v.z) > maxAbsValue) maxAbsValue = fabs(v.z);
-
-            if (v.x > maxX) maxX = v.x;
-            if (v.y > maxY) maxY = v.y;
-            if (v.z > maxZ) maxZ = v.z;
-
-            if (v.x < minX) minX = v.x;
-            if (v.y < minY) minY = v.y;
-            if (v.z < minZ) minZ = v.z;
-        }
-    }
+    // Определим максимальные и минимальные значения
+    find_extremes(file, &maxAbsValue, &minX, &minY, &minZ, &maxX, &maxY, &maxZ);
 
     float scaleFactor = (maxAbsValue > 1.0f) ? (1.0f / maxAbsValue) : 1.0f;
     float centerX = (minX + maxX) / 2.0f;
     float centerY = (minY + maxY) / 2.0f;
     float centerZ = (minZ + maxZ) / 2.0f;
 
-    fseek(file, 0, SEEK_SET);
+    fseek(file, 0, SEEK_SET);  // Возвращаем указатель файла на начало для последующего прохода
 
+    // Второй проход: парсинг вершин и граней
     while (fgets(line, sizeof(line), file)) {
         if (line[0] == 'v' && line[1] == ' ') {
             if (vertexIndex == max_vertices) {
                 max_vertices *= 2;
                 vertices = realloc(vertices, sizeof(Vertex) * max_vertices);
             }
-
-            sscanf(line, "v %f %f %f\n", &vertices[vertexIndex].x, &vertices[vertexIndex].y, &vertices[vertexIndex].z);
-
-            vertices[vertexIndex].x = (vertices[vertexIndex].x - centerX) * scaleFactor;
-            vertices[vertexIndex].y = (vertices[vertexIndex].y - centerY) * scaleFactor;
-            vertices[vertexIndex].z = (vertices[vertexIndex].z - centerZ) * scaleFactor;
-
+            parse_vertex(line, &vertices[vertexIndex], centerX, centerY, centerZ, scaleFactor);
             vertexIndex++;
         } else if (line[0] == 'f' && line[1] == ' ') {
             if (faceIndex == max_faces) {
                 max_faces *= 2;
                 faces = realloc(faces, sizeof(Face) * max_faces);
             }
-
-            int count = check_digit(line) - 1;
-            faces[faceIndex].vertices = malloc(sizeof(int) * count);
-            faces[faceIndex].num_vertices = count;
-
-            int i = 0;
-            char *token = strtok(line + 2, " ");
-            while (token != NULL) {
-                int idx = strtol(token, NULL, 10);
-                if (idx > 0 && idx <= vertexIndex) {  // Проверка на допустимость индекса
-                    faces[faceIndex].vertices[i++] = idx;
-                } else if (idx < 0 && abs(idx) <= vertexIndex) {
-                    faces[faceIndex].vertices[i++] = vertexIndex + idx + 1;
-                }
-                token = strtok(NULL, " ");
-            }
+            parse_face(line, &faces[faceIndex], vertexIndex);
             faceIndex++;
         }
     }
@@ -116,7 +75,57 @@ int parse_obj(const char *filename, Vertex **vertices_out, int *num_vertices, Fa
     return 0;
 }
 
+// Парсер вершин
+void parse_vertex(char *line, Vertex *vertex, float centerX, float centerY, float centerZ, float scaleFactor) {
+    sscanf(line, "v %f %f %f\n", &vertex->x, &vertex->y, &vertex->z);
 
+    vertex->x = (vertex->x - centerX) * scaleFactor;
+    vertex->y = (vertex->y - centerY) * scaleFactor;
+    vertex->z = (vertex->z - centerZ) * scaleFactor;
+}
+
+// Парсер граней
+void parse_face(char *line, Face *face, int vertexIndex) {
+    int count = check_digit(line) - 1;
+    face->vertices = malloc(sizeof(int) * count);
+    face->num_vertices = count;
+
+    int i = 0;
+    char *token = strtok(line + 2, " ");
+    while (token != NULL) {
+        int idx = strtol(token, NULL, 10);
+        if (idx > 0 && idx <= vertexIndex) {
+            face->vertices[i++] = idx;
+        } else if (idx < 0 && abs(idx) <= vertexIndex) {
+            face->vertices[i++] = vertexIndex + idx + 1;
+        }
+        token = strtok(NULL, " ");
+    }
+}
+
+// Функция определения максимальных и минимальных значений
+void find_extremes(FILE *file, float *maxAbsValue, float *minX, float *minY, float *minZ, float *maxX, float *maxY, float *maxZ) {
+    char line[128];
+    while (fgets(line, sizeof(line), file)) {
+        if (line[0] == 'v' && line[1] == ' ') {
+            Vertex v;
+            sscanf(line, "v %f %f %f\n", &v.x, &v.y, &v.z);
+
+            if (fabs(v.x) > *maxAbsValue) *maxAbsValue = fabs(v.x);
+            if (fabs(v.y) > *maxAbsValue) *maxAbsValue = fabs(v.y);
+            if (fabs(v.z) > *maxAbsValue) *maxAbsValue = fabs(v.z);
+
+            if (v.x > *maxX) *maxX = v.x;
+            if (v.y > *maxY) *maxY = v.y;
+            if (v.z > *maxZ) *maxZ = v.z;
+
+            if (v.x < *minX) *minX = v.x;
+            if (v.y < *minY) *minY = v.y;
+            if (v.z < *minZ) *minZ = v.z;
+        }
+    }
+    fseek(file, 0, SEEK_SET);  // Возвращаем указатель файла на начало для последующего прохода
+}
 
 // Поворот объекта
 void rotate_model(Vertex *vertices, int num_vertices, float angleX, float angleY, float angleZ) {
